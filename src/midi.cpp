@@ -104,9 +104,9 @@ void midiCallBack (double timeStamp,
   }
 
   if (midi->monitoring) {
-      std::cout << "[ " << command << " (" << std::hex << command << "h), "
-                << data1 << ", "
-                << data2 << " ]" << std::endl;
+      std::cout << "[ " << (int)command << " (" << std::hex << (int)command << "h), "
+                << (int)data1 << ", "
+                << (int)data2 << " ]" << std::endl;
   }
 }
 
