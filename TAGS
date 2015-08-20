@@ -1,0 +1,285 @@
+
+PIano.h,805
+#define PIANO_H2,16
+# define PUBLIC5,46
+# define PUBLIC 7,68
+#define debugging 14,146
+# define DEBUG(17,181
+# define DEBUG(19,226
+#define PRIVATE 22,254
+#define success 24,278
+#define error 25,296
+#define CHK(27,314
+typedef short * buffp;29,375
+typedef enum { false,30,398
+typedef enum { false, true 30,398
+typedef enum { false, true } boolean;30,398
+typedef enum { SFZ 32,437
+typedef enum { SFZ } library_type;32,437
+PUBLIC buffp buff;34,473
+PUBLIC buffp tmpbuff;35,492
+PUBLIC int channel_count;37,515
+PUBLIC int sampling_rate;38,541
+PUBLIC int log_frame_size;39,567
+PUBLIC int frame_size;40,594
+PUBLIC snd_pcm_uframes_t buff_frame_count;41,617
+PUBLIC volatile boolean keep_running;43,661
+  PRIVATE pthread_t opener;47,714
+  PRIVATE pthread_t feeder;48,742
+#undef PUBLIC52,779
+
+config.h,778
+#define CONFIG_H2,17
+# define PUBLIC5,49
+# define PUBLIC 7,71
+PUBLIC struct config_struct 10,102
+  char * samples_libraries_location;11,132
+  char * pcm_device;12,169
+  char * midi_device;13,190
+  boolean use_jack;14,212
+  char * mixer_device;15,232
+  int  master_volume;16,255
+} config;17,277
+typedef enum { p_string,21,303
+typedef enum { p_string, p_bool,21,303
+typedef enum { p_string, p_bool, p_int 21,303
+typedef enum { p_string, p_bool, p_int } param_type;21,303
+#define PARAMS_COUNT 23,357
+static boolean false_val 25,381
+static int     def_volume 26,415
+struct params_struc 28,448
+  char *name;name29,470
+  void *param;param30,484
+  param_type type;31,499
+  void *default_value;default_value32,518
+} params[params33,541
+#undef PUBLIC50,1318
+
+format.h,624
+#define FORMAT_H2,17
+# define PUBLIC5,49
+# define PUBLIC 7,71
+  typedef struct format_struct *formatp;formatp12,117
+  struct format_struct 14,159
+    formatp next;15,184
+    char * descriptor;16,202
+  PRIVATE formatp formats 19,231
+  PRIVATE char note_values_str[note_values_str21,266
+  PRIVATE boolean note_found;23,329
+  PRIVATE boolean volume_found;24,359
+  PRIVATE short the_note;25,391
+  PRIVATE short the_volume;26,417
+  #define COMMAND_COUNT 36,1028
+  PRIVATE struct command_struct 38,1055
+    char * name;39,1089
+    char * (* function)40,1106
+  } commands[commands41,1174
+#undef PUBLIC56,1676
+
+log.h,237
+#define LOG_H2,14
+typedef enum { INFO,4,29
+typedef enum { INFO, WARNING,4,29
+typedef enum { INFO, WARNING, ERROR,4,29
+typedef enum { INFO, WARNING, ERROR, FATAL 4,29
+typedef enum { INFO, WARNING, ERROR, FATAL } severity_level;4,29
+
+midi.h,84
+#define MIDI_H2,15
+# define PUBLIC7,72
+# define PUBLIC 9,94
+#undef PUBLIC17,278
+
+poly.h,2037
+#define POLY_H2,15
+# define PUBLIC10,103
+# define PUBLIC 12,125
+#define MAX_VOICES 15,156
+typedef struct voice_to_play * voicep;20,221
+typedef struct fifo_buff * fifop;21,260
+typedef enum { DORMANT,47,1407
+typedef enum { DORMANT, OPENING,47,1407
+typedef enum { DORMANT, OPENING, ALIVE,47,1407
+typedef enum { DORMANT, OPENING, ALIVE, CLOSING 47,1407
+typedef enum { DORMANT, OPENING, ALIVE, CLOSING } voice_state;47,1407
+struct voice_to_play 49,1471
+  voicep  next;50,1494
+  SNDFILE *   f;52,1511
+  volatile voice_state state;53,1528
+  volatile boolean     active;54,1558
+  volatile int         state_lock;55,1589
+  samplep sample;56,1624
+  boolean scale_down;57,1642
+  boolean note_on;58,1664
+  boolean sf_is_open;59,1683
+  float   gain;60,1705
+  int     down_pos;61,1721
+  int     frame_pos;62,1741
+  fifop   head,63,1762
+  fifop   head, tail;63,1762
+#define FIFO_BUFFER_PER_VOICE 66,1788
+#define FIFO_COUNT 67,1820
+typedef enum { AVAIL,69,1877
+typedef enum { AVAIL, USED 69,1877
+typedef enum { AVAIL, USED } fifo_state;69,1877
+struct fifo_buff 71,1919
+  fifop next;72,1938
+  buffp buff;73,1952
+  int   buff_frame_size;74,1966
+  int   frame_count;75,1991
+  volatile fifo_state state;76,2012
+  volatile int        state_lock;77,2041
+# define   IS_ACTIVE(81,2091
+# define IS_INACTIVE(82,2127
+# define  IS_DORMANT(84,2165
+# define  IS_OPENING(85,2211
+# define    IS_ALIVE(86,2257
+# define  IS_CLOSING(87,2301
+# define   SET_STATE(89,2348
+# define    ACTIVATE(92,2397
+# define  INACTIVATE(93,2539
+# define    ACTIVATE(95,2688
+# define  INACTIVATE(96,2779
+# define NOTE_OFF_FRAME_COUNT 99,2877
+  PRIVATE struct voice_to_play   sounds[sounds101,2914
+  PRIVATE struct fifo_buff fifo_buffers[fifo_buffers102,2967
+  PRIVATE float     note_off_scale_down[note_off_scale_down103,3020
+  PRIVATE          voicep  voices;105,3084
+  PRIVATE volatile int     count_s;106,3119
+  PRIVATE char *  state_str[state_str108,3156
+# define BEGIN(110,3236
+# define END(111,3315
+#undef PUBLIC130,3903
+
+samples.h,775
+#define SAMPLES_H2,18
+# define PUBLIC5,52
+# define PUBLIC 7,74
+#define MAX_SAMPLES 10,105
+#define SAMPLES_IN_CACHE 11,130
+typedef struct sample_struct * samplep;34,616
+struct sample_struct 36,657
+  char *  filename;37,680
+  int     note;38,700
+  int     volume;39,716
+  buffp   buff;40,734
+  int     frame_count;41,750
+  samplep next;42,773
+typedef struct sample_struct sample;45,793
+  PRIVATE samplep notes[notes48,846
+  PRIVATE sample  samples[samples49,876
+  PRIVATE int     sample_count;50,916
+  PRIVATE boolean samples_db_full_warned;51,948
+  PRIVATE char * notes_str[notes_str53,991
+  PRIVATE char * octaves_str[octaves_str54,1093
+  PRIVATE char   values_str[values_str55,1182
+  PRIVATE char   note_str[note_str56,1241
+#undef PUBLIC73,1821
+
+sound.h,136
+#define SOUND_H2,16
+# define PUBLIC5,46
+# define PUBLIC 7,68
+  PRIVATE snd_pcm_t *pcm_handle;pcm_handle11,112
+#undef PUBLIC19,285
+
+config.c,239
+#define CONFIG9,118
+void init_config(12,154
+void show_config(26,473
+char otoa(46,976
+char dtoa(52,1059
+char xtoa(58,1142
+char hextoa(66,1335
+char octtoa(76,1505
+int dectoa(87,1764
+int get_param(106,2192
+int read_config(202,4302
+
+format.c,674
+#define FORMAT8,99
+PRIVATE void clear_formats(11,135
+PRIVATE char * extract_str(25,326
+PRIVATE char * midi_volume_command(39,540
+PRIVATE char *  sfz_volume_command(61,1024
+PRIVATE char * check_str_param(122,1910
+PRIVATE char * custom_volume_command(144,2328
+PRIVATE char * dec_volume_command(155,2568
+PRIVATE char * offset_note_command(182,3264
+PRIVATE char * midi_note_command(203,3724
+PRIVATE char * note_command(216,3985
+PRIVATE char * exec_command(242,4560
+PRIVATE void show_descriptors(255,4921
+PRIVATE void show_command(267,5133
+int parse_filename(275,5382
+PRIVATE char * default_descriptors[default_descriptors392,8106
+int load_format_file(398,8228
+
+log.c,70
+char *severities[severities7,80
+void debug(11,163
+void Log(21,275
+
+main.c,125
+#define PIANO5,61
+void sigint_handler(16,220
+void initializations(23,309
+void close_everything(59,1334
+int main(69,1450
+
+midi.c,402
+#define MIDI9,127
+static snd_seq_t *seq_handle seq_handle12,159
+static snd_seq_addr_t seq_addr;13,196
+static int in_port;14,228
+static boolean pedal_on 16,249
+int midi_init(18,283
+snd_seq_event_t * midi_read(40,1184
+void midi_note_on(49,1361
+void midi_note_off(59,1597
+void midi_pedal_on(65,1724
+void midi_pedal_off(71,1794
+snd_seq_event_t * midi_process(80,1917
+void midi_close(112,2811
+
+poly.c,411
+#define POLY 8,101
+void * samples_feeder(59,2444
+void * sample_file_opener(102,3387
+void poly_show(163,4646
+int poly_init(204,5663
+void poly_close(266,7124
+voicep first_voice(282,7374
+voicep next_voice(302,7690
+voicep next_available(322,8009
+void add_voice(344,8424
+void note_off(398,9530
+void voices_sustain_off(412,9828
+int get_frames(425,10062
+int mixer(474,11465
+#       define MIX(530,12774
+
+samples.c,419
+#define SAMPLES 10,141
+PRIVATE void clear_samples_db(15,213
+int samples_init(31,501
+void samples_close(53,977
+void show_frames(60,1052
+PRIVATE char note_to_value(75,1359
+PRIVATE char * value_to_note(93,1683
+PRIVATE void add_to_notes(106,1932
+PRIVATE void show_notes(121,2225
+PRIVATE int add_sample_def(136,2517
+PRIVATE char * ext(206,4666
+int load_samples_library(221,4931
+samplep get_sample_note(269,6134
+
+sound.c,137
+#define  SOUND9,126
+int sound_init(14,187
+void sound_close(81,2418
+void sound_process(96,2650
+void sound_set_master_volume(121,3242
+
+test.c,15
+int main(3,20

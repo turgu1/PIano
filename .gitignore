@@ -1,0 +1,11 @@
+# Compiling support files
+obj/**
+.deps/**
+
+# OSX metafiles
+.DS_Store
+._*
+
+# emacs backup files
+*~
+

@@ -1,0 +1,26 @@
+var class_reverb =
+[
+    [ "fifo_struct", "struct_reverb_1_1fifo__struct.html", "struct_reverb_1_1fifo__struct" ],
+    [ "fifo_t", "class_reverb.html#ac5a0a40e32fddff8616e9e5e9fe0da64", null ],
+    [ "fifop", "class_reverb.html#a4f253373cef0492ac3ec56ed5c03f418", null ],
+    [ "Reverb", "class_reverb.html#a765b925557df7e43bf5ed275fc6950d1", null ],
+    [ "~Reverb", "class_reverb.html#ac346d0968d387c19fbfc2cb79c533250", null ],
+    [ "GET", "class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd", null ],
+    [ "process", "class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a", null ],
+    [ "PUT", "class_reverb.html#a0e861383ed8931e10838dfa04222c107", null ],
+    [ "setDamping", "class_reverb.html#a4849f5bb7a69a09d90f012a1852fc70b", null ],
+    [ "setDryWet", "class_reverb.html#a2265efb835072d0eed4003c19da9af6d", null ],
+    [ "setRoomSize", "class_reverb.html#af17a38f4db1c76479cc35e2dc1388825", null ],
+    [ "setWidth", "class_reverb.html#aebd9221153614e68bb0a748a519aab6b", null ],
+    [ "apGain", "class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59", null ],
+    [ "damping", "class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6", null ],
+    [ "dryWet", "class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7", null ],
+    [ "leftAp", "class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc", null ],
+    [ "leftCombs", "class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf", null ],
+    [ "leftLast", "class_reverb.html#a0f1ae518d616d39ae86f454c9589390d", null ],
+    [ "rightAp", "class_reverb.html#a36e348980bf85677ebcc772d30377125", null ],
+    [ "rightCombs", "class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158", null ],
+    [ "rightLast", "class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797", null ],
+    [ "roomSize", "class_reverb.html#a20373d7b9d140dfd99385206805cce0a", null ],
+    [ "width", "class_reverb.html#ab87f84fc02e369de7107c70f1e277b65", null ]
+];

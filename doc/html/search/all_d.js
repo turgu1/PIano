@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['name',['name',['../structparam_struct.html#a190c1c6a26ee9d217ae4c4bc89f4f1d5',1,'paramStruct']]],
+  ['new_5fhandler_5fsupport_2eh',['new_handler_support.h',['../new__handler__support_8h.html',1,'']]],
+  ['newhandlersupport',['NewHandlerSupport',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20fifo_20_3e',['NewHandlerSupport&lt; Fifo &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20piano_20_3e',['NewHandlerSupport&lt; PIano &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20poly_20_3e',['NewHandlerSupport&lt; Poly &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20reverb_20_3e',['NewHandlerSupport&lt; Reverb &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20sample_20_3e',['NewHandlerSupport&lt; Sample &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20sampleslibrary_20_3e',['NewHandlerSupport&lt; SamplesLibrary &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20sound_20_3e',['NewHandlerSupport&lt; Sound &gt;',['../class_new_handler_support.html',1,'']]],
+  ['newhandlersupport_3c_20voice_20_3e',['NewHandlerSupport&lt; Voice &gt;',['../class_new_handler_support.html',1,'']]],
+  ['next',['next',['../class_sample.html#aeef8cd9d1e809193a1d289439c5a344f',1,'Sample::next()'],['../class_voice.html#ad5a0f8be4293591206cb26a2b08e0da5',1,'Voice::next()']]],
+  ['nextavailable',['nextAvailable',['../class_poly.html#ae2a6fce57b6e5f58227be80c5a1be48b',1,'Poly']]],
+  ['nextvoice',['nextVoice',['../class_poly.html#ab3d1ddbc67023a315815277647999c1a',1,'Poly']]],
+  ['no_5fdevices_5ffound',['NO_DEVICES_FOUND',['../class_rt_midi_error.html#a741314057cec5fb8c743c12f284905eea2edbf3e6f6b2383bc3e352b4417326d7',1,'RtMidiError']]],
+  ['note',['note',['../class_sample.html#a5e65472ea8e006f5ff3d419c35fdc85f',1,'Sample::note()'],['../class_voice.html#a1e2282c300bd967e053bc9d6a1289e25',1,'Voice::note()']]],
+  ['note_5fcommand',['note_command',['../format_8cpp.html#a41c9a7de64d1923033bb4aa4d873e58a',1,'format.cpp']]],
+  ['noteison',['noteIsOn',['../class_voice.html#aafe67c3c08df938ecf85a77f97f734ea',1,'Voice']]],
+  ['noteoff',['noteOff',['../class_poly.html#ac28d2aca97805ff3d9fd77e28796158e',1,'Poly::noteOff()'],['../class_voice.html#a673f430c872ee03874e2039a70338b6b',1,'Voice::noteOff()']]],
+  ['notes',['notes',['../class_samples_library.html#a9b6e16827ccbd6cfdda0d1a7501397f1',1,'SamplesLibrary']]],
+  ['notesstr',['notesStr',['../utils_8cpp.html#a815ef95546ea7ce6e64971fef4cd7a70',1,'utils.cpp']]],
+  ['notetovalue',['noteToValue',['../utils_8cpp.html#a5d0605d8e6d6f51cef993a60b2321bb4',1,'noteToValue(char *note):&#160;utils.cpp'],['../utils_8h.html#a5d0605d8e6d6f51cef993a60b2321bb4',1,'noteToValue(char *note):&#160;utils.cpp']]]
+];

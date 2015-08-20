@@ -1,0 +1,87 @@
+# Format information for this library
+# -----------------------------------
+#
+# This file (named format.txt) supplies informations to PIano and must be put in
+# a Samples library folder.
+#
+# At launch time, PIano must load instrument samples in memory to allow it to play
+# notes. These samples are put in a folder and constitute a Samples Library.
+#
+# PIano will first read the file format.txt when available in a samples library 
+# folder to know how to decode each filename. It will then proceed to read
+# each file available in the library. 
+#
+# In a filename, it is required to be able to retrieve the MIDI note number 
+# and the accent (volume, attack or gain) corresponding to this specific
+# sample. A library may contain several hundred samples to cover the usual
+# ~8 octave of a large keyboard, but also several volume levels for each key. These 
+# information can be coded in many ways in the filename and this is the readon why
+# format.txt is required.
+#
+# The filename format must be coded for parsing in what we call a descriptor. 
+# There maybe more than one descriptor required depending on the variety of filename 
+# formats in use in the library. They will  need to be put on separate lines in the 
+# format.txt file as they will be tried in sequence until one successfully decode 
+# the filename being read by PIano.
+#
+# In a filename descriptor, the following informations must
+# be coded using {} to specify the command and parameters required in the 
+# filename string. Parameters are delimited with ':'.
+#
+# - The specific note related to this sample. Two format are supported:
+#
+#   midi_note          - A decimal midi note value (middle-C = 60). Between 0 and 127.
+#   offset_note:offset - A decimal note value with an offset from the midi numbering 
+#                        convention 
+#   note               - An english notation value (C4 is middle C). Ex: C C#4 Fb2 d g#0
+#                        A sharp is noted with #, a flat with b
+#
+# - The volume level related to this sample. Two format are supported:
+#
+#   midi_volume         - A decimal volume level between 0 and 127
+#   dec_volume:low:high - A volume value >= low and <= high
+#                         Ex: dec_volume:0:25
+#   sfz_volume          - A volume level indicator from the following list:
+#                         ppp pp p mp mf f ff fff
+#   custom_volume:str=val:str=val:str=val... 
+#                       - Up to 20 parameters. Each str correspond to a string
+#                         for which val, as a decimal value, correspond to the 
+#                         midi volume.
+# 
+#
+# The following characters can be used to wildcard part of the filename:
+#
+#      * - 0 or more characters
+#      + - 1 or more characters
+#      ? - 1 character
+#
+# Filename is read from left to right. Following a * or a +, there must be enough
+# specific characters to resynchronise the reader algorithm for the rest of the string.
+#
+# For exemple:
+#
+#    to parse filenames like "My Piano Cb4 - 40.wav" :
+#
+#      *{note} - {midi_volume}.wav           is bad
+#
+#      *Piano {note} - {midi_volume}.wav     is good as long as "Piano " does not
+#                                            appears more than once before {note}
+#
+#      My Piano {note} - {midi_volume}.wav   is good
+#
+# Another more complex example is used to parse piano 162 sample files, once the files
+# has been translate to WAV, to parse a filename like "63-PedalOnMezzoPiano2Close.wav:
+#
+# {offset_note:20}-PedalOn{custom_volume:Pianissimo2=10:Pianissimo1=20:Piano2=30:Piano1=40:MezzoPiano1=50:MezzoPiano2=55:MezzoForte1=60:MezzoForte2=65:Forte1=110:Forte2=127}Close.wav
+#
+# If no format.txt file is present, the following filename format is used:
+#
+#   {note}v{dec_volume:1:16}.wav
+#
+# Error messages related to a badly formatted descriptor will start with the 
+# following text at the console:
+#
+#      ERROR: Format Descriptor:
+#
+
+{note}v{dec_volume:1:16}.wav

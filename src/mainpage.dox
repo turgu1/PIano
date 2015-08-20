@@ -1,0 +1,429 @@
+/*!
+
+\mainpage The PIano Sampling Based Synthesizer Program
+
+PIano is a C++ application that run on a Raspberry PI.  It is a kind
+of a "fire and forget" application that would permit a Raspberry PI
+device to be permanently hooked to a midi controller and have PIano
+started automatically at bootstrap, without requiring any screen,
+mouse or typewriter keyboard.  Very few changes, if any, would be
+required to port it to other platforms. It is a console based
+application that keep as much resources as possible available for
+playing sounds. So far, no trial have been made to use it at the same
+time of a graphical interface with the user.
+
+PIano has the following characteristics:
+
+- 128 voices polyphony. Mileage may vary depending on the resources
+  available.
+
+- Very low latency (lower than 11.6ms)
+
+- Algebraic Reverb filter, based on the FreeVerb algorithm
+
+- 7 band digital output equalizer
+
+- High optimization using ARM NEON intrinsic operations
+
+- Multithreaded application, to allow for very large sampling
+  libraries that goes beyond RAM memory limitations.
+
+- Console based, no graphics, fire and forget application
+
+- Minimal interactive mode for initial setup and debugging purposes
+
+- MIDI channel listening control
+
+- Free and Open source. You can do what you want with it. See the
+  licensing section for details
+
+- Well documented application. Looking at the code, you can learn a
+  bit on how such an application can be designed
+
+\section Background Some background
+
+I was used to play piano (for myself as an amateur) on a Roland A-88
+MIDI controller, with a MacBook running Kontakt with some piano sample
+libraries in the back-end. The sound quality obtained with this
+combination was excellent, but for a computer science addict like me,
+it lacked my own touch of design and satisfaction in making my own
+instrument (It was also cumbersome of installing the laptop and the
+cables every time I wanted to play...).
+
+I was ready to buy a dedicated sampling computer or better, build my
+own. When the Raspberry Pi was first introduced, I thought it would be
+a good start at building my own music computer, but it was lacking
+some important features: enough USB ports (at least 3: MIDI controller
+access, external DAC, WIFI dongle), memory and processing power to
+permit a reasonable amount of good quality samples and polyphonic
+voices to be played. The first music related projects that started to
+emerge shown the device limitation and simply pushed to the right my
+intent.
+
+With the arrival of the Raspberry Pi 2, the new capability (faster
+multi-core processor, more memory) of the device triggered again my
+interest in this project and I started to build something useful and
+here it is. It was fun to built and it is fun to play piano with my
+own stuff.
+
+This is certainly not the best sampling application available. My
+intent is to bridge the gap with other more sophisticated alternatives
+than will eventually be able to be run on a future more powerful
+Raspberry PI.  Some decisions taken also reflect the "good enough
+selection" I made, considering some arbitrary level of satisfaction of
+my own or unavailability of time for me to address more closely some
+of the shortcomings encountered.
+
+All along the development of PIano, I've been using it extensively
+to ensure it won't show misbehaving states on a dedicated Raspberry PI
+that is run in console mode. As it's still work in progress, I expect
+some issues yet to be find and will fix them as soon as possible once
+discovered.
+
+\section Devices External Devices
+
+As stated, I'm using a Roland A-88 to control PIano. This MIDI
+controller is beneficial as it is equipped with a USB based serial
+interface. The usual MIDI connectors are also available but unused in
+this application for simplicity (no need for spefitif electronic
+changes to the PI). That controller supplies many knobs and buttons
+that allow controlling volume, reverb, etc. This is a rather expansive
+MIDI controller. Other options are available on the market.  If you
+get access to a controller that only use MIDI standard connectors, you
+may have to built your own hardware interface or acquire a MIDI to USB
+adapter (search for "midi USB interface" on Amazon). PIano also
+support the used of a sustain pedal hooked to the MIDI controller
+
+For audio output, I've tried at first to use the PI on-board audio
+device but the sound quality was not adequate. I acquired a MUSE DAC
+(Digital to Analog Converter based on the famous PCM2704 chip
+available for 25$ on Amazon) that supply output for headphones, S/PDIF
+and optical connections that would allow for external audio
+amplification.
+
+\section Installation Installation
+
+Two methods are available to install PIano: 
+
+- Installation from source code. This method will built the application
+  from the source distribution available on the Internet.
+
+- Installation from a pre-compile version of PIano. This method allow
+  for a quicker installation, as no application buildup is required.
+
+\subsection Compiling Installation from source code
+
+The suite of GNU C++ compiler and libraries is required to
+build the application. Also, the following libraries have been used to
+supply interfaces to external resources:
+
+- PortAudio - For ALSA based PCM device access
+
+- SndFile   - Sound file (WAV) PCM samples reading
+ 
+- RtMidi    - Midi ALSA input device interaction (already part of PIano
+              source code)
+
+Raspbian is already containing the GNU C++ suite of tools. What remains to be
+install are some external libraries. The following subsections give commands
+to be executed in a teminal shell.
+
+\subsubsection packages Install Raspbian packages
+
+Starting from a plain vanilla Raspbian distribution, you will need to
+install the required packages using the following command, once
+logged-in with the usual pi username:
+
+    sudo apt-get install libasound2-dev libsndfile-dev
+
+\subsubsection portaudio Compiling and installing PortAudio
+
+It will be required to build and install version V19 of 
+PortAudio as the version available as a package is too old and doesn't contain
+some of the added features of v19. To do so, execute the following commands:
+
+1. wget http://www.portaudio.com/archives/pa_stable_v19_20140130.tgz
+2. tar zxf pa_stable_v19_20140130.tgz
+3. cd ./portaudio
+4. ./configure --prefix=/usr --enable-cxx --with-alsa
+5. make
+6. sudo make install
+
+\subsubsection CompilePIano Retrieving and compiling PIano
+
+
+\section Installation Installation
+
+This section of the documentation gives the procedure to install PIano
+to make it run on a Raspberry PI. The application is a single binary
+file named "PIano" that is made available in the GitHub directory
+tree. If you prefer to rebuild the application, the section Compiling
+will direct you on how to recreate the binary code.
+
+Beyond the application, it will be required to have a sampling
+library. Many of these libraries are available for free on the
+internet. A good source of information is located at the following
+site:
+
+  http://earmonk.com/free-sample-libraries/
+
+Another good sample library is the SalamenderGrandPiano V3:
+
+  http://freepats.zenvoid.org/Piano/
+
+I'm use to play with this sample library. The freepats site is also
+the host of many other samples libraries.
+
+At this point in time PIano doesn't read SoundFont, SFZ or any other
+music sample packaging other than PCM flat files.  It is then
+important to select a library for which each sample (i.e. each sound
+corresponding to a note and a volume or gain) be in a dedicated file
+using WAV file format. There is tools (like Audacity) that would allow
+you to translate other file formats to WAV files.  WAV is a sound file
+format that is easy to read and doesn't require too much resources to
+extract PCM data. Sampling libraries are usually huge (from hundreds
+of megabytes to several gigabytes) and would need enough disk space to
+be kept on the device. You may choose to put your library on a USB
+dongle, external disk drive or on the Micro-SD card on which the Raspbian
+operating system has been installed. My own preference was to use the
+Micro-SD card as it will not require any external equipment and would
+allow for the best performance in terms of I/O. Using a USB dongle
+would be more practical if you intend to use other sampling libraries.
+
+PIano requires a minimum of information to make it happy to start
+listening to the MIDI controller and prepare the sounds to be output
+to the PCM device. This information is gathered in a configuration
+file names PIano.conf.
+
+\section Architecture High Level Design
+
+\subsection ClassDiagram Class Diagram
+
+This section presents a class diagram of the main classes involved in
+the PIano application. All the details for each class can be read from
+the documentation provided in the appropriate section or directly by
+reading the source code.
+
+All class instances are initiated at application startup from the
+PIano::PIano() method such that, once that application is ready to
+play songs, no other memory management processing is required.
+
+\startuml
+   PIano *-- Sound
+   PIano *-- Midi
+   Midi o-- RtMidiIn
+   PIano *-- Samples_Library 
+   Samples_Library o-- Sample
+   PIano *-- Poly
+   Poly o-- "n" Voice : mix >
+   Voice o-- "1" Sample : play >
+   PIano *-- Reverb
+   PIano *-- Equalizer
+
+   class Sound {
+     {static} soundCallBack()
+   }
+
+   class Midi {
+     {static} midiCallBack()
+   }
+
+   class Reverb {
+     process()
+   }
+
+   class Equalizer {
+     process()
+   }
+
+   class Samples_Library {
+     samplep notes[128]
+     samplep getNote(note)
+   }
+
+   class Poly {
+     voicep voices
+     mixer(buff, frameCount)
+     addVoice(sample, note, gain)
+     removeVoice(note)
+     {static} samplesFeeder()
+     {static} sampleFileOpener()
+   }
+
+   class Voice {
+     setup(sample, note, gain)
+     getFrames(buff, count)
+     noteOff()
+   }
+     
+\enduml
+
+\subsection Sequence Sequences of Operations
+
+\subsubsection MidiInteraction Midi Interaction
+
+\startuml
+    title Midi Interaction
+    actor Player
+    participant Midi
+    participant Samples_Library
+    participant Poly
+    participant Voice
+
+    Player -> Midi : keyPressed
+    activate Midi
+    Midi -> Midi : noteOn()
+    activate Midi
+    Midi -> Samples_Library : getNote(note, velocity)
+    activate Samples_Library
+    Samples_Library -> Midi : sample
+    deactivate Samples_Library
+    Midi -> Poly : addVoice(sample, note)
+    activate Poly
+    Poly -> Voice : setup(sample, note, gain)
+    activate Voice
+    Voice --> Poly : completed
+    Poly --> Midi : voiceAdded
+    deactivate Poly
+    Midi --> Midi : completed
+    deactivate Midi
+    Midi --> Player : completed
+    deactivate Midi
+    Player -> Midi : keyReleased
+    activate Midi
+    Midi -> Poly : removeVoice(note)
+    activate Poly
+    Poly -> Voice : noteOff()
+    Voice --> Poly : fadingOut
+    Poly --> Midi : voiceRemoved
+    deactivate Poly
+    Midi --> Player : completed
+    deactivate Midi
+    deactivate Voice
+\enduml
+
+\subsubsection PCMDevice PCM Device Interaction
+
+\startuml
+    title PCM Device Interaction
+    control     ALSA
+    participant Sound
+    participant Poly
+    participant Voice
+    participant Reverb
+    participant Equalizer
+
+    activate Voice
+    ALSA -> Sound : pcmDataRequest
+    activate Sound
+    Sound -> Poly : mixer()
+    activate Poly
+    Poly -> Voice : getFrames(buff, count)
+    Voice -> Poly : buff
+    Poly -> Sound : buff
+    deactivate Poly
+    Sound -> Reverb : process(buff)
+    activate Reverb
+    Reverb -> Sound : buff
+    deactivate Reverb
+    Sound -> Equalizer : process(buff)
+    activate Equalizer
+    Equalizer -> Sound : buff
+    deactivate Equalizer
+    Sound -> ALSA : buff
+    deactivate Sound
+    deactivate Voice
+\enduml
+
+\subsection Multithreading Some notes about Multithreading
+
+Taking the decision to go with a multithread solution must be done
+with enough confidence that it will augment the performance of the
+application. PIano is multithreading the process of supplying data from
+sample files.
+
+In the context of PIano, the need to go with this mechanism relates to
+the following aspects:
+
+ - Raspberry Pi is limited in the amount of RAM memory available
+   (around 800M)
+
+ - Good quality Piano sampling requires many Gigabytes of data to be
+   streamed to the sound card through the software mixer. With the PI
+   limitations in RAM memory, we cannot read everything in memory at
+   first
+
+ - Keeping sampling libraries on the SD card or an external USB Flash
+   memory dongle pause a challenge on the transmission speed of the
+   USB subsystem.
+
+ - Minimizing latency for the pianist is the first priority for such
+   an application to be accepted.
+
+Architecture decisions taken:
+
+ - When a sound library is loaded, a first chunk of each samples is
+   read in memory to minimize latency between the request made by the
+   pianist and the sound generated.
+
+ - Once a sound is requested, it is added to the voices list and
+   activated.
+
+ - A first thread will then open the file and prepare it to allow
+   reading additional data.
+
+ - A second thread will insure reading new data in a FIFO structure
+   for consumption by the mixer.
+
+What needs to be synchronized between threads:
+
+ - Changes to the voices structure. At link and unlink time, it is
+   important to insure exclusive access such that any change in the
+   linkages between voices wont interfere with the normal execution.
+
+ - Changes to the SNDFILE structure. As the two threads are sharing
+   access to that structure, it is then required to insure exclusive
+   access to it when any change is required. This is the case through
+   the "active" and "open" flags that are insuring that the two
+   threads wont interfere in using the SNDFILE structure.
+
+\section Licensing Licensing
+
+\n
+Simplified BSD License
+----------------------
+
+Copyright (c) 2015, Guy Turcotte \n
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the
+   distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+The views and conclusions contained in the software and documentation
+are those of the authors and should not be interpreted as representing
+official policies, either expressed or implied, of the FreeBSD
+Project.
+
+
+*/
