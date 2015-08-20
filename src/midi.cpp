@@ -1,6 +1,10 @@
 #include "copyright.h"
 
+#include <iostream>
+#include <unistd.h>
+#include <termios.h>
 #include <iomanip>
+#include <sstream>
 
 #include "PIano.h"
 
@@ -99,7 +103,7 @@ void midiCallBack (double timeStamp,
     }
   }
 
-  if (monitoring) {
+  if (midi->monitoring) {
       std::cout << "[ " << command << " (" << std::hex << command << "h), "
                 << data1 << ", "
                 << data2 << " ]" << std::endl;
@@ -154,20 +158,30 @@ Midi::Midi()
 
   if (interactive) {
     while (true) {
-      char userData[6];
-      int userNbr;
+      string str;
+      int nbr;
       cout << "Please enter MIDI device number to use: [Default: " << devNbr << "]> ";
-      cin >> setw(5) >> userData;
-      if (strlen(userData) == 0) break;
-      userNbr = atoi(userData);
-      if ((userNbr < 0) || (userNbr >= devCount)) {
-	cout << "!! Invalid device number[" << userNbr << "]. Please try again !!" << endl;
+
+      cin.clear();
+      cin.sync();
+
+      cin >> str;
+      if (str.empty()) break;
+      istringstream iss(str);
+      iss >> nbr;
+
+      if ((nbr < 0) || (nbr >= devCount)) {
+	cout << "!! Invalid device number[" << nbr << "]. Please try again !!" << endl;
       }
       else {
-	devNbr = userNbr;
+	devNbr = nbr;
 	break;
       }
     }
+
+    cin.clear();
+    cin.sync();
+
     cout << "MIDI Device Selected: " << devNbr << endl << endl;
   }
 
@@ -280,7 +294,8 @@ void Midi::monitorMessages()
 
     using namespace std;
 
-    cout << "Midi Messages Monitoring" << endl;
+    cout << endl << endl;
+    cout << "MIDI MESSAGES MONITORING" << endl;
     cout << "Press any key to stop:" << endl << endl;
 
     monitoring = true;

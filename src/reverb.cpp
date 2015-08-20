@@ -399,8 +399,7 @@ void Reverb::interactiveAdjust()
   cout.setf(ios::showpoint);
 
   cout << endl << endl;
-  cout << "Reverb Adjustments."               << endl;
-  cout << "------------------"                << endl;
+  cout << "REVERB ADJUSTMENTS."               << endl;
   cout << "Values must be between 0 and 1.0"  << endl;
   cout << "Please use the following keys:"    << endl << endl;
   cout << "For 0.05 increment steps: qwert"   << endl;

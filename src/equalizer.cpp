@@ -139,8 +139,7 @@ void Equalizer::interactiveAdjust()
   cout.setf(ios::showpoint);
 
   cout << endl << endl;
-  cout << "Equalizer Adjustments." << endl;
-  cout << "---------------------"  << endl;
+  cout << "EQUALIZER ADJUSTMENTS" << endl;
   cout << "Please use the following keys:"    << endl << endl;
   cout << "For 0.05 increment steps: qwertyu" << endl;
   cout << "For 0.05 decrement steps: asdfghj" << endl;

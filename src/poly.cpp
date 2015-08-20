@@ -409,7 +409,8 @@ void Poly::monitorCount()
 
   using namespace std;
 
-  cout << "Voice Count Monitoring" << endl;
+  cout << endl << endl;
+  cout << "VOICE COUNT MONITORING" << endl;
   cout << "Press any key to stop:" << endl << endl;
 
   while (read(STDIN_FILENO, &ch, 1) == 0) {
