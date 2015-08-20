@@ -22,7 +22,8 @@ char InteractiveMode::showMenuGetSelection()
   cout << endl;
   cout << "Menu:" << endl << "----" << endl;
 
-  cout << "m - Monitor active voice count" << endl;
+  cout << "a - Monitor active voice count" << endl;
+  cout << "m - Monitor midi messages"      << endl;
   cout << "e - Equalizer adjusments"       << endl;
   cout << "r - Reverb adjusments"          << endl;
   cout << "l - dump sample Library"        << endl;
@@ -32,7 +33,7 @@ char InteractiveMode::showMenuGetSelection()
 
   cout << "Your choice: ";
   cin >> setw(5) >> answer;
-  
+
   return answer[0];
 }
 
@@ -43,8 +44,11 @@ void InteractiveMode::menu()
     char ch = showMenuGetSelection();
 
     switch (ch) {
-    case 'm':
+    case 'a':
       poly->monitorCount();
+      break;
+    case 'm':
+      midi->monitorMessages();
       break;
     case 'e':
       equalizer->interactiveAdjust();

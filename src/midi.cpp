@@ -34,8 +34,8 @@ PRIVATE const int MIDI_FD           = 0xFD;
 PRIVATE const int MIDI_ACTIVE       = 0xFE;
 PRIVATE const int MIDI_RESET        = 0xFF;
 
-void midiCallBack (double timeStamp, 
-		   std::vector<unsigned char> * message, 
+void midiCallBack (double timeStamp,
+		   std::vector<unsigned char> * message,
 		   void * userData)
 {
   //DEBUG("midiCallBack() ...\n");
@@ -47,7 +47,7 @@ void midiCallBack (double timeStamp,
 
   if ((count <= 0) || (count > 3)) {
     logger.ERROR("midiCallBack, reveived %d bytes, 1, 2 or 3 expected.", count);
-    if (count > 0) logger.ERROR("Midi command: %d (%xh).", 
+    if (count > 0) logger.ERROR("Midi command: %d (%xh).",
 				message->at(0), message->at(0));
     return;
   }
@@ -87,16 +87,22 @@ void midiCallBack (double timeStamp,
 	masterVolume = data2 / 127.0f;
 	break;
       default:
-	logger.WARNING("Midi: Ignored Control: %02xh %d.\n",
-		       data1, data2);
+          //logger.WARNING("Midi: Ignored Control: %02xh %d.\n",
+          //	       data1, data2);
 	break;
       }
       break;
     default:
-      logger.WARNING("Midi: Ignored Event: %02xh %d %d.\n",
-		     command, data1, data2);
+        //logger.WARNING("Midi: Ignored Event: %02xh %d %d.\n",
+	//	     command, data1, data2);
       break;
     }
+  }
+
+  if (monitoring) {
+      std::cout << "[ " << command << " (" << std::hex << command << "h), "
+                << data1 << ", "
+                << data2 << " ]" << std::endl;
   }
 }
 
@@ -108,6 +114,7 @@ Midi::Midi()
   int devCount;
   int devNbr = -1;
 
+  monitoring = false;
   pedalOn = false;
   midiPort = NULL;
 
@@ -128,7 +135,7 @@ Midi::Midi()
     cout << "Device " << i << ": " <<  midiPort->getPortName(i) << endl;
 
     const char * name = midiPort->getPortName(i).c_str();
-    if ((devNbr == -1) && 
+    if ((devNbr == -1) &&
 	(strcasestr(name, cfg.midi.deviceName) != NULL)) {
       devNbr = i;
     }
@@ -163,7 +170,7 @@ Midi::Midi()
     }
     cout << "MIDI Device Selected: " << devNbr << endl << endl;
   }
-    
+
   try {
     midiPort->setCallback(&midiCallBack);
   }
@@ -181,7 +188,7 @@ Midi::Midi()
 
   if (cfg.midi.channel == -1) {
     logger.INFO("Listening to all MIDI channels.");
-  } 
+  }
   else {
     char data[60];
     char comma[2] = " ";
@@ -254,4 +261,37 @@ Midi::~Midi()
 
   if (midiPort->isPortOpen()) midiPort->closePort();
   if (midiPort != NULL) delete midiPort;
+}
+
+//---- monitorMessages() ----
+
+void Midi::monitorMessages()
+{
+    char ch;
+
+    // Setup unbuffered nonechoed character input for stdin
+    struct termios old_tio, new_tio;
+    tcgetattr(STDIN_FILENO, &old_tio);
+    new_tio = old_tio;
+    new_tio.c_lflag &= (~ICANON & ~ECHO);
+    new_tio.c_cc[VMIN]  = 0;
+    new_tio.c_cc[VTIME] = 0;
+    tcsetattr(STDIN_FILENO, TCSANOW, &new_tio);
+
+    using namespace std;
+
+    cout << "Midi Messages Monitoring" << endl;
+    cout << "Press any key to stop:" << endl << endl;
+
+    monitoring = true;
+
+    while (read(STDIN_FILENO, &ch, 1) == 0) {
+      sleep(1);
+    }
+    cout << endl << endl;
+
+    monitoring = false;
+
+    // Restore buffered echoed character input for stdin
+    tcsetattr(STDIN_FILENO, TCSANOW, &old_tio);
 }

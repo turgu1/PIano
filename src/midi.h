@@ -11,16 +11,18 @@ class Midi {
   /// This is the callback method called by RtMidi to signify the reception of a new MIDI command
   /// by the application. This callback is responsible of parsing the command and dispatch to modify
   /// PIano voices state accordingly.
-  friend void midiCallBack (double timeStamp, 
-			    std::vector<unsigned char> *message, 
+  friend void midiCallBack (double timeStamp,
+			    std::vector<unsigned char> *message,
 			    void *userData);
  public:
    Midi();
   ~Midi();
-  
+  void monitorMessages();
+
  private:
   RtMidiIn * midiPort;  ///< RTMidiIn instance
-  bool pedalOn;         ///< True if the sustain pedal is depressed by the user 
+  bool monitoring;      ///< True if monitoring midi in interactive mode
+  bool pedalOn;         ///< True if the sustain pedal is depressed by the user
   int  channelMask;     ///< Mask of channels being listened by Midi
 
   void setNoteOn(char note, char velocity);  ///< Process a noteOn MIDI command
