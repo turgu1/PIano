@@ -38,6 +38,45 @@ PRIVATE const int MIDI_FD           = 0xFD;
 PRIVATE const int MIDI_ACTIVE       = 0xFE;
 PRIVATE const int MIDI_RESET        = 0xFF;
 
+static struct midiNameStruct {
+    int value;
+    char *name;
+} midiNames[22] = {
+    { MIDI_NOTE_OFF,   "Note Off"           },
+    { MIDI_NOTE_ON,    "Note On"            },
+    { MIDI_POLY_AT,    "Poly Aftertouch"    },
+    { MIDI_CONTROL,    "Control Change"     },
+    { MIDI_PROGRAM,    "Program Change"     },
+    { MIDI_CHANNEL_AT, "Channel Aftertouch" },
+    { MIDI_PITCHBEND,  "Pitch Bend"         },
+    { MIDI_SYSEX,      "System Exclusive"   },
+    { MIDI_MTC,        "Midi Time Code"     },
+    { MIDI_SONGPOS,    "Song Position"      },
+    { MIDI_SONGSEL,    "Song Selection"     },
+    { MIDI_TUNE,       "Tune"               },
+    { MIDI_EOX,        "EOX"                },
+    { MIDI_CLOCK,      "Clock"              },
+    { MIDI_F9,         "Undefined"          },
+    { MIDI_START,      "Start"              },
+    { MIDI_CONTINUE,   "Continue"           },
+    { MIDI_STOP,       "Stop"               },
+    { MIDI_FD,         "FD"                 },
+    { MIDI_ACTIVE,     "Active"             },
+    { MIDI_RESET,      "Reset"              },
+    { 0,               "Undefined"          }
+};
+
+char * midiName(int value)
+{
+    struct midiNameStruct *md = midiNames;
+
+    while (true) {
+        if (md->value == value) break;
+        if (md->value == 0) break;
+    }
+    return md->name;
+}
+
 void midiCallBack (double timeStamp,
 		   std::vector<unsigned char> * message,
 		   void * userData)
@@ -62,7 +101,10 @@ void midiCallBack (double timeStamp,
   unsigned char data1 = (count > 1) ? message->at(1) : 0;
   unsigned char data2 = (count > 2) ? message->at(2) : 0;
 
-  if (command == MIDI_SYSEX) command = message->at(0);
+  if (command == MIDI_SYSEX) {
+      command = message->at(0);
+      channel = -1;
+  }
 
   if (((command & 0xF0) == MIDI_SYSEX) ||
       ((1 << channel) & midi->channelMask)) {
@@ -104,7 +146,7 @@ void midiCallBack (double timeStamp,
   }
 
   if (midi->monitoring) {
-      std::cout << "[ " << (int)command << " (" << std::hex << (int)command << "h), "
+      std::cout << "[ " << (int)command << " (" << std::hex << (int)command << "h : " << midiName(command) << "), "
                 << (int)data1 << ", "
                 << (int)data2 << " ]" << std::endl;
   }

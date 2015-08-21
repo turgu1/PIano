@@ -13,12 +13,14 @@ void Log::logIt(const char * level, const char * format, va_list args)
 
   static char sbuff[300];
 
+  if (silent) return;
+
   vsnprintf(sbuff, 299, format, args);
 
   cerr << level << " : " << sbuff << endl;
 }
 
-void Log::DEBUG(const char * format, ...) 
+void Log::DEBUG(const char * format, ...)
 {
   va_list args;
 
@@ -26,7 +28,7 @@ void Log::DEBUG(const char * format, ...)
   logIt("DEBUG", format, args);
 }
 
-void Log::INFO(const char * format, ...) 
+void Log::INFO(const char * format, ...)
 {
   va_list args;
 
@@ -34,7 +36,7 @@ void Log::INFO(const char * format, ...)
   logIt("INFO", format, args);
 }
 
-void Log::WARNING(const char * format, ...) 
+void Log::WARNING(const char * format, ...)
 {
   va_list args;
 
@@ -42,7 +44,7 @@ void Log::WARNING(const char * format, ...)
   logIt("WARNING", format, args);
 }
 
-void Log::ERROR(const char * format, ...) 
+void Log::ERROR(const char * format, ...)
 {
   va_list args;
 
@@ -50,7 +52,7 @@ void Log::ERROR(const char * format, ...)
   logIt("ERROR", format, args);
 }
 
-void Log::FATAL(const char * format, ...) 
+void Log::FATAL(const char * format, ...)
 {
   va_list args;
 

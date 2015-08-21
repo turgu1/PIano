@@ -82,6 +82,7 @@ PUBLIC struct configStruct {
 PUBLIC double   samplingRate;       ///< Sampling Rate. Will be initialized to 44100. Not supposed to be modified at thispoint in time.
 PUBLIC float    masterVolume;       ///< Overall master volume (gain)
 PUBLIC bool     interactive;        ///< True if PIano launched in interactive mode (option -i)
+PUBLIC bool     silent;             ///< If true, no logging message will be displayed
 PUBLIC bool     replayEnabled;      ///< Enable replaying last 5 seconds played
 PUBLIC volatile bool keepRunning;   ///< True while the application is running
 
@@ -121,4 +122,3 @@ PUBLIC PIano * piano;
 
 #undef PUBLIC
 #endif
-

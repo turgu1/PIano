@@ -72,7 +72,7 @@ PIano::PIano()
 
   logger.INFO("Master Volume: %f", masterVolume);
 
-  // The order is critical as some global variables are set here and 
+  // The order is critical as some global variables are set here and
   // used down the road.
 
   samples   = new SamplesLibrary();
@@ -99,7 +99,7 @@ PIano::~PIano()
 {
   delete midi;
   delete sound;
-  delete poly; 
+  delete poly;
   delete samples;
   delete reverb;
   delete equalizer;
@@ -109,11 +109,11 @@ PIano::~PIano()
 
   logger.INFO("Max volume: %8.2f.", maxVolume);
 
-  logger.INFO("Max duration of mixer function: %ld nsec (%.0f Hz).", 
+  logger.INFO("Max duration of mixer function: %ld nsec (%.0f Hz).",
 	      mixerDuration, 1000000000.0 / mixerDuration);
-  logger.INFO("Min duration of reverb function: %ld nsec (%.0f Hz).", 
+  logger.INFO("Min duration of reverb function: %ld nsec (%.0f Hz).",
 	      reverbMinDuration, 1000000000.0 / reverbMinDuration);
-  logger.INFO("Max duration of reverb function: %ld nsec (%.0f Hz).", 
+  logger.INFO("Max duration of reverb function: %ld nsec (%.0f Hz).",
 	      reverbMaxDuration, 1000000000.0 / reverbMaxDuration);
 }
 
@@ -173,13 +173,17 @@ int main(int argc, char **argv) {
   char opt;
 
   interactive = false;
+  silent = false;
 
   using namespace std;
 
-  while ((opt = getopt(argc, argv, "ihc")) != (char)-1) {
+  while ((opt = getopt(argc, argv, "ishc")) != (char)-1) {
     switch (opt) {
     case 'i':
       interactive = true;
+      break;
+    case 's':
+      silent = true;
       break;
     case 'c':
       showCopyright();
@@ -188,11 +192,12 @@ int main(int argc, char **argv) {
     case 'h':
     case '?':
       cout << endl;
-      cout << "Usage: PIano [options...]"    << endl << endl;
-      cout << "  -i  Interactive Mode."      << endl;
-      cout << "  -c  Show Copyright Notice." << endl;
-      cout << "  -h  This help text."        << endl << endl;
-      cout << "(c) 2015, Guy Turcotte"       << endl;
+      cout << "Usage: PIano [options...]"     << endl << endl;
+      cout << "  -i  Interactive Mode."       << endl;
+      cout << "  -s  Silent: no logging msg." << endl;
+      cout << "  -c  Show Copyright Notice."  << endl;
+      cout << "  -h  This help text."         << endl << endl;
+      cout << "(c) 2015, Guy Turcotte"        << endl;
       exit(0);
       break;
     }
@@ -206,7 +211,7 @@ int main(int argc, char **argv) {
   if (piano == NULL) {
     logger.FATAL("Unable to allocate memory for PIano.");
   }
-  
+
   if (pthread_create(&feeder, NULL, samplesFeeder, NULL)) {
     logger.FATAL("Unable to start samplesFeeder thread.");
    }
@@ -214,7 +219,7 @@ int main(int argc, char **argv) {
   if (pthread_create(&opener, NULL, sampleFileOpener, NULL)) {
     logger.FATAL("Unable to start sample_file_opener thread.");
   }
-  
+
   if (interactive) {
     InteractiveMode im;
     im.menu();
