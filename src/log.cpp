@@ -5,7 +5,7 @@
 #include <cstdarg>
 #include <cstdlib>
 
-#include "log.h"
+#include "PIano.h"
 
 void Log::logIt(const char * level, const char * format, va_list args)
 {

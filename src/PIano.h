@@ -19,7 +19,7 @@ typedef sample_t * buffp;
 
 // Number of parameters in the cfg structure below
 
-#define CFG_PARAMS_COUNT 13
+#define CFG_PARAMS_COUNT 14
 
 #define BUFFER_FRAME_COUNT  256
 #define FRAME_SIZE          (2 * sizeof(sample_t))
@@ -66,6 +66,7 @@ PUBLIC struct configStruct {
     char  * deviceName;
   } pcm;
   struct midiStruct {
+    int     sustainTreshold;
     int     deviceNbr;
     char  * deviceName;
     int     channel;

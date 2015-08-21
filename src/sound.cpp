@@ -68,19 +68,23 @@ Sound::Sound()
     logger.FATAL("Unable to get audio device count: %s.", Pa_GetErrorText(devCount));
   }
 
-  cout << endl << endl;
-  cout << "PCM Device list:" << endl;
-  cout << "---------------"  << endl;
+  if (!silent) {
+    cout << endl << endl;
+    cout << "PCM Device list:" << endl;
+    cout << "---------------"  << endl;
+  }
 
   for (int i = 0; i < devCount; i++) {
     devInfo = Pa_GetDeviceInfo(i);
-    cout << "Device " << i << ": " << devInfo->name << endl;
+
+    if (!silent) cout << "Device " << i << ": " << devInfo->name << endl;
+
     if ((devNbr == -1) && (strcasestr(devInfo->name, cfg.pcm.deviceName) != NULL)) {
       devNbr = i;
     }
   }
 
-  cout << "[End of list]" << endl << endl;
+  if (!silent) cout << "[End of list]" << endl << endl;
 
   devNbr = cfg.pcm.deviceNbr == -1 ? devNbr : cfg.pcm.deviceNbr;
 

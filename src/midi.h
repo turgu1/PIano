@@ -22,15 +22,15 @@ class Midi {
  private:
   RtMidiIn * midiPort;  ///< RTMidiIn instance
   bool monitoring;      ///< True if monitoring midi in interactive mode
-  bool pedalOn;         ///< True if the sustain pedal is depressed by the user
+  bool sustainOn;       ///< True if the sustain pedal is depressed by the user
   int  channelMask;     ///< Mask of channels being listened by Midi
 
   void setNoteOn(char note, char velocity);  ///< Process a noteOn MIDI command
   void setNoteOff(char note, char velocity); ///< Process a noteOff MIDI command
-  void setPedalOn();
-  void setPedalOff();
+  void setSustainOn();
+  void setSustainOff();
 
-  bool pedalIsOn() { return pedalOn; };
+  bool sustainIsOn() { return sustainOn; };
 };
 
 #endif

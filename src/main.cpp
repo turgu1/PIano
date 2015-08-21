@@ -18,22 +18,24 @@ static float   defaultDryWet      = 0.75f;
 static float   defaultApGain      = 0.50f;
 static int     defaultDeviceNbr   =    -1;
 static int     defaultChannel     =    -1;
+static int     defaultTreshold    =    50;
 static bool    defaultFalse       = false;
 
 paramStruct Config::params[CFG_PARAMS_COUNT] = {
   { "samples_libraries_location", &cfg.samplesLibrariesLocation, p_string, "." },
-  { "master_volume",    &cfg.masterVolume,     p_int,    &defaultVolume        },
-  { "enable_replay",    &cfg.enableReplay,     p_bool,   &defaultFalse         },
-  { "pcm_device_nbr",   &cfg.pcm.deviceNbr,    p_int,    &defaultDeviceNbr     },
-  { "pcm_device_name",  &cfg.pcm.deviceName,   p_string, "DAC"                 },
-  { "midi_channel",     &cfg.midi.channel,     p_int,    &defaultChannel       },
-  { "midi_device_nbr",  &cfg.midi.deviceNbr,   p_int,    &defaultDeviceNbr     },
-  { "midi_device_name", &cfg.midi.deviceName,  p_string, "Roland"              },
-  { "reverb_room_size", &cfg.reverb.roomSize,  p_float,  &defaultRoomSize      },
-  { "reverb_damping",   &cfg.reverb.damping,   p_float,  &defaultDamping       },
-  { "reverb_width",     &cfg.reverb.width,     p_float,  &defaultWidth         },
-  { "reverb_dry_wet",   &cfg.reverb.dryWet,    p_float,  &defaultDryWet        },
-  { "reverb_ap_gain",   &cfg.reverb.apGain,    p_float,  &defaultApGain        }
+  { "master_volume",         &cfg.masterVolume,         p_int,    &defaultVolume        },
+  { "enable_replay",         &cfg.enableReplay,         p_bool,   &defaultFalse         },
+  { "pcm_device_nbr",        &cfg.pcm.deviceNbr,        p_int,    &defaultDeviceNbr     },
+  { "pcm_device_name",       &cfg.pcm.deviceName,       p_string, "DAC"                 },
+  { "midi_channel",          &cfg.midi.channel,         p_int,    &defaultChannel       },
+  { "midi_device_nbr",       &cfg.midi.deviceNbr,       p_int,    &defaultDeviceNbr     },
+  { "midi_device_name",      &cfg.midi.deviceName,      p_string, "Roland"              },
+  { "midi_sustain_treshold", &cfg.midi.sustainTreshold, p_int,    &defaultTreshold      },
+  { "reverb_room_size",      &cfg.reverb.roomSize,      p_float,  &defaultRoomSize      },
+  { "reverb_damping",        &cfg.reverb.damping,       p_float,  &defaultDamping       },
+  { "reverb_width",          &cfg.reverb.width,         p_float,  &defaultWidth         },
+  { "reverb_dry_wet",        &cfg.reverb.dryWet,        p_float,  &defaultDryWet        },
+  { "reverb_ap_gain",        &cfg.reverb.apGain,        p_float,  &defaultApGain        }
 };
 
 //---- sigint_handler ----

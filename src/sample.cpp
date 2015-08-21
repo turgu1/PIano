@@ -82,10 +82,10 @@ void Sample::showState()
   using namespace std;
 
   cout << "sample: "
-       << "note:"  << (note)       << " "
-       << "vol:"   << (volume)     << " "
-       << "buff:"  << (buff)       << " "
-       << "fc:"    << (frameCount) << " "
-       << "nxt:"   << (next)       << " "
-       << "fname:" << (filename)   << endl;
+       << "note:"  << note       << " "
+       << "vol:"   << volume     << " "
+       << "buff:"  << buff       << " "
+       << "fc:"    << frameCount << " "
+       << "nxt:"   << next       << " "
+       << "fname:" << filename   << endl;
 }

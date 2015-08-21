@@ -39,43 +39,48 @@ PRIVATE const int MIDI_ACTIVE       = 0xFE;
 PRIVATE const int MIDI_RESET        = 0xFF;
 
 static struct midiNameStruct {
-    int value;
-    char *name;
+  const int value;
+  const char * name;
 } midiNames[22] = {
-    { MIDI_NOTE_OFF,   "Note Off"           },
-    { MIDI_NOTE_ON,    "Note On"            },
-    { MIDI_POLY_AT,    "Poly Aftertouch"    },
-    { MIDI_CONTROL,    "Control Change"     },
-    { MIDI_PROGRAM,    "Program Change"     },
-    { MIDI_CHANNEL_AT, "Channel Aftertouch" },
-    { MIDI_PITCHBEND,  "Pitch Bend"         },
-    { MIDI_SYSEX,      "System Exclusive"   },
-    { MIDI_MTC,        "Midi Time Code"     },
-    { MIDI_SONGPOS,    "Song Position"      },
-    { MIDI_SONGSEL,    "Song Selection"     },
-    { MIDI_TUNE,       "Tune"               },
-    { MIDI_EOX,        "EOX"                },
-    { MIDI_CLOCK,      "Clock"              },
-    { MIDI_F9,         "Undefined"          },
-    { MIDI_START,      "Start"              },
-    { MIDI_CONTINUE,   "Continue"           },
-    { MIDI_STOP,       "Stop"               },
-    { MIDI_FD,         "FD"                 },
-    { MIDI_ACTIVE,     "Active"             },
-    { MIDI_RESET,      "Reset"              },
-    { 0,               "Undefined"          }
+  { MIDI_NOTE_OFF,   "Note Off"           },
+  { MIDI_NOTE_ON,    "Note On"            },
+  { MIDI_POLY_AT,    "Poly Aftertouch"    },
+  { MIDI_CONTROL,    "Control Change"     },
+  { MIDI_PROGRAM,    "Program Change"     },
+  { MIDI_CHANNEL_AT, "Channel Aftertouch" },
+  { MIDI_PITCHBEND,  "Pitch Bend"         },
+  { MIDI_SYSEX,      "System Exclusive"   },
+  { MIDI_MTC,        "Midi Time Code"     },
+  { MIDI_SONGPOS,    "Song Position"      },
+  { MIDI_SONGSEL,    "Song Selection"     },
+  { MIDI_TUNE,       "Tune"               },
+  { MIDI_EOX,        "EOX"                },
+  { MIDI_CLOCK,      "Clock"              },
+  { MIDI_F9,         "Undefined"          },
+  { MIDI_START,      "Start"              },
+  { MIDI_CONTINUE,   "Continue"           },
+  { MIDI_STOP,       "Stop"               },
+  { MIDI_FD,         "FD"                 },
+  { MIDI_ACTIVE,     "Active"             },
+  { MIDI_RESET,      "Reset"              },
+  { 0,               "Undefined"          }
 };
 
-char * midiName(int value)
-{
-    struct midiNameStruct *md = midiNames;
+//---- miniName() ----
 
-    while (true) {
-        if (md->value == value) break;
-        if (md->value == 0) break;
-    }
-    return md->name;
+static const char * midiName(int value)
+{
+  struct midiNameStruct *md = midiNames;
+
+  while (true) {
+    if (md->value == value) break;
+    if (md->value == 0) break;
+    md++;
+  }
+  return md->name;
 }
+
+//---- midiCallBack ----
 
 void midiCallBack (double timeStamp,
 		   std::vector<unsigned char> * message,
@@ -88,12 +93,7 @@ void midiCallBack (double timeStamp,
 
   int count = message->size();
 
-  if ((count <= 0) || (count > 3)) {
-    logger.ERROR("midiCallBack, reveived %d bytes, 1, 2 or 3 expected.", count);
-    if (count > 0) logger.ERROR("Midi command: %d (%xh).",
-				message->at(0), message->at(0));
-    return;
-  }
+  if (count <= 0) return;
 
   int channel = message->at(0) & MIDI_CHANNEL_MASK;
 
@@ -119,11 +119,11 @@ void midiCallBack (double timeStamp,
     case MIDI_CONTROL:
       switch (data1) {
       case 0x40:
-	if (midi->pedalIsOn() && (data2 < 64)) {
-	  midi->setPedalOff();
+	if (midi->sustainIsOn() && (data2 < cfg.midi.sustainTreshold)) {
+	  midi->setSustainOff();
 	}
-	else if (!midi->pedalIsOn() && (data2 >= 64)) {
-	  midi->setPedalOn();
+	else if (!midi->sustainIsOn() && (data2 >= cfg.midi.sustainTreshold)) {
+	  midi->setSustainOn();
 	}
 	break;
       case 0x47:
@@ -145,13 +145,24 @@ void midiCallBack (double timeStamp,
     }
   }
 
+  using namespace std;
+
   if (midi->monitoring) {
-      std::cout << "[ " << (int)command << " (" << std::hex << (int)command << "h : " << midiName(command) << "), "
-                << (int)data1 << ", "
-                << (int)data2 << " ]" << std::endl;
+    cout << "[ (" << hex << (int)command << "h : " << midiName(command) << ")";
+    if (command == MIDI_SYSEX) {
+      for (int i = 1; i < count; i++) {
+	cout << ", " << dec << message->at(i);
+      }
+      cout << " ]";
+    }
+    else {
+      cout << ", " << dec << (int)data1 << ", " << (int)data2 << " ]";
+    }
+    cout << endl << flush;
   }
 }
 
+//---- Midi() ----
 
 Midi::Midi()
 {
@@ -161,7 +172,7 @@ Midi::Midi()
   int devNbr = -1;
 
   monitoring = false;
-  pedalOn = false;
+  sustainOn = false;
   midiPort = NULL;
 
   try {
@@ -173,12 +184,14 @@ Midi::Midi()
 
   devCount = midiPort->getPortCount();
 
-  cout << endl << endl;
-  cout << "MIDI Input Device list:" << endl;
-  cout << "----------------------"  << endl;
+  if (!silent) {
+    cout << endl << endl;
+    cout << "MIDI Input Device list:" << endl;
+    cout << "----------------------"  << endl;
+  }
 
   for (int i = 0; i < devCount; i++) {
-    cout << "Device " << i << ": " <<  midiPort->getPortName(i) << endl;
+    if (!silent) cout << "Device " << i << ": " <<  midiPort->getPortName(i) << endl;
 
     const char * name = midiPort->getPortName(i).c_str();
     if ((devNbr == -1) &&
@@ -186,7 +199,7 @@ Midi::Midi()
       devNbr = i;
     }
   }
-  cout << "[End of list]" << endl << endl;
+  if (!silent) cout << "[End of list]" << endl << endl;
 
   devNbr = cfg.midi.deviceNbr == -1 ? devNbr : cfg.midi.deviceNbr;
 
@@ -265,6 +278,8 @@ Midi::Midi()
   channelMask = cfg.midi.channel;
 }
 
+//---- setNoteOn() ----
+
 void Midi::setNoteOn(char note, char velocity)
 {
   //DEBUG("Note ON %d (%d)\n", note, velocity);
@@ -274,7 +289,7 @@ void Midi::setNoteOn(char note, char velocity)
   }
   else {
     if (velocity == 0) {
-      poly->noteOff(note, pedalOn);
+      poly->noteOff(note, sustainOn);
     }
     else {
       samplep sample = samples->getNote(note, velocity);
@@ -285,31 +300,39 @@ void Midi::setNoteOn(char note, char velocity)
   }
 }
 
+//---- setNoteOff() ----
+
 void Midi::setNoteOff(char note, char velocity)
 {
   //DEBUG("Note OFF %d (%d)\n", note, velocity);
 
   (void) velocity;
 
-  poly->noteOff(note, pedalOn);
+  poly->noteOff(note, sustainOn);
 }
 
-void Midi::setPedalOn()
-{
-  //DEBUG("Pedal ON\n");
+//---- setSustainOn() ----
 
-  pedalOn = true;
+void Midi::setSustainOn()
+{
+  //DEBUG("Sustain ON\n");
+
+  sustainOn = true;
 }
 
-void Midi::setPedalOff()
-{
-  //DEBUG("Pedal OFF\n");
+//---- setSustainOff() ----
 
-  if (pedalOn) {
-    pedalOn = false;
+void Midi::setSustainOff()
+{
+  //DEBUG("Sustain OFF\n");
+
+  if (sustainOn) {
+    sustainOn = false;
     poly->voicesSustainOff();
   }
 }
+
+//---- ~Midi() ----
 
 Midi::~Midi()
 {

@@ -2,14 +2,14 @@ CC=g++
 
 CFLAGS = -std=c++0x -pthread -c -W -Wall -Wextra -pedantic -Wno-char-subscripts \
          -Wno-unused-function -O4 -march=armv7-a -mfloat-abi=hard -mfpu=neon \
-         -D__LINUX_ALSA__
+         -D__LINUX_ALSA__ -g
 
 #CFLAGS = -std=c++0x -pthread -c -W -Wall -Wextra -pedantic -Wno-char-subscripts \
 #         -Wno-unused-function -O0 -march=armv7-a -mfloat-abi=hard -mfpu=neon \
 #         -D__LINUX_ALSA__ -g
 
-#LDFLAGS = -lsndfile -lportaudio -lasound -pthread -lm -lrt -g
-LDFLAGS = -lsndfile -lportaudio -lasound -pthread -lm -lrt
+LDFLAGS = -lsndfile -lportaudio -lasound -pthread -lm -lrt -g
+#LDFLAGS = -lsndfile -lportaudio -lasound -pthread -lm -lrt
 
 MAKEDEPEND = $(CC) -M $(CFLAGS) -o $(df).d $<
 DEPDIR = .deps
