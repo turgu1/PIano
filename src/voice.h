@@ -203,9 +203,9 @@ class Voice : public NewHandlerSupport<Voice> {
   /// state of the voice request so. Once closed, the state of the
   /// voice is changed to DORMANT.
   inline void closeSoundFile() { 
-    if (soundFileOpen) sf_close(soundFile); 
-    soundFileOpen = false;
     BEGIN();
+      if (soundFileOpen) sf_close(soundFile); 
+      soundFileOpen = false;
       setState(DORMANT);
       clearFifo();
     END();
@@ -243,10 +243,14 @@ class Voice : public NewHandlerSupport<Voice> {
 	  logger.DEBUG("INTERNAL ERROR: sound file expected open.");
 	}
 	else {
-	  fifo->setFrameCount(sf_readf_float(soundFile, 
-					     fifo->getTail(), 
-					     BUFFER_FRAME_COUNT));
-	  fifo->push();
+	  BEGIN();
+	    if (soundFileOpen) { // Just in case the other thread got control to close the file
+	      fifo->setFrameCount(sf_readf_float(soundFile, 
+						 fifo->getTail(), 
+						 BUFFER_FRAME_COUNT));
+	      fifo->push();
+	    }
+	  END();
 	}
       }
     }

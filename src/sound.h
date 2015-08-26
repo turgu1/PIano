@@ -31,6 +31,7 @@ class Sound : public NewHandlerSupport<Sound> {
   #define REPLAY_FRAME_COUNT (860 * BUFFER_FRAME_COUNT) ///< Replay buffer size in frames
   #define REPLAY_BUFFER_SAMPLE_COUNT (REPLAY_FRAME_COUNT * 2) ///< Number of PCM samples in the replay buffer
 
+  bool hold;   ///< If true, stop asking form samples as a new library is being loaded
   bool replay; ///< Set to true is replaying is required by the user
 
   buffp rbuff; ///< FIFO Buffer on the last ~5 seconds PCM data
@@ -63,6 +64,14 @@ class Sound : public NewHandlerSupport<Sound> {
   /// setup the callback function.
    Sound();
   ~Sound();
+
+  bool holding() { return hold; }
+
+  /// Put sound on hold waiting for a new sample library to be loaded from disk
+  void wait() { hold = true; }
+
+  /// Restart sound, the new library has been loaded
+  void conti() { hold = false; }
 
   /// This is called when starting a replay process. The rpos pointer is adjusted to the
   /// tail of the FIFO buffer.

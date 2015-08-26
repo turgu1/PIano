@@ -111,10 +111,10 @@ void midiCallBack (double timeStamp,
 
     switch (command) {
     case MIDI_NOTE_ON:
-      midi->setNoteOn(data1, data2);
+      midi->setNoteOn(data1 + cfg.midi.transpose, data2);
       break;
     case MIDI_NOTE_OFF:
-      midi->setNoteOff(data1, data2);
+      midi->setNoteOff(data1 + cfg.midi.transpose, data2);
       break;
     case MIDI_CONTROL:
       switch (data1) {
@@ -127,7 +127,7 @@ void midiCallBack (double timeStamp,
 	}
 	break;
       case 0x47:
-	reverb->setRoomSize(0.7 + 0.29 * (data2 / 127.0f));
+	reverb->setRoomSize(0.7f + 0.29f * (data2 / 127.0f));
 	break;
       case 0x4A:
 	masterVolume = data2 / 127.0f;
@@ -136,6 +136,14 @@ void midiCallBack (double timeStamp,
           //logger.WARNING("Midi: Ignored Control: %02xh %d.\n",
           //	       data1, data2);
 	break;
+      }
+      break;
+    case MIDI_PROGRAM:
+      if (!sound->holding()) {
+	sound->wait();
+	poly->inactivateAllVoices();
+	samples->loadNextLibrary();
+	sound->conti();
       }
       break;
     default:

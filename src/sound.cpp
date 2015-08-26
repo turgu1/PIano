@@ -28,6 +28,9 @@ int soundCallback(const void *                     inputBuffer,
   if (replayEnabled && sound->isReplaying()) {
     sound->get(buff);
   }
+  else if (sound->holding()) {
+    memset(buff, 0, framesPerBuffer << LOG_FRAME_SIZE);
+  }
   else {
     poly->mixer(buff, framesPerBuffer);
     reverb->process(buff, framesPerBuffer);
@@ -53,6 +56,7 @@ Sound::Sound()
   int err;
 
   replay = false;
+  hold = true;
 
   PaStreamParameters params;
   PaStreamFlags      flags;

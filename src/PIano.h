@@ -17,9 +17,8 @@
 typedef float sample_t;
 typedef sample_t * buffp;
 
-// Number of parameters in the cfg structure below
-
-#define CFG_PARAMS_COUNT 14
+/// Number of parameters in the cfg structure below
+#define CFG_PARAMS_COUNT    22
 
 #define BUFFER_FRAME_COUNT  256
 #define FRAME_SIZE          (2 * sizeof(sample_t))
@@ -70,6 +69,7 @@ PUBLIC struct configStruct {
     int     deviceNbr;
     char  * deviceName;
     int     channel;
+    int     transpose;
   } midi;
   struct reverbScruct {
     float   roomSize;
@@ -78,6 +78,15 @@ PUBLIC struct configStruct {
     float   dryWet;
     float   apGain;
   } reverb;
+  struct equalizerStruct {
+    float v60;
+    float v150;
+    float v400;
+    float v1000;
+    float v2400;
+    float v6000;
+    float v15000;
+  } equalizer;
 } cfg;
 
 PUBLIC double   samplingRate;       ///< Sampling Rate. Will be initialized to 44100. Not supposed to be modified at thispoint in time.

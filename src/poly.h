@@ -34,6 +34,7 @@ class Poly : public NewHandlerSupport<Poly> {
 
   int mixer(buffp buf, int frameCount);
 
+  void   inactivateAllVoices();
   void   showState();
   voicep firstVoice();
   voicep nextVoice(voicep prev);

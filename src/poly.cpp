@@ -16,7 +16,6 @@
 # include <arm_neon.h>
 #endif
 
-
 //---- samplesFeeder() ----
 //
 // This function represent a thread responsible of reading 
@@ -26,7 +25,6 @@
 
 void * samplesFeeder(void * args)
 {
-
   (void) args;
 
   while (keepRunning) {
@@ -137,8 +135,6 @@ Poly::Poly()
 
 Poly::~Poly()
 {
-  //logger.DEBUG("poly_close()");
-
   voicep voice = voices;
 
   while (voice) {
@@ -163,6 +159,23 @@ Poly::~Poly()
 void Poly::outOfMemory()
 {
   logger.FATAL("Poly: Unable to allocate memory.");
+}
+
+//---- inactivateAllVoices()
+
+void Poly::inactivateAllVoices()
+{
+  //logger.INFO("-->inactivateAllVoice()");
+
+  voicep voice = voices;
+
+  while (voice) {
+    voice->BEGIN();
+      voice->inactivate();
+    voice->END();
+
+    voice = voice->getNext();
+  }
 }
 
 //---- firstVoice() ----

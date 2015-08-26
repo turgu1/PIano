@@ -35,13 +35,22 @@ class SamplesLibrary : public NewHandlerSupport<SamplesLibrary> {
 
   static void outOfMemory();         ///< New operation handler when out of memory occurs
 
- public:
-   SamplesLibrary();
-  ~SamplesLibrary();
+  struct libStruct {
+    char * dirName;
+    struct libStruct * next;
+  } * libs;
+  struct libStruct * currentLib;
 
   /// Load the library at location. This method uses the SndFile package to read
   /// sample files into memory.
   int loadLibrary(char * location);
+
+ public:
+   SamplesLibrary();
+  ~SamplesLibrary();
+
+  void loadFirstLibrary();
+  void loadNextLibrary();
 
   /// Returns the sample corresponding to the note and volume requested. Is a sample
   /// is not available for the note, the sample for a lower closest note will be returned,

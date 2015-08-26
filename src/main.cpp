@@ -2,6 +2,8 @@
 
 #include <csignal>
 #include <pthread.h>
+#include <fenv.h>
+
 
 #define PIANO
 #include "PIano.h"
@@ -16,10 +18,12 @@ static float   defaultDamping     = 0.20f;
 static float   defaultWidth       = 0.40f;
 static float   defaultDryWet      = 0.75f;
 static float   defaultApGain      = 0.50f;
+static float   defaultEqualizer   =  0.0f;
 static int     defaultDeviceNbr   =    -1;
 static int     defaultChannel     =    -1;
 static int     defaultTreshold    =    50;
 static bool    defaultFalse       = false;
+static int     defaultTranspose   =     0;
 
 paramStruct Config::params[CFG_PARAMS_COUNT] = {
   { "samples_libraries_location", &cfg.samplesLibrariesLocation, p_string, "." },
@@ -31,16 +35,39 @@ paramStruct Config::params[CFG_PARAMS_COUNT] = {
   { "midi_device_nbr",       &cfg.midi.deviceNbr,       p_int,    &defaultDeviceNbr     },
   { "midi_device_name",      &cfg.midi.deviceName,      p_string, "Roland"              },
   { "midi_sustain_treshold", &cfg.midi.sustainTreshold, p_int,    &defaultTreshold      },
+  { "midi_transpose",        &cfg.midi.transpose,       p_int,    &defaultTranspose     },
   { "reverb_room_size",      &cfg.reverb.roomSize,      p_float,  &defaultRoomSize      },
   { "reverb_damping",        &cfg.reverb.damping,       p_float,  &defaultDamping       },
   { "reverb_width",          &cfg.reverb.width,         p_float,  &defaultWidth         },
   { "reverb_dry_wet",        &cfg.reverb.dryWet,        p_float,  &defaultDryWet        },
-  { "reverb_ap_gain",        &cfg.reverb.apGain,        p_float,  &defaultApGain        }
+  { "reverb_ap_gain",        &cfg.reverb.apGain,        p_float,  &defaultApGain        },
+  { "equalizer_60",          &cfg.equalizer.v60,        p_float,  &defaultEqualizer     },
+  { "equalizer_150",         &cfg.equalizer.v150,       p_float,  &defaultEqualizer     },
+  { "equalizer_400",         &cfg.equalizer.v400,       p_float,  &defaultEqualizer     },
+  { "equalizer_1000",        &cfg.equalizer.v1000,      p_float,  &defaultEqualizer     },
+  { "equalizer_2400",        &cfg.equalizer.v2400,      p_float,  &defaultEqualizer     },
+  { "equalizer_6000",        &cfg.equalizer.v6000,      p_float,  &defaultEqualizer     },
+  { "equalizer_15000",       &cfg.equalizer.v15000,     p_float,  &defaultEqualizer     }
 };
+
+//---- sigfpe_handler ----
+
+/// The sigfpe_handler() function receives control when a floating point exception occurs.
+
+void sigfpeHandler(int dummy)
+{
+  using namespace std;
+
+  (void) dummy;
+
+  cerr << "Erreur de point flottant..." << endl;
+
+  exit(1);
+}
 
 //---- sigint_handler ----
 
-/// The sigintHanfler() function receive control when a signal is sent to the application. The
+/// The sigintHanfler() function receives control when a signal is sent to the application. The
 /// current behaviour is to start a rundown of PIano, setting the keepRunning boolean value
 /// to false.
 void sigintHandler(int dummy)
@@ -82,12 +109,12 @@ PIano::PIano()
   poly      = new Poly();
   equalizer = new Equalizer();
 
-  samples->loadLibrary(cfg.samplesLibrariesLocation);
+  samples->loadFirstLibrary();
 
   sound     = new Sound();
   midi      = new Midi();
 
-  signal(SIGINT, sigintHandler);
+  sound->conti();
 
   logger.INFO("Ready!");
 }
@@ -109,7 +136,7 @@ PIano::~PIano()
 
   logger.INFO("Max number of voices mixed at once: %d.", maxVoicesMixed);
 
-  logger.INFO("Max volume: %8.2f.", maxVolume);
+  // logger.INFO("Max volume: %8.2f.", maxVolume);
 
   logger.INFO("Max duration of mixer function: %ld nsec (%.0f Hz).",
 	      mixerDuration, 1000000000.0 / mixerDuration);
@@ -174,8 +201,13 @@ int main(int argc, char **argv) {
 
   char opt;
 
+  signal(SIGINT, sigintHandler);
+  signal(SIGFPE, sigfpeHandler);
+
+  feenableexcept(FE_ALL_EXCEPT);
+
   interactive = false;
-  silent = false;
+  silent      = false;
 
   using namespace std;
 
