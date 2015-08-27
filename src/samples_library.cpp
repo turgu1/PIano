@@ -71,6 +71,7 @@ SamplesLibrary::SamplesLibrary()
 	  }
 	  if (n2 != NULL) n2->next = l;
 	  l->next = n;
+	  if (n == libs) libs = l;
 	}
       }
     }

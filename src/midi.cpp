@@ -192,60 +192,36 @@ Midi::Midi()
 
   devCount = midiPort->getPortCount();
 
-  if (!silent) {
-    cout << endl << endl;
-    cout << "MIDI Input Device list:" << endl;
-    cout << "----------------------"  << endl;
-  }
-
-  for (int i = 0; i < devCount; i++) {
-    if (!silent) cout << "Device " << i << ": " <<  midiPort->getPortName(i) << endl;
-
-    const char * name = midiPort->getPortName(i).c_str();
-    if ((devNbr == -1) &&
-	(strcasestr(name, cfg.midi.deviceName) != NULL)) {
-      devNbr = i;
-    }
-  }
-  if (!silent) cout << "[End of list]" << endl << endl;
-
-  devNbr = cfg.midi.deviceNbr == -1 ? devNbr : cfg.midi.deviceNbr;
-
-  if (devNbr == -1) {
-    devNbr = 0;
-    if (!interactive) logger.INFO("Default Midi Device (0) selected.");
+  if (interactive) {
+    selectDevice();
   }
   else {
-    if (!interactive) logger.INFO("MIDI Device Selected: %d.", devNbr);;
-  }
+    if (!silent) showDevices(devCount);
 
-  if (interactive) {
-    while (true) {
-      string str;
-      int nbr;
-      cout << "Please enter MIDI device number to use: [Default: " << devNbr << "]> ";
-
-      cin.clear();
-      cin.sync();
-
-      cin >> str;
-      if (str.empty()) break;
-      istringstream iss(str);
-      iss >> nbr;
-
-      if ((nbr < 0) || (nbr >= devCount)) {
-	cout << "!! Invalid device number[" << nbr << "]. Please try again !!" << endl;
-      }
-      else {
-	devNbr = nbr;
-	break;
+    for (int i = 0; i < devCount; i++) {
+      const char * name = midiPort->getPortName(i).c_str();
+      if ((devNbr == -1) &&
+	  (strcasestr(name, cfg.midi.deviceName) != NULL)) {
+	devNbr = i;
       }
     }
 
-    cin.clear();
-    cin.sync();
+    devNbr = cfg.midi.deviceNbr == -1 ? devNbr : cfg.midi.deviceNbr;
 
-    cout << "MIDI Device Selected: " << devNbr << endl << endl;
+    if (devNbr == -1) {
+      devNbr = 0;
+      logger.INFO("Default Midi Device (0) selected.");
+    }
+    else {
+      logger.INFO("MIDI Device Selected: %d.", devNbr);;
+    }
+
+    try {
+      midiPort->openPort(devNbr, "PIano Midi Port");
+    }
+    catch (RtMidiError &error) {
+      logger.FATAL("Unable to open MIDI Device: %s.", error.what());
+    }
   }
 
   try {
@@ -254,14 +230,6 @@ Midi::Midi()
   catch (RtMidiError &error) {
     logger.FATAL("Unable to set Midi CallBack: %s.", error.what());
   }
-
-  try {
-    midiPort->openPort(devNbr, "PIano Midi Port");
-  }
-  catch (RtMidiError &error) {
-    logger.FATAL("Unable to open MIDI Device: %s.", error.what());
-  }
-
 
   if (cfg.midi.channel == -1) {
     logger.INFO("Listening to all MIDI channels.");
@@ -382,4 +350,95 @@ void Midi::monitorMessages()
 
     // Restore buffered echoed character input for stdin
     tcsetattr(STDIN_FILENO, TCSANOW, &old_tio);
+}
+
+//---- interactiveAdjust() ----
+
+void Midi::transposeAdjust() 
+{
+  using namespace std;
+
+  cout << endl << endl;
+
+  int value;
+
+  while (1) {
+    cout << "Tranpose current value: " << cfg.midi.transpose << endl;
+    cout << "Please enter New transpose value" << endl 
+	 << "(as a number of semitone, between -24 and 24) > ";
+
+    cin >> value;
+
+    if ((value >= -24) && (value <= 24)) break;
+
+    cout << "Value not valid. Please enter a value between -24 and 24." << endl << endl;
+  }
+
+  cfg.midi.transpose = value;
+}
+
+//---- showDevices() ----
+
+void Midi::showDevices(int devCount)
+{
+  using namespace std;
+
+  cout << endl << endl;
+  cout << "MIDI Input Device list:" << endl;
+  cout << "----------------------"  << endl;
+
+  for (int i = 0; i < devCount; i++) {
+    cout << "Device " << i << ": " <<  midiPort->getPortName(i) << endl;
+  }
+  cout << "[End of list]" << endl << endl;
+}
+
+//---- selectDevice() ----
+
+void Midi::selectDevice()
+{
+  using namespace std;
+
+  int devCount;
+  int devNbr = -1;
+
+  devCount = midiPort->getPortCount();
+
+  if (!silent) showDevices(devCount);
+
+  while (true) {
+    string str;
+    int nbr;
+    cout << "Please enter MIDI device number to use > ";
+
+    cin.clear();
+    cin.sync();
+
+    cin >> str;
+    if (str.empty()) break;
+    istringstream iss(str);
+    iss >> nbr;
+
+    if ((nbr < 0) || (nbr >= devCount)) {
+      cout << "!! Invalid device number[" << nbr << "]. Please try again !!" << endl;
+    }
+    else {
+      devNbr = nbr;
+      break;
+    }
+  }
+   
+  cin.clear();
+  cin.sync();
+
+  cout << "MIDI Device Selected: " << devNbr << endl << endl;
+
+  if (midiPort->isPortOpen()) midiPort->closePort();
+
+  try {
+    midiPort->openPort(devNbr, "PIano Midi Port");
+  }
+  catch (RtMidiError &error) {
+    logger.FATAL("Unable to open MIDI Device: %s.", error.what());
+  }
 }

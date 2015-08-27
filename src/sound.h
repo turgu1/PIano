@@ -65,6 +65,12 @@ class Sound : public NewHandlerSupport<Sound> {
    Sound();
   ~Sound();
 
+  /// Show available devices to user
+  void showDevices(int devCount);
+
+  /// Interactive device selection
+  void deviceSelect();
+
   bool holding() { return hold; }
 
   /// Put sound on hold waiting for a new sample library to be loaded from disk

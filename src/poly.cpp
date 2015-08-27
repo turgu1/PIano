@@ -241,6 +241,10 @@ void Poly::addVoice(samplep sample, char note, float gain)
 {
   voicep voice;
 
+  // Do not transpose beyond 12 semi-tone...
+
+  if (note > (sample->getNote() + 12)) return;
+
   noteOff(note, false);
 
   if (sample == NULL) {

@@ -10,6 +10,7 @@ typedef struct {
   void       * param;
   param_type   type;
   const void * default_value;
+  int          qty;
 } paramStruct;
 
 class Config {

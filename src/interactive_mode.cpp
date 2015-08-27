@@ -22,16 +22,19 @@ char InteractiveMode::showMenuGetSelection()
   cout << endl;
   cout << "Menu:" << endl << "----" << endl;
 
-  cout << "a - Monitor active voice count" << endl;
-  cout << "m - Monitor midi messages"      << endl;
-  cout << "e - Equalizer adjusments"       << endl;
-  cout << "r - Reverb adjusments"          << endl;
-  cout << "l - dump sample Library"        << endl;
-  cout << "v - dump Voices state"          << endl;
-  cout << "c - show Config read from file" << endl;
-  cout << "x - eXit"                       << endl << endl;
+  cout << "a - Monitor active voice count" << endl
+       << "b - Monitor midi messages"      << endl
+       << "e - Equalizer adjusments"       << endl
+       << "r - Reverb adjusments"          << endl
+       << "s - Sound device selection"     << endl
+       << "m - Midi device selection"      << endl
+       << "t - Transpose"                  << endl
+       << "l - dump sample Library"        << endl
+       << "v - dump Voices state"          << endl
+       << "c - show Config read from file" << endl
+       << "x - eXit"                       << endl << endl;
 
-  cout << "Your choice: ";
+  cout << "Your choice > ";
   cin >> setw(5) >> answer;
 
   return answer[0];
@@ -47,7 +50,7 @@ void InteractiveMode::menu()
     case 'a':
       poly->monitorCount();
       break;
-    case 'm':
+    case 'b':
       midi->monitorMessages();
       break;
     case 'e':
@@ -55,6 +58,15 @@ void InteractiveMode::menu()
       break;
     case 'r':
       reverb->interactiveAdjust();
+      break;
+    case 's':
+      sound->deviceSelect();
+      break;
+    case 'm':
+      midi->deviceSelect();
+      break;
+    case 't':
+      midi->transposeAdjust();
       break;
     case 'l':
       samples->showNotes();
