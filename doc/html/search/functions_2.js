@@ -9,5 +9,6 @@ var searchData=
   ['closeport',['closePort',['../class_rt_midi.html#a36125c4fa16550345b57f4a4927f5b4a',1,'RtMidi::closePort()'],['../class_rt_midi_in.html#a55bacf0d228fd8e3be6a79d12fd1dc39',1,'RtMidiIn::closePort()'],['../class_rt_midi_out.html#a5a28d1ba9e002fd07a317d3a257d87e8',1,'RtMidiOut::closePort()'],['../class_midi_api.html#a1410af774a6bcdf85726eb69b94bc918',1,'MidiApi::closePort()'],['../class_midi_in_dummy.html#ac92a27020d712f733627e66f9ebce985',1,'MidiInDummy::closePort()'],['../class_midi_out_dummy.html#a36371dcb82892ed39816d98c42b39072',1,'MidiOutDummy::closePort()']]],
   ['closesoundfile',['closeSoundFile',['../class_voice.html#a7f6edaa69aba8576552ea442b1382fa0',1,'Voice']]],
   ['config',['Config',['../class_config.html#abd0c571c116924871e30444b192b792a',1,'Config']]],
+  ['conti',['conti',['../class_sound.html#ad3d3adf4d134a1f070c587631aeb47a6',1,'Sound']]],
   ['custom_5fvolume_5fcommand',['custom_volume_command',['../format_8cpp.html#aded71f2632aae192aad94c837173835c',1,'format.cpp']]]
 ];

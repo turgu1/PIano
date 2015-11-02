@@ -20,9 +20,11 @@ var searchData=
   ['config_2eh',['config.h',['../config_8h.html',1,'']]],
   ['configstruct',['configStruct',['../structconfig_struct.html',1,'']]],
   ['connected_5f',['connected_',['../class_midi_api.html#a2caa246b04594b5ae84bacccb2a648aa',1,'MidiApi']]],
+  ['conti',['conti',['../class_sound.html#ad3d3adf4d134a1f070c587631aeb47a6',1,'Sound']]],
   ['continuesysex',['continueSysex',['../struct_midi_in_api_1_1_rt_midi_in_data.html#a60c8fc25d8838784d0d1904f31e80ab5',1,'MidiInApi::RtMidiInData']]],
   ['copyright_2eh',['copyright.h',['../copyright_8h.html',1,'']]],
   ['count',['count',['../class_fifo.html#ae7f8bdcf9bb0b321f5fde6f69a8d1c50',1,'Fifo']]],
   ['currenthandler',['currentHandler',['../class_new_handler_support.html#ae1f68e827643e32eccee8b31e80c37b7',1,'NewHandlerSupport']]],
+  ['currentlib',['currentLib',['../class_samples_library.html#a155c57f94c12ba567b7f85819ac4799f',1,'SamplesLibrary']]],
   ['custom_5fvolume_5fcommand',['custom_volume_command',['../format_8cpp.html#aded71f2632aae192aad94c837173835c',1,'format.cpp']]]
 ];

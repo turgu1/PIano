@@ -144,6 +144,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structconfig_struct_1_1reverb_scruct.html">configStruct::reverbScruct</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structconfig_struct_1_1equalizer_struct.html">configStruct::equalizerStruct</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_iano.html">PIano</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -159,7 +161,8 @@ Macros</h2></td></tr>
 <tr class="separator:a3acffbd305ee72dcd4593c0d8af64a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa99ec4acc4ecb2dc3c2d05da15d0e3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(a,  b)&#160;&#160;&#160;(a &gt; b) ? a : b</td></tr>
 <tr class="separator:afa99ec4acc4ecb2dc3c2d05da15d0e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a684d469fd6db7aa1b8b0d69fe19a6b6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#a684d469fd6db7aa1b8b0d69fe19a6b6f">CFG_PARAMS_COUNT</a>&#160;&#160;&#160;13</td></tr>
+<tr class="memitem:a684d469fd6db7aa1b8b0d69fe19a6b6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#a684d469fd6db7aa1b8b0d69fe19a6b6f">CFG_PARAMS_COUNT</a>&#160;&#160;&#160;22</td></tr>
+<tr class="memdesc:a684d469fd6db7aa1b8b0d69fe19a6b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of parameters in the cfg structure below.  <a href="#a684d469fd6db7aa1b8b0d69fe19a6b6f">More...</a><br /></td></tr>
 <tr class="separator:a684d469fd6db7aa1b8b0d69fe19a6b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d3538d382ea466d218bec1f60164c4e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a>&#160;&#160;&#160;256</td></tr>
 <tr class="separator:a9d3538d382ea466d218bec1f60164c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,6 +199,9 @@ Variables</h2></td></tr>
 <tr class="memitem:a068e010955793edd6649060b69175f1a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_p_iano_8h.html#ad17d551e31d1828c68acf40684849b7e">PUBLIC</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#a068e010955793edd6649060b69175f1a">interactive</a></td></tr>
 <tr class="memdesc:a068e010955793edd6649060b69175f1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">True if <a class="el" href="class_p_iano.html">PIano</a> launched in interactive mode (option -i)  <a href="#a068e010955793edd6649060b69175f1a">More...</a><br /></td></tr>
 <tr class="separator:a068e010955793edd6649060b69175f1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fa90e5c599627b6e6277461b42ebb57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_p_iano_8h.html#ad17d551e31d1828c68acf40684849b7e">PUBLIC</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#a1fa90e5c599627b6e6277461b42ebb57">silent</a></td></tr>
+<tr class="memdesc:a1fa90e5c599627b6e6277461b42ebb57"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, no logging message will be displayed.  <a href="#a1fa90e5c599627b6e6277461b42ebb57">More...</a><br /></td></tr>
+<tr class="separator:a1fa90e5c599627b6e6277461b42ebb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6a4ea7777d37bf228298defb3282c97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_p_iano_8h.html#ad17d551e31d1828c68acf40684849b7e">PUBLIC</a> bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_p_iano_8h.html#aa6a4ea7777d37bf228298defb3282c97">replayEnabled</a></td></tr>
 <tr class="memdesc:aa6a4ea7777d37bf228298defb3282c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable replaying last 5 seconds played.  <a href="#aa6a4ea7777d37bf228298defb3282c97">More...</a><br /></td></tr>
 <tr class="separator:aa6a4ea7777d37bf228298defb3282c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -245,7 +251,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00024">24</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00023">23</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -259,7 +265,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00028">28</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00027">27</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -268,12 +274,14 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define CFG_PARAMS_COUNT&#160;&#160;&#160;13</td>
+          <td class="memname">#define CFG_PARAMS_COUNT&#160;&#160;&#160;22</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00022">22</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Number of parameters in the cfg structure below. </p>
+
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00021">21</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -287,7 +295,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00027">27</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00026">26</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +309,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00025">25</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00024">24</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -315,7 +323,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00026">26</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00025">25</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -399,7 +407,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00040">40</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00039">39</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -483,7 +491,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00098">98</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00109">109</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -497,7 +505,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00104">104</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00115">115</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -513,7 +521,7 @@ Variables</h2></td></tr>
 
 <p>True if <a class="el" href="class_p_iano.html">PIano</a> launched in interactive mode (option -i) </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00084">84</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00094">94</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -529,7 +537,7 @@ Variables</h2></td></tr>
 
 <p>True while the application is running. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00086">86</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00097">97</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -543,7 +551,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00047">47</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00046">46</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -559,7 +567,7 @@ Variables</h2></td></tr>
 
 <p>Overall master volume (gain) </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00083">83</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00093">93</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -575,7 +583,7 @@ Variables</h2></td></tr>
 
 <p>Maximum number of voices that have been mixed simultaneously. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00090">90</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00101">101</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -591,7 +599,7 @@ Variables</h2></td></tr>
 
 <p>Maximum gain used un mixing voices. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00094">94</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00105">105</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -605,7 +613,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00101">101</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00112">112</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -621,7 +629,7 @@ Variables</h2></td></tr>
 
 <p>Maximum duration of the mixer function during play (nanoseconds) </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00091">91</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00102">102</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -635,7 +643,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00120">120</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00131">131</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -649,7 +657,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00103">103</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00114">114</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -665,7 +673,7 @@ Variables</h2></td></tr>
 
 <p>Enable replaying last 5 seconds played. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00085">85</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00096">96</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -679,7 +687,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00102">102</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00113">113</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -695,7 +703,7 @@ Variables</h2></td></tr>
 
 <p>Maximim duration of the reverb process. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00093">93</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00104">104</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -711,7 +719,7 @@ Variables</h2></td></tr>
 
 <p>Minimum duration of the reverb process. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00092">92</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00103">103</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -725,7 +733,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00099">99</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00110">110</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -741,7 +749,23 @@ Variables</h2></td></tr>
 
 <p>Sampling Rate. Will be initialized to 44100. Not supposed to be modified at thispoint in time. </p>
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00082">82</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00092">92</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1fa90e5c599627b6e6277461b42ebb57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_p_iano_8h.html#ad17d551e31d1828c68acf40684849b7e">PUBLIC</a> bool silent</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If true, no logging message will be displayed. </p>
+
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00095">95</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -755,7 +779,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00100">100</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
+<p>Definition at line <a class="el" href="_p_iano_8h_source.html#l00111">111</a> of file <a class="el" href="_p_iano_8h_source.html">PIano.h</a>.</p>
 
 </div>
 </div>
@@ -765,7 +789,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="_p_iano_8h.html">PIano.h</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

@@ -114,7 +114,9 @@ $(document).ready(function(){initNavTree('main_8cpp.html','');});
 <div class="textblock"><code>#include &quot;<a class="el" href="copyright_8h_source.html">copyright.h</a>&quot;</code><br />
 <code>#include &lt;csignal&gt;</code><br />
 <code>#include &lt;pthread.h&gt;</code><br />
+<code>#include &lt;fenv.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="_p_iano_8h_source.html">PIano.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="interactive__mode_8h_source.html">interactive_mode.h</a>&quot;</code><br />
 <code>#include &lt;getopt.h&gt;</code><br />
 </div>
 <p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -126,6 +128,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:af6a8ebdc0b7db75b0cf4f59a0280bf08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af6a8ebdc0b7db75b0cf4f59a0280bf08">sigfpeHandler</a> (int dummy)</td></tr>
+<tr class="memdesc:af6a8ebdc0b7db75b0cf4f59a0280bf08"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sigfpe_handler() function receives control when a floating point exception occurs.  <a href="#af6a8ebdc0b7db75b0cf4f59a0280bf08">More...</a><br /></td></tr>
+<tr class="separator:af6a8ebdc0b7db75b0cf4f59a0280bf08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c910c7ee9fbbf64f0591bb119a1cff2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9c910c7ee9fbbf64f0591bb119a1cff2">sigintHandler</a> (int dummy)</td></tr>
 <tr class="separator:a9c910c7ee9fbbf64f0591bb119a1cff2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a494c1c83801a8eba38a767f59c09f27d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a494c1c83801a8eba38a767f59c09f27d">showCopyright</a> ()</td></tr>
@@ -145,7 +150,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00006">6</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00008">8</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -174,7 +179,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00169">169</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00200">200</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,7 +198,27 @@ Functions</h2></td></tr>
 
 <p>Show the Copyright Notice to the end user. </p>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00127">127</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00158">158</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af6a8ebdc0b7db75b0cf4f59a0280bf08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sigfpeHandler </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dummy</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The sigfpe_handler() function receives control when a floating point exception occurs. </p>
+
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00057">57</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -210,9 +235,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The sigintHanfler() function receive control when a signal is sent to the application. The current behaviour is to start a rundown of <a class="el" href="class_p_iano.html">PIano</a>, setting the keepRunning boolean value to false. </p>
+<p>The sigintHanfler() function receives control when a signal is sent to the application. The current behaviour is to start a rundown of <a class="el" href="class_p_iano.html">PIano</a>, setting the keepRunning boolean value to false. </p>
 
-<p>Definition at line <a class="el" href="main_8cpp_source.html#l00042">42</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00073">73</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,7 +247,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

@@ -4,6 +4,7 @@ var _p_iano_8h =
     [ "pcmStruct", "structconfig_struct_1_1pcm_struct.html", "structconfig_struct_1_1pcm_struct" ],
     [ "midiStruct", "structconfig_struct_1_1midi_struct.html", "structconfig_struct_1_1midi_struct" ],
     [ "reverbScruct", "structconfig_struct_1_1reverb_scruct.html", "structconfig_struct_1_1reverb_scruct" ],
+    [ "equalizerStruct", "structconfig_struct_1_1equalizer_struct.html", "structconfig_struct_1_1equalizer_struct" ],
     [ "PIano", "class_p_iano.html", "class_p_iano" ],
     [ "BUFFER_FRAME_COUNT", "_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e", null ],
     [ "BUFFER_SAMPLE_COUNT", "_p_iano_8h.html#ac83128f96e10ed8c8f765b024c5f54b4", null ],
@@ -38,5 +39,6 @@ var _p_iano_8h =
     [ "reverbMinDuration", "_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0", null ],
     [ "samples", "_p_iano_8h.html#a993424321c4a66591dc3a0f326402b75", null ],
     [ "samplingRate", "_p_iano_8h.html#abeb77f18f48f656fe70b0d8bc970be89", null ],
+    [ "silent", "_p_iano_8h.html#a1fa90e5c599627b6e6277461b42ebb57", null ],
     [ "sound", "_p_iano_8h.html#ad54d901bc98795df02959985aa4b7bb6", null ]
 ];

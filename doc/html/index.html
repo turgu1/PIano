@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>PIano: The PIano Sampling Based Synthetizer Program</title>
+<title>PIano: The PIano Sampling Based Synthesizer Program</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -99,14 +99,14 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">The <a class="el" href="class_p_iano.html">PIano</a> Sampling Based Synthetizer Program </div>  </div>
+<div class="title">The <a class="el" href="class_p_iano.html">PIano</a> Sampling Based Synthesizer Program </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="el" href="class_p_iano.html">PIano</a> is a C++ application that run on a Raspberry PI but may be able to run on any Linux based computer. It is a kind of a "fire and forget" application that would permit a Raspberry PI device to be permanently hooked to a midi controller and have <a class="el" href="class_p_iano.html">PIano</a> started automatically at bootstrap, without requiring any screen, mouse or typewriter keyboard. Very few changes, if any, would be required to port it to other platforms. It is a console based application that keep as much resources as possible available for playing sounds. So far, no trial have been made to use it at the same time of a graphical interface with the user.</p>
+<div class="textblock"><p><a class="el" href="class_p_iano.html">PIano</a> is a C++ application that run on a Raspberry PI. It is a kind of a "fire and forget" application that would permit a Raspberry PI device to be permanently hooked to a midi controller and have <a class="el" href="class_p_iano.html">PIano</a> started automatically at bootstrap, without requiring any screen, mouse or typewriter keyboard. Very few changes, if any, would be required to port it to other platforms. It is a console based application that keep as much resources as possible available for playing sounds. So far, no trial have been made to use it at the same time of a graphical interface with the user.</p>
 <p><a class="el" href="class_p_iano.html">PIano</a> has the following characteristics:</p>
 <ul>
 <li>128 voices polyphony. Mileage may vary depending on the resources available.</li>
-<li>Very low latency</li>
+<li>Very low latency (lower than 11.6ms)</li>
 <li>Algebraic <a class="el" href="class_reverb.html">Reverb</a> filter, based on the FreeVerb algorithm</li>
 <li>7 band digital output equalizer</li>
 <li>High optimization using ARM NEON intrinsic operations</li>
@@ -114,44 +114,68 @@ $(document).ready(function(){initNavTree('index.html','');});
 <li>Console based, no graphics, fire and forget application</li>
 <li>Minimal interactive mode for initial setup and debugging purposes</li>
 <li>MIDI channel listening control</li>
-<li>Free and Open source. You can do what you want with it. See the licencing section for details</li>
-<li>Well documentated application. Looking at the code, you can learn a bit on how such an application can be designed</li>
+<li>Free and Open source. You can do what you want with it. See the licensing section for details</li>
+<li>Well documented application. Looking at the code, you can learn a bit on how such an application can be designed</li>
 </ul>
 <h1><a class="anchor" id="Background"></a>
 Some background</h1>
-<p>I was used to play piano (for myself as an amateur) on a Roland A-88 MIDI controller, with a MacBook running Kontakt with some piano sample libraries in the back-end. The sound quality obtained with this combination was excellent, but for a computer science addict like me, it lacked my own touch of design and satisfaction in making my own instrument (It was also combersome of installing the laptop and the cables every time I wanted to play...).</p>
-<p>I was ready to buy a dedicated sampling box or better, build my own. When the Raspberry Pi was first introduced, I thought it would be a good start at building my own music box, but it was lacking some important features: enough USB ports (at least 3: MIDI controller access, external DAC, WIFI dongle), memory and processing power to permit a reasonnable amount of good quality samples and polyphonic voices to be played. The first music related projects that started to emerge shown the device limitation and simply pushed to the right my intent.</p>
-<p>With the arrival of the Raspberry Pi 2, the new capability (faster multi-core processor, more memory) of the device triggered again my interest in this project and I started to build something usefull and here it is. It was fun to built and it is fun to play piano with my own stuff.</p>
-<p>This is certainly not the best sampling application available. My intent is to bridge the gap with other more sophisticated alternatives than will eventually be able to be run on a future more powerfull Raspberry PI. Some decisions taken also reflect the "good enough selection" I made, considering some arbitrary level of satisfaction of my own or unavailability of time for me to address more closely some of the shortcomings encountered.</p>
-<p>All along the developpement of <a class="el" href="class_p_iano.html">PIano</a>, I've been using it extensively to ensure it won't show misbehaving states on a dedicated Raspberry PI that is run in console mode. As it's still work in progress, I expect some issues yet to be find and will fix them as soon as possible once discovered.</p>
+<p>I was used to play piano (for myself as an amateur) on a Roland A-88 MIDI controller, with a MacBook running Kontakt with some piano sample libraries in the back-end. The sound quality obtained with this combination was excellent, but for a computer science addict like me, it lacked my own touch of design and satisfaction in making my own instrument (It was also cumbersome of installing the laptop and the cables every time I wanted to play...).</p>
+<p>I was ready to buy a dedicated sampling computer or better, build my own. When the Raspberry Pi was first introduced, I thought it would be a good start at building my own music computer, but it was lacking some important features: enough USB ports (at least 3: MIDI controller access, external DAC, WIFI dongle), memory and processing power to permit a reasonable amount of good quality samples and polyphonic voices to be played. The first music related projects that started to emerge shown the device limitation and simply pushed to the right my intent.</p>
+<p>With the arrival of the Raspberry Pi 2, the new capability (faster multi-core processor, more memory) of the device triggered again my interest in this project and I started to build something useful and here it is. It was fun to built and it is fun to play piano with my own stuff.</p>
+<p>This is certainly not the best sampling application available. My intent is to bridge the gap with other more sophisticated alternatives than will eventually be able to be run on a future more powerful Raspberry PI. Some decisions taken also reflect the "good enough
+selection" I made, considering some arbitrary level of satisfaction of my own or unavailability of time for me to address more closely some of the shortcomings encountered.</p>
+<p>All along the development of <a class="el" href="class_p_iano.html">PIano</a>, I've been using it extensively to ensure it won't show misbehaving states on a dedicated Raspberry PI that is run in console mode. As it's still work in progress, I expect some issues yet to be find and will fix them as soon as possible once discovered.</p>
 <h1><a class="anchor" id="Devices"></a>
 External Devices</h1>
-<p>As stated, I'm using a Roland A-88 to control <a class="el" href="class_p_iano.html">PIano</a>. This MIDI controller is beneficial as it is equiped with a USB based serial interface. The usual MIDI connectors are also available but unused in this application for simplicity. That controller supplies many knowbs and buttons that allow controlling volume, reverb, etc. This is a rather expansive MIDI controller. Other options are available on the market. If you get access to a controller that only use MIDI standard connectors, you may have to built your own hardware interface or acquire a MIDI to USB adapter (search for "midi usb interface" on Amazon). <a class="el" href="class_p_iano.html">PIano</a> also support the used of a sustain pedal hooked to the MIDI controller</p>
-<p>For audio output, I've tried at first to use the PI onboard audio device but the sound quality was not adequate. I acquired a MUSE DAC (Digital to Analog Converter based on the famous PCM2704 chip available for 25$ on Amazon) that supply ouput for headphones, S/PDIF and optical connexions that would allow for external audio amplification.</p>
-<h1><a class="anchor" id="Compiling"></a>
-Compiling</h1>
-<p><a class="el" href="class_p_iano.html">PIano</a> is a C++ only application. A binary version, already compiled, is available in the github file tree (look for the file named "PIano"). The suite of GNU C++ compiler and libraries is required to build the application. Also, the following libraries have been used to supply interfaces to external resources:</p>
+<p>As stated, I'm using a Roland A-88 to control <a class="el" href="class_p_iano.html">PIano</a>. This MIDI controller is beneficial as it is equipped with a USB based serial interface. The usual MIDI connectors are also available but unused in this application for simplicity (no need for spefitif electronic changes to the PI). That controller supplies many knobs and buttons that allow controlling volume, reverb, etc. This is a rather expansive MIDI controller. Other options are available on the market. If you get access to a controller that only use MIDI standard connectors, you may have to built your own hardware interface or acquire a MIDI to USB adapter (search for "midi USB interface" on Amazon). <a class="el" href="class_p_iano.html">PIano</a> also support the used of a sustain pedal hooked to the MIDI controller</p>
+<p>For audio output, I've tried at first to use the PI on-board audio device but the sound quality was not adequate. I acquired a MUSE DAC (Digital to Analog Converter based on the famous PCM2704 chip available for 25$ on Amazon) that supply output for headphones, S/PDIF and optical connections that would allow for external audio amplification.</p>
+<h1><a class="anchor" id="Installation"></a>
+Installation</h1>
+<p>Two methods are available to install <a class="el" href="class_p_iano.html">PIano</a>:</p>
+<ul>
+<li>Installation from source code. This method will built the application from the source distribution available on the Internet.</li>
+<li>Installation from a pre-compile version of <a class="el" href="class_p_iano.html">PIano</a>. This method allow for a quicker installation, as no application buildup is required.</li>
+</ul>
+<h2><a class="anchor" id="Compiling"></a>
+Installation from source code</h2>
+<p>The suite of GNU C++ compiler and libraries is required to build the application. Also, the following libraries have been used to supply interfaces to external resources:</p>
 <ul>
 <li>PortAudio - For ALSA based PCM device access</li>
 <li>SndFile - <a class="el" href="class_sound.html">Sound</a> file (WAV) PCM samples reading</li>
 <li><a class="el" href="class_rt_midi.html" title="An abstract base class for realtime MIDI input/output. ">RtMidi</a> - <a class="el" href="class_midi.html">Midi</a> ALSA input device interaction (already part of <a class="el" href="class_p_iano.html">PIano</a> source code)</li>
 </ul>
-<p>Starting from a plain vanilla Raspbian distribution, you will need to install the required packages using the following commands, once logged-in with the usual pi username: </p><pre class="fragment">sudo apt-get install
-</pre><h1><a class="anchor" id="Installation"></a>
+<p>Raspbian is already containing the GNU C++ suite of tools. What remains to be install are some external libraries. The following subsections give commands to be executed in a teminal shell.</p>
+<h3><a class="anchor" id="packages"></a>
+Install Raspbian packages</h3>
+<p>Starting from a plain vanilla Raspbian distribution, you will need to install the required packages using the following command, once logged-in with the usual pi username: </p><pre class="fragment">sudo apt-get install libasound2-dev libsndfile-dev
+</pre><h3><a class="anchor" id="portaudio"></a>
+Compiling and installing PortAudio</h3>
+<p>It will be required to build and install version V19 of PortAudio as the version available as a package is too old and doesn't contain some of the added features of v19. To do so, execute the following commands:</p>
+<ol type="1">
+<li>wget <a href="http://www.portaudio.com/archives/pa_stable_v19_20140130.tgz">http://www.portaudio.com/archives/pa_stable_v19_20140130.tgz</a></li>
+<li>tar zxf pa_stable_v19_20140130.tgz</li>
+<li>cd ./portaudio</li>
+<li>./configure &ndash;prefix=/usr &ndash;enable-cxx &ndash;with-alsa</li>
+<li>make</li>
+<li>sudo make install</li>
+</ol>
+<h3><a class="anchor" id="CompilePIano"></a>
+Retrieving and compiling PIano</h3>
+<h1><a class="anchor" id="Installation"></a>
 Installation</h1>
-<p>This section of the documentation gives the procedure to install <a class="el" href="class_p_iano.html">PIano</a> to make it run on a Raspberry PI. The application is a single binary file named "PIano" that is made available in the github directory tree. If you prefer to rebuild the application, the section Compiling will direct you on how to recreate the binary code.</p>
+<p>This section of the documentation gives the procedure to install <a class="el" href="class_p_iano.html">PIano</a> to make it run on a Raspberry PI. The application is a single binary file named "PIano" that is made available in the GitHub directory tree. If you prefer to rebuild the application, the section Compiling will direct you on how to recreate the binary code.</p>
 <p>Beyond the application, it will be required to have a sampling library. Many of these libraries are available for free on the internet. A good source of information is located at the following site:</p>
 <p><a href="http://earmonk.com/free-sample-libraries/">http://earmonk.com/free-sample-libraries/</a></p>
 <p>Another good sample library is the SalamenderGrandPiano V3:</p>
 <p><a href="http://freepats.zenvoid.org/Piano/">http://freepats.zenvoid.org/Piano/</a></p>
 <p>I'm use to play with this sample library. The freepats site is also the host of many other samples libraries.</p>
-<p>At this point in time <a class="el" href="class_p_iano.html">PIano</a> doesn't read soudfont, sfz or any other music sample packagings other than PCM flat files. It is then important to select a library for which each sample (i.e. each sound corresponding to a note and a volume or gain) be in a dedicated file using WAV file format. There is tools (like Audacity) that would allow you to translate other file formats to WAV files. WAV is a sound file format that is easy to read and doesn't require too much resources to extract PCM data. Sampling libraries are usually huge (from hundreds of megabytes to several gigabytes) and would need enough disk space to be kept on the device. You may choose to put your library on a USB dongle, external disk drive or on the uSD card on which the Raspbian operating system has been installed. My own preference was to use the uSD card as it will not require any external equipement and would allow for the best performance in terms of I/O. Using a USB dongle would be more practical if you intend to use other sampling libraries.</p>
-<p><a class="el" href="class_p_iano.html">PIano</a> requires a minimum of informations to make it happy to start listening to the MIDI controller and prepare the sounds to be output to the PCM device. This information is gathered in a configuration file names PIano.conf.</p>
+<p>At this point in time <a class="el" href="class_p_iano.html">PIano</a> doesn't read SoundFont, SFZ or any other music sample packaging other than PCM flat files. It is then important to select a library for which each sample (i.e. each sound corresponding to a note and a volume or gain) be in a dedicated file using WAV file format. There is tools (like Audacity) that would allow you to translate other file formats to WAV files. WAV is a sound file format that is easy to read and doesn't require too much resources to extract PCM data. Sampling libraries are usually huge (from hundreds of megabytes to several gigabytes) and would need enough disk space to be kept on the device. You may choose to put your library on a USB dongle, external disk drive or on the Micro-SD card on which the Raspbian operating system has been installed. My own preference was to use the Micro-SD card as it will not require any external equipment and would allow for the best performance in terms of I/O. Using a USB dongle would be more practical if you intend to use other sampling libraries.</p>
+<p><a class="el" href="class_p_iano.html">PIano</a> requires a minimum of information to make it happy to start listening to the MIDI controller and prepare the sounds to be output to the PCM device. This information is gathered in a configuration file names PIano.conf.</p>
 <h1><a class="anchor" id="Architecture"></a>
 High Level Design</h1>
 <h2><a class="anchor" id="ClassDiagram"></a>
 Class Diagram</h2>
-<p>This section presents a class diagram of the main classes involved in the <a class="el" href="class_p_iano.html">PIano</a> application. All the details for each class can be read from the documentation provided in the appropriate section or directly by readin the source code.</p>
+<p>This section presents a class diagram of the main classes involved in the <a class="el" href="class_p_iano.html">PIano</a> application. All the details for each class can be read from the documentation provided in the appropriate section or directly by reading the source code.</p>
 <p>All class instances are initiated at application startup from the <a class="el" href="class_p_iano.html#add1fe602aa74440f2b7f0dda46aa8d97" title="Initialization method for the PIano application. ">PIano::PIano()</a> method such that, once that application is ready to play songs, no other memory management processing is required.</p>
 <div align="center">
 <img src="inline_umlgraph_2.png" />
@@ -169,8 +193,8 @@ PCM Device Interaction</h3>
 <img src="inline_umlgraph_4.png" />
 </div>
 <h2><a class="anchor" id="Multithreading"></a>
-Multithreading concerns</h2>
-<p>Taking the decision to go multithreading must be done with enough confidence that it will augment the performance of the application. <a class="el" href="class_p_iano.html">PIano</a> is multithreading the process of suppling data from sample files.</p>
+Some notes about Multithreading</h2>
+<p>Taking the decision to go with a multithread solution must be done with enough confidence that it will augment the performance of the application. <a class="el" href="class_p_iano.html">PIano</a> is multithreading the process of supplying data from sample files.</p>
 <p>In the context of <a class="el" href="class_p_iano.html">PIano</a>, the need to go with this mechanism relates to the following aspects:</p>
 <ul>
 <li>Raspberry Pi is limited in the amount of RAM memory available (around 800M)</li>
@@ -180,12 +204,12 @@ Multithreading concerns</h2>
 </ul>
 <p>Architecture decisions taken:</p>
 <ul>
-<li>When a sound library is loaded, a first chunck of each samples is read in memory to minimize latency between the request made by the pianist and the sound generated.</li>
+<li>When a sound library is loaded, a first chunk of each samples is read in memory to minimize latency between the request made by the pianist and the sound generated.</li>
 <li>Once a sound is requested, it is added to the voices list and activated.</li>
 <li>A first thread will then open the file and prepare it to allow reading additional data.</li>
-<li>A second thread will insure reading new data in a fifo structure for consumption by the mixer.</li>
+<li>A second thread will insure reading new data in a FIFO structure for consumption by the mixer.</li>
 </ul>
-<p>What needs to be synchronised between threads:</p>
+<p>What needs to be synchronized between threads:</p>
 <ul>
 <li>Changes to the voices structure. At link and unlink time, it is important to insure exclusive access such that any change in the linkages between voices wont interfere with the normal execution.</li>
 <li>Changes to the SNDFILE structure. As the two threads are sharing access to that structure, it is then required to insure exclusive access to it when any change is required. This is the case through the "active" and "open" flags that are insuring that the two threads wont interfere in using the SNDFILE structure.</li>
@@ -195,7 +219,7 @@ Licensing</h1>
 <p><br />
 </p><h2>Simplified BSD License </h2>
 <p>Copyright (c) 2015, Guy Turcotte <br />
- All rights reserved.</p>
+All rights reserved.</p>
 <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
 <ol type="1">
 <li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
@@ -208,7 +232,7 @@ Licensing</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:07 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:19 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

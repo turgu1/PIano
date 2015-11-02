@@ -7,7 +7,7 @@ var searchData=
   ['fadingout',['fadingOut',['../class_voice.html#a4d634aa0d3620c69c7b853c7694901fc',1,'Voice']]],
   ['fatal',['FATAL',['../class_log.html#a336b18a978eb91f049ddcdfdc77d2691',1,'Log']]],
   ['feedfifo',['feedFifo',['../class_voice.html#a900a85d0504c7de8fcf8b8eeb6c2b018',1,'Voice']]],
-  ['fifo',['Fifo',['../class_fifo.html',1,'Fifo'],['../class_fifo.html#a5b466d3a17d14a6737a64e478b52ae3a',1,'Fifo::Fifo()'],['../class_voice.html#aad4cbd3abbd29d232be350ab47b2d019',1,'Voice::fifo()']]],
+  ['fifo',['Fifo',['../class_fifo.html',1,'Fifo'],['../class_voice.html#aad4cbd3abbd29d232be350ab47b2d019',1,'Voice::fifo()'],['../class_fifo.html#a5b466d3a17d14a6737a64e478b52ae3a',1,'Fifo::Fifo()']]],
   ['fifo_2ecpp',['fifo.cpp',['../fifo_8cpp.html',1,'']]],
   ['fifo_2eh',['fifo.h',['../fifo_8h.html',1,'']]],
   ['fifo_5fbuffer_5fcount',['FIFO_BUFFER_COUNT',['../fifo_8h.html#adbffb664b1e27866761757393657739e',1,'fifo.h']]],

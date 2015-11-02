@@ -5,6 +5,7 @@ var annotated_dup =
     [ "Duration", "class_duration.html", "class_duration" ],
     [ "Equalizer", "class_equalizer.html", "class_equalizer" ],
     [ "Fifo", "class_fifo.html", "class_fifo" ],
+    [ "InteractiveMode", "class_interactive_mode.html", "class_interactive_mode" ],
     [ "Log", "class_log.html", "class_log" ],
     [ "Midi", "class_midi.html", "class_midi" ],
     [ "MidiApi", "class_midi_api.html", "class_midi_api" ],

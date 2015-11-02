@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['reverb_2ecpp',['reverb.cpp',['../reverb_8cpp.html',1,'']]],
-  ['reverb_2eh',['reverb.h',['../reverb_8h.html',1,'']]],
-  ['rtmidi_2ecpp',['RtMidi.cpp',['../_rt_midi_8cpp.html',1,'']]],
-  ['rtmidi_2eh',['RtMidi.h',['../_rt_midi_8h.html',1,'']]]
+  ['piano_2eh',['PIano.h',['../_p_iano_8h.html',1,'']]],
+  ['poly_2ecpp',['poly.cpp',['../poly_8cpp.html',1,'']]],
+  ['poly_2eh',['poly.h',['../poly_8h.html',1,'']]]
 ];

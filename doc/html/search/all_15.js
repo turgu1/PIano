@@ -1,5 +1,12 @@
 var searchData=
 [
+  ['v1000',['v1000',['../structconfig_struct_1_1equalizer_struct.html#ad9282f647053358ce5dee44841fa1c79',1,'configStruct::equalizerStruct']]],
+  ['v150',['v150',['../structconfig_struct_1_1equalizer_struct.html#a02183719811f9f9dcbb3e1f227784f21',1,'configStruct::equalizerStruct']]],
+  ['v15000',['v15000',['../structconfig_struct_1_1equalizer_struct.html#a5bccf679d35b0bad04a5dfa31859c94a',1,'configStruct::equalizerStruct']]],
+  ['v2400',['v2400',['../structconfig_struct_1_1equalizer_struct.html#a2cde11a79591843de2ea42e5133104da',1,'configStruct::equalizerStruct']]],
+  ['v400',['v400',['../structconfig_struct_1_1equalizer_struct.html#ae4527212c69244fed738cc4f9a0c7a28',1,'configStruct::equalizerStruct']]],
+  ['v60',['v60',['../structconfig_struct_1_1equalizer_struct.html#a3927adfca8d0a60acea4e2628bff6f2a',1,'configStruct::equalizerStruct']]],
+  ['v6000',['v6000',['../structconfig_struct_1_1equalizer_struct.html#a2c6d78b1ab4881c040594227af8b30bd',1,'configStruct::equalizerStruct']]],
   ['valuesstr',['valuesStr',['../utils_8cpp.html#aff60c5141175c03414e5fefee548c1b0',1,'utils.cpp']]],
   ['valuetonote',['valueToNote',['../utils_8cpp.html#ac4a47a6937578702afa93696c3831da0',1,'valueToNote(char value):&#160;utils.cpp'],['../utils_8h.html#ac4a47a6937578702afa93696c3831da0',1,'valueToNote(char value):&#160;utils.cpp']]],
   ['voice',['Voice',['../class_voice.html',1,'Voice'],['../class_voice.html#a35d043b14d898a2833768b635499d4cc',1,'Voice::Voice()']]],

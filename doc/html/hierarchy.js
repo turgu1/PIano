@@ -4,10 +4,13 @@ var hierarchy =
     [ "configStruct", "structconfig_struct.html", null ],
     [ "Duration", "class_duration.html", null ],
     [ "Equalizer", "class_equalizer.html", null ],
+    [ "configStruct::equalizerStruct", "structconfig_struct_1_1equalizer_struct.html", null ],
     [ "exception", null, [
       [ "RtMidiError", "class_rt_midi_error.html", null ]
     ] ],
     [ "Reverb::fifo_struct", "struct_reverb_1_1fifo__struct.html", null ],
+    [ "InteractiveMode", "class_interactive_mode.html", null ],
+    [ "SamplesLibrary::libStruct", "struct_samples_library_1_1lib_struct.html", null ],
     [ "Log", "class_log.html", null ],
     [ "Midi", "class_midi.html", null ],
     [ "MidiApi", "class_midi_api.html", [

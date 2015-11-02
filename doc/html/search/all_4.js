@@ -10,6 +10,8 @@ var searchData=
   ['default_5fvalue',['default_value',['../structparam_struct.html#adabfbe419b020fa613a58e2d5a1afac9',1,'paramStruct']]],
   ['devicename',['deviceName',['../structconfig_struct_1_1pcm_struct.html#a251fe2542ef2f7dec30a89fafdb4a86d',1,'configStruct::pcmStruct::deviceName()'],['../structconfig_struct_1_1midi_struct.html#ae1896f516875d9eee022a4fb657e9981',1,'configStruct::midiStruct::deviceName()']]],
   ['devicenbr',['deviceNbr',['../structconfig_struct_1_1pcm_struct.html#afa2322a99c51871a047ca57b629fe6f5',1,'configStruct::pcmStruct::deviceNbr()'],['../structconfig_struct_1_1midi_struct.html#ac552ad6eb48f4e9f8e751c66c6d2e490',1,'configStruct::midiStruct::deviceNbr()']]],
+  ['deviceselect',['deviceSelect',['../class_midi.html#ae11c12e07fa66fc3ce3ee48557f24fd5',1,'Midi::deviceSelect()'],['../class_sound.html#abd9af9165a330cd30b4f4ee490c3065c',1,'Sound::deviceSelect()']]],
+  ['dirname',['dirName',['../struct_samples_library_1_1lib_struct.html#a962dfb3d4cfe106baa4f8b9c63f2d9bc',1,'SamplesLibrary::libStruct']]],
   ['doinput',['doInput',['../struct_midi_in_api_1_1_rt_midi_in_data.html#a5f3430b724ade89b95b733dd4d818224',1,'MidiInApi::RtMidiInData']]],
   ['dormant',['DORMANT',['../voice_8h.html#a12d7af35443dedfdd51e3bd03e0f75c7a2021e59f22cc92bb32c8fbe59feac5e8',1,'voice.h']]],
   ['driver_5ferror',['DRIVER_ERROR',['../class_rt_midi_error.html#a741314057cec5fb8c743c12f284905eeaacbd6476ea9704d758d03b7175f5c4c9',1,'RtMidiError']]],

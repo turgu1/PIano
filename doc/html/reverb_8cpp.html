@@ -114,6 +114,9 @@ $(document).ready(function(){initNavTree('reverb_8cpp.html','');});
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;termios.h&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
 <code>#include &quot;<a class="el" href="_p_iano_8h_source.html">PIano.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="duration_8h_source.html">duration.h</a>&quot;</code><br />
 </div>
@@ -159,7 +162,7 @@ Macros</h2></td></tr>
 <div class="line">  *o++ += tmp[0] + tmp[1] + tmp[2] + tmp[3];                \</div>
 <div class="line">  buffIn += 2;</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00105">105</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00109">109</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,9 +182,9 @@ Macros</h2></td></tr>
 <div class="line"><a class="code" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">  FILTER</a>(bd.val[0]);     <a class="code" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">\</a></div>
 <div class="line"><a class="code" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">  FILTER</a>(ac.val[1]);     <a class="code" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">\</a></div>
 <div class="line"><a class="code" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">  FILTER</a>(bd.val[1]);</div>
-<div class="ttc" id="reverb_8cpp_html_a3437138db603777135dc5f8a7103fa49"><div class="ttname"><a href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">FILTER</a></div><div class="ttdeci">#define FILTER(pos)                            </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00105">reverb.cpp:105</a></div></div>
+<div class="ttc" id="reverb_8cpp_html_a3437138db603777135dc5f8a7103fa49"><div class="ttname"><a href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">FILTER</a></div><div class="ttdeci">#define FILTER(pos)                            </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00109">reverb.cpp:109</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00117">117</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00121">121</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -203,7 +206,7 @@ Macros</h2></td></tr>
 <div class="line">  GETv(&amp;combs_ptr[2], yn_m_cd.val[0]);     \</div>
 <div class="line">  GETv(&amp;combs_ptr[3], yn_m_cd.val[1]);</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00081">81</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00085">85</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -225,7 +228,7 @@ Macros</h2></td></tr>
 <div class="line">  PUTv(&amp;combs_ptr[2], yn_m_ac.val[1]);     \</div>
 <div class="line">  PUTv(&amp;combs_ptr[3], yn_m_bd.val[1]);</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00099">99</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00103">103</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -246,7 +249,7 @@ Macros</h2></td></tr>
 <div class="line">  yn_m_ac = vuzpq_f32(yn_m_ab.val[0], yn_m_cd.val[0]);     \</div>
 <div class="line">  yn_m_bd = vuzpq_f32(yn_m_ab.val[1], yn_m_cd.val[1]);</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00093">93</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00097">97</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -267,7 +270,7 @@ Macros</h2></td></tr>
 <div class="line">  yn_m_ac = vuzpq_f32(yn_m_ab.val[0], yn_m_cd.val[0]);     \</div>
 <div class="line">  yn_m_bd = vuzpq_f32(yn_m_ab.val[1], yn_m_cd.val[1]);</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00087">87</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00091">91</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +280,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="reverb_8cpp.html">reverb.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

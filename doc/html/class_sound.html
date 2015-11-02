@@ -127,6 +127,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a539c205cdf06fe2c621fd77c37bcfac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0907389078bf740be2a5763366ad3376"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a0907389078bf740be2a5763366ad3376">~Sound</a> ()</td></tr>
 <tr class="separator:a0907389078bf740be2a5763366ad3376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a201cd18d171b458f62d5a1c062540735"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a201cd18d171b458f62d5a1c062540735">showDevices</a> (int devCount)</td></tr>
+<tr class="memdesc:a201cd18d171b458f62d5a1c062540735"><td class="mdescLeft">&#160;</td><td class="mdescRight">Show available devices to user.  <a href="#a201cd18d171b458f62d5a1c062540735">More...</a><br /></td></tr>
+<tr class="separator:a201cd18d171b458f62d5a1c062540735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd9af9165a330cd30b4f4ee490c3065c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#abd9af9165a330cd30b4f4ee490c3065c">deviceSelect</a> ()</td></tr>
+<tr class="memdesc:abd9af9165a330cd30b4f4ee490c3065c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interactive device selection.  <a href="#abd9af9165a330cd30b4f4ee490c3065c">More...</a><br /></td></tr>
+<tr class="separator:abd9af9165a330cd30b4f4ee490c3065c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad06764f30b88d0f4a9a699b35976c75a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#ad06764f30b88d0f4a9a699b35976c75a">holding</a> ()</td></tr>
+<tr class="separator:ad06764f30b88d0f4a9a699b35976c75a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c4a95e57935c5bf5c976ebf02a2c4ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a6c4a95e57935c5bf5c976ebf02a2c4ea">wait</a> ()</td></tr>
+<tr class="memdesc:a6c4a95e57935c5bf5c976ebf02a2c4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Put sound on hold waiting for a new sample library to be loaded from disk.  <a href="#a6c4a95e57935c5bf5c976ebf02a2c4ea">More...</a><br /></td></tr>
+<tr class="separator:a6c4a95e57935c5bf5c976ebf02a2c4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d3adf4d134a1f070c587631aeb47a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#ad3d3adf4d134a1f070c587631aeb47a6">conti</a> ()</td></tr>
+<tr class="memdesc:ad3d3adf4d134a1f070c587631aeb47a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restart sound, the new library has been loaded.  <a href="#ad3d3adf4d134a1f070c587631aeb47a6">More...</a><br /></td></tr>
+<tr class="separator:ad3d3adf4d134a1f070c587631aeb47a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7f9998e97dfd97ef1f246b567c77979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#ad7f9998e97dfd97ef1f246b567c77979">startReplay</a> ()</td></tr>
 <tr class="separator:ad7f9998e97dfd97ef1f246b567c77979"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5d546c95e0e8d14bd540a521ab7a2b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#af5d546c95e0e8d14bd540a521ab7a2b1">toggleReplay</a> ()</td></tr>
@@ -150,13 +164,16 @@ Static Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3db913c8f7aca959592f1f5d281d96fc"><td class="memItemLeft" align="right" valign="top">PaStream *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a3db913c8f7aca959592f1f5d281d96fc">stream</a></td></tr>
-<tr class="memdesc:a3db913c8f7aca959592f1f5d281d96fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The connexion to the portaudio stream.  <a href="#a3db913c8f7aca959592f1f5d281d96fc">More...</a><br /></td></tr>
+<tr class="memdesc:a3db913c8f7aca959592f1f5d281d96fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The connection to the PortAudio stream.  <a href="#a3db913c8f7aca959592f1f5d281d96fc">More...</a><br /></td></tr>
 <tr class="separator:a3db913c8f7aca959592f1f5d281d96fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5bc55d4c2d3240f784f141d1b0d7fba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#aa5bc55d4c2d3240f784f141d1b0d7fba">hold</a></td></tr>
+<tr class="memdesc:aa5bc55d4c2d3240f784f141d1b0d7fba"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, stop asking form samples as a new library is being loaded.  <a href="#aa5bc55d4c2d3240f784f141d1b0d7fba">More...</a><br /></td></tr>
+<tr class="separator:aa5bc55d4c2d3240f784f141d1b0d7fba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af292d6a6ab86c80b8ff6426f37f0bf3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#af292d6a6ab86c80b8ff6426f37f0bf3e">replay</a></td></tr>
 <tr class="memdesc:af292d6a6ab86c80b8ff6426f37f0bf3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set to true is replaying is required by the user.  <a href="#af292d6a6ab86c80b8ff6426f37f0bf3e">More...</a><br /></td></tr>
 <tr class="separator:af292d6a6ab86c80b8ff6426f37f0bf3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4612c18959f6777308d1b2ab9d9c1dc5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a4612c18959f6777308d1b2ab9d9c1dc5">rbuff</a></td></tr>
-<tr class="memdesc:a4612c18959f6777308d1b2ab9d9c1dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIFO Buffer on the last ~5 seconds pcm data.  <a href="#a4612c18959f6777308d1b2ab9d9c1dc5">More...</a><br /></td></tr>
+<tr class="memdesc:a4612c18959f6777308d1b2ab9d9c1dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIFO Buffer on the last ~5 seconds PCM data.  <a href="#a4612c18959f6777308d1b2ab9d9c1dc5">More...</a><br /></td></tr>
 <tr class="separator:a4612c18959f6777308d1b2ab9d9c1dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5638f21547400a6acd972635942f3c32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sound.html#a5638f21547400a6acd972635942f3c32">rhead</a></td></tr>
 <tr class="memdesc:a5638f21547400a6acd972635942f3c32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Head Pointer on the replay buffer.  <a href="#a5638f21547400a6acd972635942f3c32">More...</a><br /></td></tr>
@@ -187,9 +204,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a0cc4d7c6b4a60d7678665f2ddbf19857 inherit pub_static_methods_class_new_handler_support"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_sound.html">Sound</a> class is reponsible of supplying the proper linkage with the PCM sound device. It uses the portaudio library to get access to the ALSA API of the operating system. Through the configuration file, the user identify the PCM device to connect with. Once connected, the class setup a callback function that will be asynchroniously requesting new PCM data from the application.</p>
-<p>The class maintains a ~5 seconds replay buffer that could be requested to be played by the user. It contains the last 5 seconds of PCM data generated and transmitted to the PCM device and is used to debug samples librairies or code change in this program.</p>
-<p>Getting the connexion properly setup with the requested device is a somewhat difficult exercice for the user. The class when started produce the list of compatible devices and show the list to the end user. It is then possible for the user, in the interactive mode, to select the targetted device and produce the data required in the configuration file to properly setup the <a class="el" href="class_sound.html">Sound</a> class. </p>
+<div class="textblock"><p>The <a class="el" href="class_sound.html">Sound</a> class is responsible of supplying the proper linkage with the PCM sound device. It uses the PortAudio library to get access to the ALSA API of the operating system. Through the configuration file, the user identify the PCM device to connect with. Once connected, the class setup a callback function that will be asynchronously requesting new PCM data from the application.</p>
+<p>The class maintains a ~5 seconds replay buffer that could be requested to be played by the user. It contains the last 5 seconds of PCM data generated and transmitted to the PCM device and is used to debug samples libraries or code change in this program.</p>
+<p>Getting the connection properly setup with the requested device is a somewhat difficult exercise for the user. The class when started produce the list of compatible devices and show the list to the end user. It is then possible for the user, in the interactive mode, to select the targeted device and produce the data required in the configuration file to properly setup the <a class="el" href="class_sound.html">Sound</a> class. </p>
 
 <p>Definition at line <a class="el" href="sound_8h_source.html#l00025">25</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -205,9 +222,9 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The initializer identify which PCM device to connect to, establish the connextion and setup the callback function. </p>
+<p>This method selects which PCM device to connect to, establish the connection and setup the callback function. </p>
 
-<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00043">43</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00049">49</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -224,11 +241,57 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00139">139</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00129">129</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad3d3adf4d134a1f070c587631aeb47a6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sound::conti </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Restart sound, the new library has been loaded. </p>
+
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00080">80</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd9af9165a330cd30b4f4ee490c3065c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sound::deviceSelect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interactive device selection. </p>
+
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00171">171</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5f224d1b1e3efb3318169e4bf85a5c0c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -253,7 +316,32 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Retrieval of a chunk of PCM data from the replay buffer to send to the PCM device. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00092">92</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00107">107</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad06764f30b88d0f4a9a699b35976c75a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Sound::holding </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00074">74</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +368,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Returns true if the class is currently in a replay mode, false otherwise. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00080">80</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00095">95</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -307,7 +395,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>New operation handler when out of memory occurs. </p>
 
-<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00153">153</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00143">143</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -334,7 +422,27 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>Push in the replay buffer the just prepared PCM data. As the replay buffer is managed as a FIFO, it keep only the last 5 seconds of musical data. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00084">84</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00099">99</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a201cd18d171b458f62d5a1c062540735"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sound::showDevices </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>devCount</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Show available devices to user. </p>
+
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00150">150</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -360,7 +468,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>This is called when starting a replay process. The rpos pointer is adjusted to the tail of the FIFO buffer. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00069">69</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00084">84</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +495,34 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Turn on and off the replay mechanism. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00074">74</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00089">89</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c4a95e57935c5bf5c976ebf02a2c4ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Sound::wait </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Put sound on hold waiting for a new sample library to be loaded from disk. </p>
+
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00077">77</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -448,13 +583,37 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This is the callback function that will retrieve and process PCM data to be sent back to the PCM ALSA device. This function call the <a class="el" href="class_poly.html#a7d0ef64b393628d3dbfc1447ff1da7f7">Poly::mixer</a> method to get sampling data, then call the reverb and the equalizer filters in sequence to process the data before sending it to the PCM device. The data is also pushed in the FIFO replay buffer.</p>
-<p>This routine will be called by the PortAudio engine when audio is needed. It may called at interrupt level on some machines so don't do anything that could mess up the system like calling memory allocation functions that would disrupt the data structure involved. </p>
+<p>This routine will be called by the PortAudio engine when audio is needed. It may be called at interrupt level on some machines so don't do anything that could mess up the system like calling memory allocation functions that would disrupt the data structure involved. </p>
 
-<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00011">11</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00014">14</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="aa5bc55d4c2d3240f784f141d1b0d7fba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Sound::hold</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, stop asking form samples as a new library is being loaded. </p>
+
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00034">34</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a4612c18959f6777308d1b2ab9d9c1dc5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -473,9 +632,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>FIFO Buffer on the last ~5 seconds pcm data. </p>
+<p>FIFO Buffer on the last ~5 seconds PCM data. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00036">36</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00037">37</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -499,7 +658,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Address that follows the end of the rbuff space. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00039">39</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00040">40</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +682,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Set to true is replaying is required by the user. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00034">34</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00035">35</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +706,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Head Pointer on the replay buffer. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00037">37</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00038">38</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +730,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current replay position. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00040">40</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00041">41</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -595,7 +754,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Tail Pointer on the replay buffer. </p>
 
-<p>Definition at line <a class="el" href="sound_8h_source.html#l00038">38</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
+<p>Definition at line <a class="el" href="sound_8h_source.html#l00039">39</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
 </div>
 </div>
@@ -617,7 +776,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The connexion to the portaudio stream. </p>
+<p>The connection to the PortAudio stream. </p>
 
 <p>Definition at line <a class="el" href="sound_8h_source.html#l00028">28</a> of file <a class="el" href="sound_8h_source.html">sound.h</a>.</p>
 
@@ -633,7 +792,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_sound.html">Sound</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

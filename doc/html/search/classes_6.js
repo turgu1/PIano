@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['newhandlersupport',['NewHandlerSupport',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20fifo_20_3e',['NewHandlerSupport&lt; Fifo &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20piano_20_3e',['NewHandlerSupport&lt; PIano &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20poly_20_3e',['NewHandlerSupport&lt; Poly &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20reverb_20_3e',['NewHandlerSupport&lt; Reverb &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20sample_20_3e',['NewHandlerSupport&lt; Sample &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20sampleslibrary_20_3e',['NewHandlerSupport&lt; SamplesLibrary &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20sound_20_3e',['NewHandlerSupport&lt; Sound &gt;',['../class_new_handler_support.html',1,'']]],
-  ['newhandlersupport_3c_20voice_20_3e',['NewHandlerSupport&lt; Voice &gt;',['../class_new_handler_support.html',1,'']]]
+  ['midi',['Midi',['../class_midi.html',1,'']]],
+  ['midiapi',['MidiApi',['../class_midi_api.html',1,'']]],
+  ['midiinapi',['MidiInApi',['../class_midi_in_api.html',1,'']]],
+  ['midiindummy',['MidiInDummy',['../class_midi_in_dummy.html',1,'']]],
+  ['midimessage',['MidiMessage',['../struct_midi_in_api_1_1_midi_message.html',1,'MidiInApi']]],
+  ['midioutapi',['MidiOutApi',['../class_midi_out_api.html',1,'']]],
+  ['midioutdummy',['MidiOutDummy',['../class_midi_out_dummy.html',1,'']]],
+  ['midiqueue',['MidiQueue',['../struct_midi_in_api_1_1_midi_queue.html',1,'MidiInApi']]],
+  ['midistruct',['midiStruct',['../structconfig_struct_1_1midi_struct.html',1,'configStruct']]]
 ];

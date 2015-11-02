@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['log',['Log',['../class_log.html',1,'']]]
+  ['interactivemode',['InteractiveMode',['../class_interactive_mode.html',1,'']]]
 ];

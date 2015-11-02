@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gain',['gain',['../class_equalizer.html#aae14d9efd3f8623e71ad3e99c248ef1a',1,'Equalizer::gain()'],['../class_voice.html#a9d4a108039742aa27700b376a2abdd42',1,'Voice::gain()']]],
-  ['get',['GET',['../class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd',1,'Reverb::GET()'],['../class_sound.html#a5f224d1b1e3efb3318169e4bf85a5c0c',1,'Sound::get()']]],
+  ['get',['get',['../class_sound.html#a5f224d1b1e3efb3318169e4bf85a5c0c',1,'Sound::get()'],['../class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd',1,'Reverb::GET()']]],
   ['get_5fparam',['get_param',['../class_config.html#a92f833be7f7e0dfc02f41a8164cc2df1',1,'Config']]],
   ['getbuff',['getBuff',['../class_sample.html#ab054fe0ba557d80a4ce732656a0a8c58',1,'Sample']]],
   ['getcompiledapi',['getCompiledApi',['../class_rt_midi.html#a39204d17dea25683456b49db648bfb8b',1,'RtMidi']]],

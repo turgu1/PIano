@@ -1,18 +1,23 @@
 var NAVTREE =
 [
   [ "PIano", "index.html", [
-    [ "The PIano Sampling Based Synthetizer Program", "index.html", [
+    [ "The PIano Sampling Based Synthesizer Program", "index.html", [
       [ "Some background", "index.html#Background", null ],
       [ "External Devices", "index.html#Devices", null ],
-      [ "Compiling", "index.html#Compiling", null ],
-      [ "Installation", "index.html#Installation", null ],
+      [ "Installation", "index.html#Installation", [
+        [ "Installation from source code", "index.html#Compiling", [
+          [ "Install Raspbian packages", "index.html#packages", null ],
+          [ "Compiling and installing PortAudio", "index.html#portaudio", null ],
+          [ "Retrieving and compiling PIano", "index.html#CompilePIano", null ]
+        ] ]
+      ] ],
       [ "High Level Design", "index.html#Architecture", [
         [ "Class Diagram", "index.html#ClassDiagram", null ],
         [ "Sequences of Operations", "index.html#Sequence", [
           [ "Midi Interaction", "index.html#MidiInteraction", null ],
           [ "PCM Device Interaction", "index.html#PCMDevice", null ]
         ] ],
-        [ "Multithreading concerns", "index.html#Multithreading", null ]
+        [ "Some notes about Multithreading", "index.html#Multithreading", null ]
       ] ],
       [ "Licensing", "index.html#Licensing", null ]
     ] ],
@@ -48,8 +53,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_p_iano_8h.html",
-"class_rt_midi_in.html#ade23832a66c1ed56965c26325602543e",
-"main_8cpp.html#a9c910c7ee9fbbf64f0591bb119a1cff2"
+"class_rt_midi_error.html#acd8f1c1d2c6cd5bf678700ed9f106061",
+"globals_func.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

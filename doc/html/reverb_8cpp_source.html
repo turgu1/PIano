@@ -114,362 +114,453 @@ $(document).ready(function(){initNavTree('reverb_8cpp_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_p_iano_8h.html">PIano.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="duration_8h.html">duration.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_reverb.html#af69e697f5e09648e2604e7da746a86b2">Reverb::comb_m</a>[<a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>] = { </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;  1557, 1617, 1491, 1422, 1277, 1356, 1188, 1116 </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;};</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;termios.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_p_iano_8h.html">PIano.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="duration_8h.html">duration.h</a>&quot;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_reverb.html#a7c7ab12c04477eb65bacd09267c43971">Reverb::ap_m</a>[<a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>] = { </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  225, 556, 441, 341 </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_reverb.html#af69e697f5e09648e2604e7da746a86b2">Reverb::comb_m</a>[<a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>] = { </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;  1557, 1617, 1491, 1422, 1277, 1356, 1188, 1116 </div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;};</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_reverb.html#a765b925557df7e43bf5ed275fc6950d1">   18</a></span>&#160;<a class="code" href="class_reverb.html#a765b925557df7e43bf5ed275fc6950d1">Reverb::Reverb</a>()</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  <a class="code" href="class_new_handler_support.html#a996da1246e7cc28ec20ef0ad2ff08a23">setNewHandler</a>(<a class="code" href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">outOfMemory</a>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> <a class="code" href="class_reverb.html#a7c7ab12c04477eb65bacd09267c43971">Reverb::ap_m</a>[<a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>] = { </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;  225, 556, 441, 341 </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>; i++) {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">int</span>  frameCount = <a class="code" href="class_reverb.html#af69e697f5e09648e2604e7da746a86b2">comb_m</a>[i];</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> sizeInBytes = (frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>) * <span class="keyword">sizeof</span>(<a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">// left combs</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    memset(<a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].buff, 0, sizeInBytes);</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_reverb.html#a765b925557df7e43bf5ed275fc6950d1">   22</a></span>&#160;<a class="code" href="class_reverb.html#a765b925557df7e43bf5ed275fc6950d1">Reverb::Reverb</a>()</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;  <a class="code" href="class_new_handler_support.html#a996da1246e7cc28ec20ef0ad2ff08a23">setNewHandler</a>(<a class="code" href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">outOfMemory</a>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>; i++) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span>  frameCount = <a class="code" href="class_reverb.html#af69e697f5e09648e2604e7da746a86b2">comb_m</a>[i];</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">int</span> sizeInBytes = (frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>) * <span class="keyword">sizeof</span>(<a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[i] = 0.0f;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// right combs</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    frameCount += 23;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    sizeInBytes = (frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>) * <span class="keyword">sizeof</span>(<a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    memset(<a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].buff, 0, sizeInBytes);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[i] = 0.0f;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; i++) {</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span>  frameCount = <a class="code" href="class_reverb.html#a7c7ab12c04477eb65bacd09267c43971">ap_m</a>[i];</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span> sizeInBytes = (frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>) * <span class="keyword">sizeof</span>(<a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// left all pass filters</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    memset(<a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].buff, 0, sizeInBytes);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// left combs</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    memset(<a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].buff, 0, sizeInBytes);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[i] = 0.0f;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// right combs</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    frameCount += 23;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    sizeInBytes = (frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>) * <span class="keyword">sizeof</span>(<a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    memset(<a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].buff, 0, sizeInBytes);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[i] = 0.0f;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; i++) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">int</span>  frameCount = <a class="code" href="class_reverb.html#a7c7ab12c04477eb65bacd09267c43971">ap_m</a>[i];</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">int</span> sizeInBytes = (frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>) * <span class="keyword">sizeof</span>(<a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">// right all pass filters</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    memset(<a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].buff, 0, sizeInBytes);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// left all pass filters</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    memset(<a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].buff, 0, sizeInBytes);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">// right all pass filters</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> = <span class="keyword">new</span> <a class="code" href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a>[frameCount + <a class="code" href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a>];</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    memset(<a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].buff, 0, sizeInBytes);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#af1981e048b6276bb4c21d14f5ed087a4">roomSize</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a>  = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a87c8680b6ddedd806907823c00617427">damping</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a>    = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a1bbdc9f33a4406bfc4bb90f1af594da7">width</a>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>   = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a9b6a852c7e0595a6719e0ba6a060d198">dryWet</a>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>   = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a044b70739b309ef3695a48ee9cf6b0c5">apGain</a>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">//----- outOfMemory() ----</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">   76</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">Reverb::outOfMemory</a>()</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <a class="code" href="_p_iano_8h.html#ad0e8fc0134c2c4afdaa9f2f31d1769e6">logger</a>.<a class="code" href="class_log.html#a336b18a978eb91f049ddcdfdc77d2691">FATAL</a>(<span class="stringliteral">&quot;Reverb: Unable to allocate memory.&quot;</span>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">   81</a></span>&#160;<span class="preprocessor">#define LOAD_YN_M(combs_ptr)           \</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[0], yn_m_ab.val[0]);     \</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[1], yn_m_ab.val[1]);     \</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[2], yn_m_cd.val[0]);     \</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[3], yn_m_cd.val[1]);</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  </div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">   87</a></span>&#160;<span class="preprocessor">#define TRANSPOSE_FORWARD_YN_M()               \</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">  yn_m_ab = vuzpq_f32(yn_m_ab.val[0], yn_m_ab.val[1]);     \</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">  yn_m_cd = vuzpq_f32(yn_m_cd.val[0], yn_m_cd.val[1]);     \</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">  yn_m_ac = vuzpq_f32(yn_m_ab.val[0], yn_m_cd.val[0]);     \</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">  yn_m_bd = vuzpq_f32(yn_m_ab.val[1], yn_m_cd.val[1]); </span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">   93</a></span>&#160;<span class="preprocessor">#define TRANSPOSE_BACKWARD_YN_M()              \</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">  yn_m_ab = vuzpq_f32(yn_m_ac.val[0], yn_m_bd.val[0]);     \</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">  yn_m_cd = vuzpq_f32(yn_m_ac.val[1], yn_m_bd.val[1]);     \</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">  yn_m_ac = vuzpq_f32(yn_m_ab.val[0], yn_m_cd.val[0]);     \</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">  yn_m_bd = vuzpq_f32(yn_m_ab.val[1], yn_m_cd.val[1]);</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">   99</a></span>&#160;<span class="preprocessor">#define STORE_YN_M(combs_ptr)          \</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[0], yn_m_ac.val[0]);     \</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[1], yn_m_bd.val[0]);     \</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[2], yn_m_ac.val[1]);     \</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[3], yn_m_bd.val[1]);</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">  105</a></span>&#160;<span class="preprocessor">#define FILTER(pos)                             \</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">  input = vdupq_n_f32((buffIn[0] + buffIn[1]) * 0.015f);    \</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">  yn_m_##pos = vmlaq_n_f32(input,               \</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">               vmlsq_n_f32(yn_m_##pos,          \</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">                       vsubq_f32(yn_m_##pos, yn_1), \</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">                       damping),            \</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">               roomSize);                   \</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">  yn_1 = yn_m_##pos;                            \</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">  vst1q_f32(tmp, yn_1);                         \</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">  *o++ += tmp[0] + tmp[1] + tmp[2] + tmp[3];                \</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">  buffIn += 2;</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">  117</a></span>&#160;<span class="preprocessor">#define FILTERS()    \</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">  FILTER(ac.val[0]);     \</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">  FILTER(bd.val[0]);     \</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">  FILTER(ac.val[1]);     \</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">  FILTER(bd.val[1]);</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="class_reverb.html#ac346d0968d387c19fbfc2cb79c533250">  123</a></span>&#160;<a class="code" href="class_reverb.html#ac346d0968d387c19fbfc2cb79c533250">Reverb::~Reverb</a>()</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>; i++) {</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">delete</span> [] <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keyword">delete</span> [] <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  }</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; i++) {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">delete</span> []  <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">delete</span> [] <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">end</a>  = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a> + frameCount;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">head</a> = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">tail</a> = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#af1981e048b6276bb4c21d14f5ed087a4">roomSize</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a>  = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a87c8680b6ddedd806907823c00617427">damping</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a>    = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a1bbdc9f33a4406bfc4bb90f1af594da7">width</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>   = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a9b6a852c7e0595a6719e0ba6a060d198">dryWet</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>   = <a class="code" href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a>.<a class="code" href="structconfig_struct.html#a7248f75c30011576a729e33712a04298">reverb</a>.<a class="code" href="structconfig_struct_1_1reverb_scruct.html#a044b70739b309ef3695a48ee9cf6b0c5">apGain</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//----- outOfMemory() ----</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">   80</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">Reverb::outOfMemory</a>()</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <a class="code" href="_p_iano_8h.html#ad0e8fc0134c2c4afdaa9f2f31d1769e6">logger</a>.<a class="code" href="class_log.html#a336b18a978eb91f049ddcdfdc77d2691">FATAL</a>(<span class="stringliteral">&quot;Reverb: Unable to allocate memory.&quot;</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">   85</a></span>&#160;<span class="preprocessor">#define LOAD_YN_M(combs_ptr)           \</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[0], yn_m_ab.val[0]);     \</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[1], yn_m_ab.val[1]);     \</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[2], yn_m_cd.val[0]);     \</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">  GETv(&amp;combs_ptr[3], yn_m_cd.val[1]);</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">   91</a></span>&#160;<span class="preprocessor">#define TRANSPOSE_FORWARD_YN_M()               \</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">  yn_m_ab = vuzpq_f32(yn_m_ab.val[0], yn_m_ab.val[1]);     \</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">  yn_m_cd = vuzpq_f32(yn_m_cd.val[0], yn_m_cd.val[1]);     \</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">  yn_m_ac = vuzpq_f32(yn_m_ab.val[0], yn_m_cd.val[0]);     \</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">  yn_m_bd = vuzpq_f32(yn_m_ab.val[1], yn_m_cd.val[1]); </span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">   97</a></span>&#160;<span class="preprocessor">#define TRANSPOSE_BACKWARD_YN_M()              \</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">  yn_m_ab = vuzpq_f32(yn_m_ac.val[0], yn_m_bd.val[0]);     \</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">  yn_m_cd = vuzpq_f32(yn_m_ac.val[1], yn_m_bd.val[1]);     \</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">  yn_m_ac = vuzpq_f32(yn_m_ab.val[0], yn_m_cd.val[0]);     \</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">  yn_m_bd = vuzpq_f32(yn_m_ab.val[1], yn_m_cd.val[1]);</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">  103</a></span>&#160;<span class="preprocessor">#define STORE_YN_M(combs_ptr)          \</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[0], yn_m_ac.val[0]);     \</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[1], yn_m_bd.val[0]);     \</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[2], yn_m_ac.val[1]);     \</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">  PUTv(&amp;combs_ptr[3], yn_m_bd.val[1]);</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#a3437138db603777135dc5f8a7103fa49">  109</a></span>&#160;<span class="preprocessor">#define FILTER(pos)                             \</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">  input = vdupq_n_f32((buffIn[0] + buffIn[1]) * 0.015f);    \</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">  yn_m_##pos = vmlaq_n_f32(input,               \</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">               vmlsq_n_f32(yn_m_##pos,          \</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">                       vsubq_f32(yn_m_##pos, yn_1), \</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">                       damping),            \</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">               roomSize);                   \</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">  yn_1 = yn_m_##pos;                            \</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">  vst1q_f32(tmp, yn_1);                         \</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">  *o++ += tmp[0] + tmp[1] + tmp[2] + tmp[3];                \</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">  buffIn += 2;</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">  121</a></span>&#160;<span class="preprocessor">#define FILTERS()    \</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">  FILTER(ac.val[0]);     \</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">  FILTER(bd.val[0]);     \</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">  FILTER(ac.val[1]);     \</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">  FILTER(bd.val[1]);</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="class_reverb.html#ac346d0968d387c19fbfc2cb79c533250">  127</a></span>&#160;<a class="code" href="class_reverb.html#ac346d0968d387c19fbfc2cb79c533250">Reverb::~Reverb</a>()</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>; i++) {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keyword">delete</span> [] <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">delete</span> [] <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  }</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">  135</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">Reverb::process</a>(<a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> buff, <span class="keywordtype">int</span> frame_count)</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keywordtype">float</span>        dry = <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  <span class="keywordtype">float</span>        wet = 1.0f - <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <span class="keywordtype">float</span> apGainPlus = 1.0f + <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <a class="code" href="class_duration.html">Duration</a> * duration = <span class="keyword">new</span> <a class="code" href="class_duration.html">Duration</a>;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#if USE_INTRINSICS</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; i++) {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keyword">delete</span> []  <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">delete</span> [] <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>[i].<a class="code" href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">buff</a>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">  139</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">Reverb::process</a>(<a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> buff, <span class="keywordtype">int</span> frame_count)</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;{</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="keywordtype">float</span>        dry = <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keywordtype">float</span>        wet = 1.0f - <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <span class="keywordtype">float</span> apGainPlus = 1.0f + <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>;</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">float</span> outl[<a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a>];</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">float</span> outr[<a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a>];</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> o_l;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> o_r;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> buffIn, b;</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;  <span class="keywordtype">int</span> fr;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  memset(outl, 0, <a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  memset(outr, 0, <a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <span class="keywordflow">for</span> (fr = 0, o_l = outl, o_r = outr; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;       fr &lt; frame_count; </div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;       fr += 4, o_l += 4, o_r += 4) {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <a class="code" href="class_duration.html">Duration</a> * duration = <span class="keyword">new</span> <a class="code" href="class_duration.html">Duration</a>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#if USE_INTRINSICS</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">float</span> outl[<a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a>];</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">float</span> outr[<a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a>];</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> o_l;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> o_r;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> buffIn, b;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <span class="keywordtype">int</span> fr;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  memset(outl, 0, <a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  memset(outr, 0, <a class="code" href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a> * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lc = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> rc = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    float32x4x2_t yn_m_ab;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    float32x4x2_t yn_m_cd;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    float32x4x2_t yn_m_ac; <span class="comment">// partially transposed combs values</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    float32x4x2_t yn_m_bd; <span class="comment">// ..</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    float32x4_t yn_1;</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    float32x4_t input;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordtype">float</span> tmp[4];</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> o;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="comment">// ==== LEFT ====</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[0]);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keywordflow">for</span> (fr = 0, o_l = outl, o_r = outr; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;       fr &lt; frame_count; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;       fr += 4, o_l += 4, o_r += 4) {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lc = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> rc = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    float32x4x2_t yn_m_ab;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    float32x4x2_t yn_m_cd;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    float32x4x2_t yn_m_ac; <span class="comment">// partially transposed combs values</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    float32x4x2_t yn_m_bd; <span class="comment">// ..</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    float32x4_t yn_1;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    float32x4_t input;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordtype">float</span> tmp[4];</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> o;</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    buffIn = b = &amp;buff[fr &lt;&lt; 1];</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    o = o_l;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(lc);</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(lc);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[0], yn_1);</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    lc += 4;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    buffIn = b;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    o = o_l;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="comment">// ==== LEFT ====</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[0]);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    buffIn = b = &amp;buff[fr &lt;&lt; 1];</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    o = o_l;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(lc);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(lc);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[0], yn_1);</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[4]);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(lc);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(lc);</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[4], yn_1);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="comment">// ==== RIGHT ====</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    lc += 4;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    buffIn = b;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    o = o_l;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[4]);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(lc);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(lc);</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[0]);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>[4], yn_1);</div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    buffIn = b;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    o = o_r;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(rc);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(rc);</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[0], yn_1);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    rc += 4;</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    buffIn = b;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    o = o_r;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// ==== RIGHT ====</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[0]);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    buffIn = b;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    o = o_r;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(rc);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(rc);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[0], yn_1);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[4]);</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(rc);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(rc);</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[4], yn_1);</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;  }</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    </div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;  <span class="comment">//buffIn = b;</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  <span class="keywordflow">for</span> (fr = 0, buffIn = buff, o_l = outl, o_r = outr; </div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;       fr &lt; (frame_count &gt;&gt; 2); </div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;       fr++, buffIn += 8, o_l += 4, o_r += 4) {</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    rc += 4;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    buffIn = b;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    o = o_r;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    yn_1 = vld1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[4]);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a>(rc);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a>();</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a>();</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <a class="code" href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a>();</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <a class="code" href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a>(rc);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    vst1q_f32(&amp;<a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>[4], yn_1);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  }</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    </div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  <span class="comment">//buffIn = b;</span></div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    float32x4_t left, right;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    left  = vld1q_f32(o_l);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    right = vld1q_f32(o_r);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  <span class="keywordflow">for</span> (fr = 0, buffIn = buff, o_l = outl, o_r = outr; </div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;       fr &lt; (frame_count &gt;&gt; 2); </div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;       fr++, buffIn += 8, o_l += 4, o_r += 4) {</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lap, rap;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">for</span> (i = 0, lap = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>, rap = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>; </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;     i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; </div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;     i++, lap++, rap++) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    float32x4_t left, right;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    left  = vld1q_f32(o_l);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    right = vld1q_f32(o_r);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lap, rap;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordtype">int</span> i;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      float32x4_t vn_m, vn;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      <span class="comment">// left</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;      GETv(lap, vn_m);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      <span class="comment">// vn = *o_l + (apGain * vn_m);</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      vn = vmlaq_n_f32(left, vn_m, <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>);</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      PUTv(lap, vn);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      <span class="comment">// *o_l = -vn + vn_m * apGainPlus;</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      left = vmlaq_n_f32(vnegq_f32(vn), vn_m, apGainPlus);</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;      <span class="comment">// right</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      GETv(rap, vn_m);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      <span class="comment">// vn = *o_r + (apGain * vn_m);</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;      vn = vmlaq_n_f32(right, vn_m, <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>);</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      PUTv(rap, vn);</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      <span class="comment">// *o_r = -vn + vn_m * apGainPlus;</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      right = vmlaq_n_f32(vnegq_f32(vn), vn_m, apGainPlus);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    }</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    float32x4x2_t bb  = vld2q_f32(buffIn);</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    </div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    bb.val[0] = vmlaq_n_f32(vmulq_n_f32(bb.val[0], dry), left,  wet);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    bb.val[1] = vmlaq_n_f32(vmulq_n_f32(bb.val[1], dry), right, wet);</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    vst2q_f32(buffIn, bb);</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  }</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> fr = 0; fr &lt; frame_count; fr++) {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordtype">int</span> i;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lc, rc;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lap, rap;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordtype">float</span> input = (buff[0] + buff[1]) * 0.015f;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordtype">float</span> outl = 0.0f;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;    <span class="keywordtype">float</span> outr = 0.0f;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keywordtype">float</span> * llast;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">float</span> * rlast;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    <span class="keywordflow">for</span> (i = 0, lc = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>, rc = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>, llast = <a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>, rlast = <a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>; </div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;     i &lt; <a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>; </div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;     i++, lc++, rc++, llast++, rlast++) {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    <span class="keywordflow">for</span> (i = 0, lap = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>, rap = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>; </div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;     i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; </div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;     i++, lap++, rap++) {</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      float32x4_t vn_m, vn;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      <span class="comment">// left</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      GETv(lap, vn_m);</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;      <span class="comment">// vn = *o_l + (apGain * vn_m);</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;      vn = vmlaq_n_f32(left, vn_m, <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;      PUTv(lap, vn);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;      <span class="comment">// *o_l = -vn + vn_m * apGainPlus;</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;      left = vmlaq_n_f32(vnegq_f32(vn), vn_m, apGainPlus);</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;      <span class="comment">// right</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      GETv(rap, vn_m);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;      <span class="comment">// vn = *o_r + (apGain * vn_m);</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;      vn = vmlaq_n_f32(right, vn_m, <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;      PUTv(rap, vn);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;      <span class="comment">// *o_r = -vn + vn_m * apGainPlus;</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;      right = vmlaq_n_f32(vnegq_f32(vn), vn_m, apGainPlus);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    float32x4x2_t bb  = vld2q_f32(buffIn);</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    </div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    bb.val[0] = vmlaq_n_f32(vmulq_n_f32(bb.val[0], dry), left,  wet);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    bb.val[1] = vmlaq_n_f32(vmulq_n_f32(bb.val[1], dry), right, wet);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    vst2q_f32(buffIn, bb);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;  }</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> fr = 0; fr &lt; frame_count; fr++) {</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lc, rc;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="code" href="struct_reverb_1_1fifo__struct.html">fifop</a> lap, rap;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    <span class="keywordtype">float</span> input = (buff[0] + buff[1]) * 0.015f;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">float</span> outl = 0.0f;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordtype">float</span> outr = 0.0f;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordtype">float</span> * llast;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <span class="keywordtype">float</span> * rlast;</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;      <span class="keywordtype">float</span> yn_m, yn;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;      <span class="comment">// left</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(lc, yn_m);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      yn = input + (<a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> * (yn_m - (<a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> * (yn_m - *llast))));</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(lc, yn);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      *llast = yn;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      outl += yn;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <span class="comment">// right</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(rc, yn_m);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      yn = input + (<a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> * (yn_m - (<a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> * (yn_m - *rlast))));</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(rc, yn);</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      *rlast = yn;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      outr += yn;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordflow">for</span> (i = 0, lap = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>, rap = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>; </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;     i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;     i++, lap++, rap++) {</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keywordflow">for</span> (i = 0, lc = <a class="code" href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">leftCombs</a>, rc = <a class="code" href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">rightCombs</a>, llast = <a class="code" href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">leftLast</a>, rlast = <a class="code" href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">rightLast</a>; </div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;     i &lt; <a class="code" href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a>; </div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;     i++, lc++, rc++, llast++, rlast++) {</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;      <span class="keywordtype">float</span> yn_m, yn;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="comment">// left</span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(lc, yn_m);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;      yn = input + (<a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> * (yn_m - (<a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> * (yn_m - *llast))));</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(lc, yn);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;      *llast = yn;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;      outl += yn;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      <span class="comment">// right</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(rc, yn_m);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      yn = input + (<a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> * (yn_m - (<a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> * (yn_m - *rlast))));</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(rc, yn);</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;      *rlast = yn;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;      outr += yn;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      <span class="keywordtype">float</span> vn_m, vn;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;      <span class="comment">// left</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(lap, vn_m);</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      vn = outl + (<a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> * vn_m);</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(lap, vn);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      outl = -vn + vn_m * apGainPlus;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      <span class="comment">// right</span></div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(rap, vn_m);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      vn = outr + (<a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> * vn_m);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(rap, vn);</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      outr = -vn + vn_m * apGainPlus;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    *buff = (*buff * dry) + (outl * wet); buff++;  <span class="comment">// left</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    *buff = (*buff * dry) + (outr * wet); buff++;  <span class="comment">// right</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  }</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  <span class="keywordtype">long</span> dur = duration-&gt;<a class="code" href="class_duration.html#a8489933ab9fed49e16fc21e095286641">getElapse</a>();</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  <a class="code" href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a> = <a class="code" href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a> == 0 ? dur : <a class="code" href="_p_iano_8h.html#a3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(<a class="code" href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a>, dur); </div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  <a class="code" href="_p_iano_8h.html#a1b57cdb843720a2bfa369d56f1c3c98e">reverbMaxDuration</a> = <a class="code" href="_p_iano_8h.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(<a class="code" href="_p_iano_8h.html#a1b57cdb843720a2bfa369d56f1c3c98e">reverbMaxDuration</a>, dur);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordflow">for</span> (i = 0, lap = <a class="code" href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">leftAp</a>, rap = <a class="code" href="class_reverb.html#a36e348980bf85677ebcc772d30377125">rightAp</a>; </div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;     i &lt; <a class="code" href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a>; </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;     i++, lap++, rap++) {</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;      <span class="keywordtype">float</span> vn_m, vn;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      <span class="comment">// left</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(lap, vn_m);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      vn = outl + (<a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> * vn_m);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(lap, vn);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;      outl = -vn + vn_m * apGainPlus;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;      <span class="comment">// right</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;      <a class="code" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a>(rap, vn_m);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;      vn = outr + (<a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> * vn_m);</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;      <a class="code" href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">PUT</a>(rap, vn);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;      outr = -vn + vn_m * apGainPlus;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    }</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    *buff = (*buff * dry) + (outl * wet); buff++;  <span class="comment">// left</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    *buff = (*buff * dry) + (outr * wet); buff++;  <span class="comment">// right</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keyword">delete</span> duration; </div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;}</div>
-<div class="ttc" id="class_reverb_html_ac346d0968d387c19fbfc2cb79c533250"><div class="ttname"><a href="class_reverb.html#ac346d0968d387c19fbfc2cb79c533250">Reverb::~Reverb</a></div><div class="ttdeci">~Reverb()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00123">reverb.cpp:123</a></div></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keywordtype">long</span> dur = duration-&gt;<a class="code" href="class_duration.html#a8489933ab9fed49e16fc21e095286641">getElapse</a>();</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <a class="code" href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a> = <a class="code" href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a> == 0 ? dur : <a class="code" href="_p_iano_8h.html#a3acffbd305ee72dcd4593c0d8af64a4f">MIN</a>(<a class="code" href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a>, dur); </div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <a class="code" href="_p_iano_8h.html#a1b57cdb843720a2bfa369d56f1c3c98e">reverbMaxDuration</a> = <a class="code" href="_p_iano_8h.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a>(<a class="code" href="_p_iano_8h.html#a1b57cdb843720a2bfa369d56f1c3c98e">reverbMaxDuration</a>, dur);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  <span class="keyword">delete</span> duration; </div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;}</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="comment">//---- adjustValue() ----</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div>
+<div class="line"><a name="l00349"></a><span class="lineno"><a class="line" href="class_reverb.html#a2301ccc92f6abea661542d8b831870ae">  349</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_reverb.html#a2301ccc92f6abea661542d8b831870ae">Reverb::adjustValue</a>(<span class="keywordtype">char</span> ch)</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;{</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="keywordflow">switch</span> (ch) {</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;q&#39;</span>:</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>:</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> += ch == <span class="charliteral">&#39;q&#39;</span> ? 0.05f : -0.05f;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> &gt; 1.0f) <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> = 1.0f;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> &lt; 0.0f) <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a> = 0.0f;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;w&#39;</span>:</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>:</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> += ch == <span class="charliteral">&#39;w&#39;</span> ? 0.05f : -0.05f;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> &gt; 1.0f) <a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> = 1.0f;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> &lt; 0.0f) <a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a> = 0.0f;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;e&#39;</span>:</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>:</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> += ch == <span class="charliteral">&#39;e&#39;</span> ? 0.05f : -0.05f;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> &gt; 1.0f) <a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> = 1.0f;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> &lt; 0.0f) <a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a> = 0.0f;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;r&#39;</span>:</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;f&#39;</span>:</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a> += ch == <span class="charliteral">&#39;r&#39;</span> ? 0.05f : -0.05f;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a> &gt; 1.0f) <a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a> = 1.0f;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a> &lt; 0.0f) <a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a> = 0.0f;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>:</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="keywordflow">case</span> <span class="charliteral">&#39;g&#39;</span>:</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a> += ch == <span class="charliteral">&#39;t&#39;</span> ? 0.05f : -0.05f;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a> &gt; 1.0f) <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a> = 1.0f;</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a> &lt; 0.0f) <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a> = 0.0f;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;  }</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;}</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment">//---- interactiveAdjust() ----</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
+<div class="line"><a name="l00387"></a><span class="lineno"><a class="line" href="class_reverb.html#a5aa24ead832c51184357145de7d3e946">  387</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_reverb.html#a5aa24ead832c51184357145de7d3e946">Reverb::interactiveAdjust</a>()</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;{</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; <span class="comment">// Setup unbuffered nonechoed character input for stdin</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;  <span class="keyword">struct </span>termios old_tio, new_tio;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;  tcgetattr(STDIN_FILENO, &amp;old_tio);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;  new_tio = old_tio;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;  new_tio.c_lflag &amp;= (~ICANON &amp; ~ECHO);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  tcsetattr(STDIN_FILENO, TCSANOW, &amp;new_tio);</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;  <span class="keyword">using namespace </span>std;</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;  cout.precision(2);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;  cout.setf(ios::showpoint);</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;  cout &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;REVERB ADJUSTMENTS.&quot;</span>               &lt;&lt; endl;</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;Values must be between 0 and 1.0&quot;</span>  &lt;&lt; endl;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;Please use the following keys:&quot;</span>    &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;For 0.05 increment steps: qwert&quot;</span>   &lt;&lt; endl;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;For 0.05 decrement steps: asdfg&quot;</span>   &lt;&lt; endl;</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;                 To exit: x&quot;</span>       &lt;&lt; endl;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  cout &lt;&lt; endl;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;[     Gain RoomSize  Damping    Width   DryWet ]&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;  <span class="keywordflow">while</span> (<a class="code" href="_p_iano_8h.html#aae249e1ac72908726573928f07be8829">keepRunning</a>) {</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    cout &lt;&lt; setw(9) &lt;&lt; <a class="code" href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">apGain</a>;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    cout &lt;&lt; setw(9) &lt;&lt; <a class="code" href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">roomSize</a>;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    cout &lt;&lt; setw(9) &lt;&lt; <a class="code" href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">damping</a>;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    cout &lt;&lt; setw(9) &lt;&lt; <a class="code" href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">width</a>;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    cout &lt;&lt; setw(9) &lt;&lt; <a class="code" href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">dryWet</a>;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot; ]    \r&quot;</span>;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keywordtype">char</span> ch = getchar();</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <span class="keywordflow">if</span> (ch == <span class="charliteral">&#39;x&#39;</span>) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <a class="code" href="class_reverb.html#a2301ccc92f6abea661542d8b831870ae">adjustValue</a>(ch);</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  }</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;  cout &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;  <span class="comment">// Restore buffered echoed character input for stdin</span></div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;  tcsetattr(STDIN_FILENO, TCSANOW, &amp;old_tio);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;}</div>
+<div class="ttc" id="class_reverb_html_ac346d0968d387c19fbfc2cb79c533250"><div class="ttname"><a href="class_reverb.html#ac346d0968d387c19fbfc2cb79c533250">Reverb::~Reverb</a></div><div class="ttdeci">~Reverb()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00127">reverb.cpp:127</a></div></div>
 <div class="ttc" id="class_reverb_html_a7c7ab12c04477eb65bacd09267c43971"><div class="ttname"><a href="class_reverb.html#a7c7ab12c04477eb65bacd09267c43971">Reverb::ap_m</a></div><div class="ttdeci">static const int ap_m[REVERB_AP_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00037">reverb.h:37</a></div></div>
 <div class="ttc" id="class_duration_html"><div class="ttname"><a href="class_duration.html">Duration</a></div><div class="ttdef"><b>Definition:</b> <a href="duration_8h_source.html#l00006">duration.h:6</a></div></div>
-<div class="ttc" id="reverb_8cpp_html_a8b984716b73e2163825a7bd1b8f89c18"><div class="ttname"><a href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a></div><div class="ttdeci">#define TRANSPOSE_FORWARD_YN_M()  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00087">reverb.cpp:87</a></div></div>
-<div class="ttc" id="class_reverb_html_a765b925557df7e43bf5ed275fc6950d1"><div class="ttname"><a href="class_reverb.html#a765b925557df7e43bf5ed275fc6950d1">Reverb::Reverb</a></div><div class="ttdeci">Reverb()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00018">reverb.cpp:18</a></div></div>
+<div class="ttc" id="reverb_8cpp_html_a8b984716b73e2163825a7bd1b8f89c18"><div class="ttname"><a href="reverb_8cpp.html#a8b984716b73e2163825a7bd1b8f89c18">TRANSPOSE_FORWARD_YN_M</a></div><div class="ttdeci">#define TRANSPOSE_FORWARD_YN_M()  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00091">reverb.cpp:91</a></div></div>
+<div class="ttc" id="class_reverb_html_a765b925557df7e43bf5ed275fc6950d1"><div class="ttname"><a href="class_reverb.html#a765b925557df7e43bf5ed275fc6950d1">Reverb::Reverb</a></div><div class="ttdeci">Reverb()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00022">reverb.cpp:22</a></div></div>
 <div class="ttc" id="struct_reverb_1_1fifo__struct_html_a021079d8bd3d3d081f648468c2b3469d"><div class="ttname"><a href="struct_reverb_1_1fifo__struct.html#a021079d8bd3d3d081f648468c2b3469d">Reverb::fifo_struct::buff</a></div><div class="ttdeci">buffp buff</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00044">reverb.h:44</a></div></div>
-<div class="ttc" id="_p_iano_8h_html_ad0e8fc0134c2c4afdaa9f2f31d1769e6"><div class="ttname"><a href="_p_iano_8h.html#ad0e8fc0134c2c4afdaa9f2f31d1769e6">logger</a></div><div class="ttdeci">PUBLIC Log logger</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00047">PIano.h:47</a></div></div>
+<div class="ttc" id="_p_iano_8h_html_ad0e8fc0134c2c4afdaa9f2f31d1769e6"><div class="ttname"><a href="_p_iano_8h.html#ad0e8fc0134c2c4afdaa9f2f31d1769e6">logger</a></div><div class="ttdeci">PUBLIC Log logger</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00046">PIano.h:46</a></div></div>
 <div class="ttc" id="reverb_8h_html_a3fb42b74bd6a21c30646ebb8e427f285"><div class="ttname"><a href="reverb_8h.html#a3fb42b74bd6a21c30646ebb8e427f285">REVERB_COMB_COUNT</a></div><div class="ttdeci">#define REVERB_COMB_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00029">reverb.h:29</a></div></div>
 <div class="ttc" id="reverb_8h_html_a4b3c03b7e3580bee89e7f0acbe66adbb"><div class="ttname"><a href="reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb">REVERB_AP_COUNT</a></div><div class="ttdeci">#define REVERB_AP_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00030">reverb.h:30</a></div></div>
 <div class="ttc" id="_p_iano_8h_html_a66ef851bbe7ae6962c0f7ad06be4d6ef"><div class="ttname"><a href="_p_iano_8h.html#a66ef851bbe7ae6962c0f7ad06be4d6ef">cfg</a></div><div class="ttdeci">PUBLIC struct configStruct cfg</div></div>
 <div class="ttc" id="class_reverb_html_aec11acad2b819e1f5b8c4b0cb6fa27d6"><div class="ttname"><a href="class_reverb.html#aec11acad2b819e1f5b8c4b0cb6fa27d6">Reverb::damping</a></div><div class="ttdeci">float damping</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00128">reverb.h:128</a></div></div>
+<div class="ttc" id="class_reverb_html_a5aa24ead832c51184357145de7d3e946"><div class="ttname"><a href="class_reverb.html#a5aa24ead832c51184357145de7d3e946">Reverb::interactiveAdjust</a></div><div class="ttdeci">void interactiveAdjust()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00387">reverb.cpp:387</a></div></div>
 <div class="ttc" id="class_reverb_html_aaf2dfa314057a054ef85a53b61054ee7"><div class="ttname"><a href="class_reverb.html#aaf2dfa314057a054ef85a53b61054ee7">Reverb::dryWet</a></div><div class="ttdeci">float dryWet</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00126">reverb.h:126</a></div></div>
 <div class="ttc" id="class_reverb_html_af69e697f5e09648e2604e7da746a86b2"><div class="ttname"><a href="class_reverb.html#af69e697f5e09648e2604e7da746a86b2">Reverb::comb_m</a></div><div class="ttdeci">static const int comb_m[REVERB_COMB_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00036">reverb.h:36</a></div></div>
-<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a044b70739b309ef3695a48ee9cf6b0c5"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a044b70739b309ef3695a48ee9cf6b0c5">configStruct::reverbScruct::apGain</a></div><div class="ttdeci">float apGain</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00078">PIano.h:78</a></div></div>
+<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a044b70739b309ef3695a48ee9cf6b0c5"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a044b70739b309ef3695a48ee9cf6b0c5">configStruct::reverbScruct::apGain</a></div><div class="ttdeci">float apGain</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00079">PIano.h:79</a></div></div>
 <div class="ttc" id="class_reverb_html_a8c81b14ab8d1264d4e7dc00cbd63aecf"><div class="ttname"><a href="class_reverb.html#a8c81b14ab8d1264d4e7dc00cbd63aecf">Reverb::leftCombs</a></div><div class="ttdeci">fifo_t leftCombs[REVERB_COMB_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00118">reverb.h:118</a></div></div>
-<div class="ttc" id="reverb_8cpp_html_a9f5e643b88394561f1f7d74998a43742"><div class="ttname"><a href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a></div><div class="ttdeci">#define LOAD_YN_M(combs_ptr)  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00081">reverb.cpp:81</a></div></div>
-<div class="ttc" id="class_reverb_html_a70222bd945af9813358d020cfafbd8d2"><div class="ttname"><a href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">Reverb::outOfMemory</a></div><div class="ttdeci">static void outOfMemory()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00076">reverb.cpp:76</a></div></div>
-<div class="ttc" id="reverb_8cpp_html_a45b78760064268f7f6ef00a23f400705"><div class="ttname"><a href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a></div><div class="ttdeci">#define STORE_YN_M(combs_ptr)  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00099">reverb.cpp:99</a></div></div>
+<div class="ttc" id="reverb_8cpp_html_a9f5e643b88394561f1f7d74998a43742"><div class="ttname"><a href="reverb_8cpp.html#a9f5e643b88394561f1f7d74998a43742">LOAD_YN_M</a></div><div class="ttdeci">#define LOAD_YN_M(combs_ptr)  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00085">reverb.cpp:85</a></div></div>
+<div class="ttc" id="class_reverb_html_a70222bd945af9813358d020cfafbd8d2"><div class="ttname"><a href="class_reverb.html#a70222bd945af9813358d020cfafbd8d2">Reverb::outOfMemory</a></div><div class="ttdeci">static void outOfMemory()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00080">reverb.cpp:80</a></div></div>
+<div class="ttc" id="reverb_8cpp_html_a45b78760064268f7f6ef00a23f400705"><div class="ttname"><a href="reverb_8cpp.html#a45b78760064268f7f6ef00a23f400705">STORE_YN_M</a></div><div class="ttdeci">#define STORE_YN_M(combs_ptr)  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00103">reverb.cpp:103</a></div></div>
 <div class="ttc" id="class_new_handler_support_html_a996da1246e7cc28ec20ef0ad2ff08a23"><div class="ttname"><a href="class_new_handler_support.html#a996da1246e7cc28ec20ef0ad2ff08a23">NewHandlerSupport&lt; Reverb &gt;::setNewHandler</a></div><div class="ttdeci">static std::new_handler setNewHandler(std::new_handler p)</div><div class="ttdoc">Declare a new_handler to get control on exceptions when the new operator is actived. </div></div>
+<div class="ttc" id="_p_iano_8h_html_aae249e1ac72908726573928f07be8829"><div class="ttname"><a href="_p_iano_8h.html#aae249e1ac72908726573928f07be8829">keepRunning</a></div><div class="ttdeci">PUBLIC volatile bool keepRunning</div><div class="ttdoc">True while the application is running. </div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00097">PIano.h:97</a></div></div>
 <div class="ttc" id="_p_iano_8h_html_aa0798f7ea0975b143a1d9deac8c05d43"><div class="ttname"><a href="_p_iano_8h.html#aa0798f7ea0975b143a1d9deac8c05d43">sample_t</a></div><div class="ttdeci">float sample_t</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00017">PIano.h:17</a></div></div>
-<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a87c8680b6ddedd806907823c00617427"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a87c8680b6ddedd806907823c00617427">configStruct::reverbScruct::damping</a></div><div class="ttdeci">float damping</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00075">PIano.h:75</a></div></div>
+<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a87c8680b6ddedd806907823c00617427"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a87c8680b6ddedd806907823c00617427">configStruct::reverbScruct::damping</a></div><div class="ttdeci">float damping</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00076">PIano.h:76</a></div></div>
 <div class="ttc" id="class_reverb_html_a0e861383ed8931e10838dfa04222c107"><div class="ttname"><a href="class_reverb.html#a0e861383ed8931e10838dfa04222c107">Reverb::PUT</a></div><div class="ttdeci">void PUT(fifop ptr, float v)</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00106">reverb.h:106</a></div></div>
 <div class="ttc" id="struct_reverb_1_1fifo__struct_html_ab543a535871656a845348f99303551f9"><div class="ttname"><a href="struct_reverb_1_1fifo__struct.html#ab543a535871656a845348f99303551f9">Reverb::fifo_struct::tail</a></div><div class="ttdeci">buffp tail</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00046">reverb.h:46</a></div></div>
 <div class="ttc" id="struct_reverb_1_1fifo__struct_html_a3a4436abaabcf0d8b8b82f0c573b89db"><div class="ttname"><a href="struct_reverb_1_1fifo__struct.html#a3a4436abaabcf0d8b8b82f0c573b89db">Reverb::fifo_struct::end</a></div><div class="ttdeci">buffp end</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00047">reverb.h:47</a></div></div>
@@ -478,28 +569,29 @@ $(document).ready(function(){initNavTree('reverb_8cpp_source.html','');});
 <div class="ttc" id="_p_iano_8h_html_a3acffbd305ee72dcd4593c0d8af64a4f"><div class="ttname"><a href="_p_iano_8h.html#a3acffbd305ee72dcd4593c0d8af64a4f">MIN</a></div><div class="ttdeci">#define MIN(a, b)</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00014">PIano.h:14</a></div></div>
 <div class="ttc" id="class_reverb_html_a36e348980bf85677ebcc772d30377125"><div class="ttname"><a href="class_reverb.html#a36e348980bf85677ebcc772d30377125">Reverb::rightAp</a></div><div class="ttdeci">fifo_t rightAp[REVERB_AP_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00121">reverb.h:121</a></div></div>
 <div class="ttc" id="struct_reverb_1_1fifo__struct_html"><div class="ttname"><a href="struct_reverb_1_1fifo__struct.html">Reverb::fifo_struct</a></div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00043">reverb.h:43</a></div></div>
-<div class="ttc" id="reverb_8cpp_html_a5fef604bb0c79806914ae14e96e66580"><div class="ttname"><a href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a></div><div class="ttdeci">#define TRANSPOSE_BACKWARD_YN_M()  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00093">reverb.cpp:93</a></div></div>
-<div class="ttc" id="_p_iano_8h_html_a1b57cdb843720a2bfa369d56f1c3c98e"><div class="ttname"><a href="_p_iano_8h.html#a1b57cdb843720a2bfa369d56f1c3c98e">reverbMaxDuration</a></div><div class="ttdeci">PUBLIC long reverbMaxDuration</div><div class="ttdoc">Maximim duration of the reverb process. </div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00093">PIano.h:93</a></div></div>
+<div class="ttc" id="reverb_8cpp_html_a5fef604bb0c79806914ae14e96e66580"><div class="ttname"><a href="reverb_8cpp.html#a5fef604bb0c79806914ae14e96e66580">TRANSPOSE_BACKWARD_YN_M</a></div><div class="ttdeci">#define TRANSPOSE_BACKWARD_YN_M()  </div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00097">reverb.cpp:97</a></div></div>
+<div class="ttc" id="_p_iano_8h_html_a1b57cdb843720a2bfa369d56f1c3c98e"><div class="ttname"><a href="_p_iano_8h.html#a1b57cdb843720a2bfa369d56f1c3c98e">reverbMaxDuration</a></div><div class="ttdeci">PUBLIC long reverbMaxDuration</div><div class="ttdoc">Maximim duration of the reverb process. </div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00104">PIano.h:104</a></div></div>
 <div class="ttc" id="class_reverb_html_a73cf56e930b45d9c17fcb43098c8c158"><div class="ttname"><a href="class_reverb.html#a73cf56e930b45d9c17fcb43098c8c158">Reverb::rightCombs</a></div><div class="ttdeci">fifo_t rightCombs[REVERB_COMB_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00119">reverb.h:119</a></div></div>
-<div class="ttc" id="reverb_8cpp_html_ae136972ab05a258be07059ab84b45e3a"><div class="ttname"><a href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a></div><div class="ttdeci">#define FILTERS()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00117">reverb.cpp:117</a></div></div>
+<div class="ttc" id="reverb_8cpp_html_ae136972ab05a258be07059ab84b45e3a"><div class="ttname"><a href="reverb_8cpp.html#ae136972ab05a258be07059ab84b45e3a">FILTERS</a></div><div class="ttdeci">#define FILTERS()</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00121">reverb.cpp:121</a></div></div>
 <div class="ttc" id="duration_8h_html"><div class="ttname"><a href="duration_8h.html">duration.h</a></div></div>
 <div class="ttc" id="class_reverb_html_a20373d7b9d140dfd99385206805cce0a"><div class="ttname"><a href="class_reverb.html#a20373d7b9d140dfd99385206805cce0a">Reverb::roomSize</a></div><div class="ttdeci">float roomSize</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00127">reverb.h:127</a></div></div>
 <div class="ttc" id="_p_iano_8h_html"><div class="ttname"><a href="_p_iano_8h.html">PIano.h</a></div></div>
-<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a1bbdc9f33a4406bfc4bb90f1af594da7"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a1bbdc9f33a4406bfc4bb90f1af594da7">configStruct::reverbScruct::width</a></div><div class="ttdeci">float width</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00076">PIano.h:76</a></div></div>
+<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a1bbdc9f33a4406bfc4bb90f1af594da7"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a1bbdc9f33a4406bfc4bb90f1af594da7">configStruct::reverbScruct::width</a></div><div class="ttdeci">float width</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00077">PIano.h:77</a></div></div>
 <div class="ttc" id="class_duration_html_a8489933ab9fed49e16fc21e095286641"><div class="ttname"><a href="class_duration.html#a8489933ab9fed49e16fc21e095286641">Duration::getElapse</a></div><div class="ttdeci">long getElapse()</div><div class="ttdef"><b>Definition:</b> <a href="duration_8cpp_source.html#l00010">duration.cpp:10</a></div></div>
-<div class="ttc" id="_p_iano_8h_html_a9d3538d382ea466d218bec1f60164c4e"><div class="ttname"><a href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a></div><div class="ttdeci">#define BUFFER_FRAME_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00024">PIano.h:24</a></div></div>
-<div class="ttc" id="_p_iano_8h_html_a4807ebd8c4bf3aa5edd71e8c3d9984e0"><div class="ttname"><a href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a></div><div class="ttdeci">PUBLIC long reverbMinDuration</div><div class="ttdoc">Minimum duration of the reverb process. </div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00092">PIano.h:92</a></div></div>
+<div class="ttc" id="_p_iano_8h_html_a9d3538d382ea466d218bec1f60164c4e"><div class="ttname"><a href="_p_iano_8h.html#a9d3538d382ea466d218bec1f60164c4e">BUFFER_FRAME_COUNT</a></div><div class="ttdeci">#define BUFFER_FRAME_COUNT</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00023">PIano.h:23</a></div></div>
+<div class="ttc" id="_p_iano_8h_html_a4807ebd8c4bf3aa5edd71e8c3d9984e0"><div class="ttname"><a href="_p_iano_8h.html#a4807ebd8c4bf3aa5edd71e8c3d9984e0">reverbMinDuration</a></div><div class="ttdeci">PUBLIC long reverbMinDuration</div><div class="ttdoc">Minimum duration of the reverb process. </div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00103">PIano.h:103</a></div></div>
 <div class="ttc" id="class_reverb_html_ab87f84fc02e369de7107c70f1e277b65"><div class="ttname"><a href="class_reverb.html#ab87f84fc02e369de7107c70f1e277b65">Reverb::width</a></div><div class="ttdeci">float width</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00129">reverb.h:129</a></div></div>
 <div class="ttc" id="struct_reverb_1_1fifo__struct_html_a88a087127eea0da8adba0a1edf7c92c5"><div class="ttname"><a href="struct_reverb_1_1fifo__struct.html#a88a087127eea0da8adba0a1edf7c92c5">Reverb::fifo_struct::head</a></div><div class="ttdeci">buffp head</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00045">reverb.h:45</a></div></div>
 <div class="ttc" id="class_reverb_html_a6d56c437d9e1f60af889b42f7a0db6bc"><div class="ttname"><a href="class_reverb.html#a6d56c437d9e1f60af889b42f7a0db6bc">Reverb::leftAp</a></div><div class="ttdeci">fifo_t leftAp[REVERB_AP_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00120">reverb.h:120</a></div></div>
 <div class="ttc" id="class_reverb_html_af5de6606f3155739bafa37f5ff6e9f59"><div class="ttname"><a href="class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59">Reverb::apGain</a></div><div class="ttdeci">float apGain</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00130">reverb.h:130</a></div></div>
 <div class="ttc" id="_p_iano_8h_html_afa99ec4acc4ecb2dc3c2d05da15d0e3f"><div class="ttname"><a href="_p_iano_8h.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f">MAX</a></div><div class="ttdeci">#define MAX(a, b)</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00015">PIano.h:15</a></div></div>
-<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a9b6a852c7e0595a6719e0ba6a060d198"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a9b6a852c7e0595a6719e0ba6a060d198">configStruct::reverbScruct::dryWet</a></div><div class="ttdeci">float dryWet</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00077">PIano.h:77</a></div></div>
-<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_af1981e048b6276bb4c21d14f5ed087a4"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#af1981e048b6276bb4c21d14f5ed087a4">configStruct::reverbScruct::roomSize</a></div><div class="ttdeci">float roomSize</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00074">PIano.h:74</a></div></div>
-<div class="ttc" id="class_log_html_a336b18a978eb91f049ddcdfdc77d2691"><div class="ttname"><a href="class_log.html#a336b18a978eb91f049ddcdfdc77d2691">Log::FATAL</a></div><div class="ttdeci">void FATAL(const char *fmt,...)</div><div class="ttdef"><b>Definition:</b> <a href="log_8cpp_source.html#l00053">log.cpp:53</a></div></div>
+<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_a9b6a852c7e0595a6719e0ba6a060d198"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#a9b6a852c7e0595a6719e0ba6a060d198">configStruct::reverbScruct::dryWet</a></div><div class="ttdeci">float dryWet</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00078">PIano.h:78</a></div></div>
+<div class="ttc" id="structconfig_struct_1_1reverb_scruct_html_af1981e048b6276bb4c21d14f5ed087a4"><div class="ttname"><a href="structconfig_struct_1_1reverb_scruct.html#af1981e048b6276bb4c21d14f5ed087a4">configStruct::reverbScruct::roomSize</a></div><div class="ttdeci">float roomSize</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00075">PIano.h:75</a></div></div>
+<div class="ttc" id="class_log_html_a336b18a978eb91f049ddcdfdc77d2691"><div class="ttname"><a href="class_log.html#a336b18a978eb91f049ddcdfdc77d2691">Log::FATAL</a></div><div class="ttdeci">void FATAL(const char *fmt,...)</div><div class="ttdef"><b>Definition:</b> <a href="log_8cpp_source.html#l00055">log.cpp:55</a></div></div>
 <div class="ttc" id="class_reverb_html_a0f1ae518d616d39ae86f454c9589390d"><div class="ttname"><a href="class_reverb.html#a0f1ae518d616d39ae86f454c9589390d">Reverb::leftLast</a></div><div class="ttdeci">float leftLast[REVERB_COMB_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00123">reverb.h:123</a></div></div>
 <div class="ttc" id="_p_iano_8h_html_aa6cfc59f60b165e14c282b2e96db8a17"><div class="ttname"><a href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a></div><div class="ttdeci">sample_t * buffp</div><div class="ttdef"><b>Definition:</b> <a href="_p_iano_8h_source.html#l00018">PIano.h:18</a></div></div>
-<div class="ttc" id="class_reverb_html_a4981382ecf5d5d9500b44eeadf36751a"><div class="ttname"><a href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">Reverb::process</a></div><div class="ttdeci">void process(buffp buff, int frame_count)</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00135">reverb.cpp:135</a></div></div>
+<div class="ttc" id="class_reverb_html_a2301ccc92f6abea661542d8b831870ae"><div class="ttname"><a href="class_reverb.html#a2301ccc92f6abea661542d8b831870ae">Reverb::adjustValue</a></div><div class="ttdeci">void adjustValue(char ch)</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00349">reverb.cpp:349</a></div></div>
+<div class="ttc" id="class_reverb_html_a4981382ecf5d5d9500b44eeadf36751a"><div class="ttname"><a href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">Reverb::process</a></div><div class="ttdeci">void process(buffp buff, int frame_count)</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8cpp_source.html#l00139">reverb.cpp:139</a></div></div>
 <div class="ttc" id="reverb_8h_html_a3eebd09a9a94c914de17855816e6ac45"><div class="ttname"><a href="reverb_8h.html#a3eebd09a9a94c914de17855816e6ac45">PADDING</a></div><div class="ttdeci">#define PADDING</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00026">reverb.h:26</a></div></div>
 <div class="ttc" id="copyright_8h_html"><div class="ttname"><a href="copyright_8h.html">copyright.h</a></div></div>
 <div class="ttc" id="class_reverb_html_a5ff1dc243c7a379fbfcc17d5f2a59797"><div class="ttname"><a href="class_reverb.html#a5ff1dc243c7a379fbfcc17d5f2a59797">Reverb::rightLast</a></div><div class="ttdeci">float rightLast[REVERB_COMB_COUNT]</div><div class="ttdef"><b>Definition:</b> <a href="reverb_8h_source.html#l00124">reverb.h:124</a></div></div>
@@ -509,7 +601,7 @@ $(document).ready(function(){initNavTree('reverb_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="reverb_8cpp.html">reverb.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:34:59 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

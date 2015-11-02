@@ -9,6 +9,7 @@ var searchData=
   ['scalebuffpos',['scaleBuffPos',['../class_voice.html#aa9f5a4cdfc696cb8bdd5e72b656305d5',1,'Voice']]],
   ['scalefactors',['scaleFactors',['../voice_8cpp.html#a6135d7b0f22838213ae780c17fc8f2a1',1,'voice.cpp']]],
   ['scalefactorsinitialized',['scaleFactorsInitialized',['../voice_8cpp.html#a9dd0e4c3776e56d79aec657bc05787bf',1,'voice.cpp']]],
+  ['silent',['silent',['../_p_iano_8h.html#a1fa90e5c599627b6e6277461b42ebb57',1,'PIano.h']]],
   ['size',['size',['../struct_midi_in_api_1_1_midi_queue.html#aca884c721cbec5d564d75fd28306cda2',1,'MidiInApi::MidiQueue']]],
   ['sound',['sound',['../_p_iano_8h.html#ad54d901bc98795df02959985aa4b7bb6',1,'PIano.h']]],
   ['soundfile',['soundFile',['../class_voice.html#a29b65191104bb3f68733b1ff2ab53600',1,'Voice']]],
@@ -16,5 +17,7 @@ var searchData=
   ['starttime',['starttime',['../class_duration.html#aa2647d8ceb2e550f505381106cd6790a',1,'Duration']]],
   ['state',['state',['../class_voice.html#af6d05c57146c9813229ebaceeec7e38e',1,'Voice']]],
   ['statelock',['stateLock',['../class_fifo.html#ad3fbc0224e5e442de6ba4647e5676519',1,'Fifo::stateLock()'],['../class_voice.html#af55d5105def88efa6a6909ad87f4b577',1,'Voice::stateLock()']]],
-  ['stream',['stream',['../class_sound.html#a3db913c8f7aca959592f1f5d281d96fc',1,'Sound']]]
+  ['stream',['stream',['../class_sound.html#a3db913c8f7aca959592f1f5d281d96fc',1,'Sound']]],
+  ['sustainon',['sustainOn',['../class_midi.html#aa9dbbc39e2c7a90c741943a35bdef73a',1,'Midi']]],
+  ['sustaintreshold',['sustainTreshold',['../structconfig_struct_1_1midi_struct.html#a2fe84cd2ab769838534371ae58797d7d',1,'configStruct::midiStruct']]]
 ];

@@ -2,6 +2,7 @@ var searchData=
 [
   ['_7eequalizer',['~Equalizer',['../class_equalizer.html#a3467b7d27117adad2b78ddb92ea86df9',1,'Equalizer']]],
   ['_7efifo',['~Fifo',['../class_fifo.html#ac057810a530bf36506bd87ecd0a52964',1,'Fifo']]],
+  ['_7einteractivemode',['~InteractiveMode',['../class_interactive_mode.html#a6158f5fd2fbc563f988efa9400e7c719',1,'InteractiveMode']]],
   ['_7emidi',['~Midi',['../class_midi.html#a3caa6150d8a34528c034eac4697e36b6',1,'Midi']]],
   ['_7emidiapi',['~MidiApi',['../class_midi_api.html#a6a6a1828e23ecc0a0242b96779400e74',1,'MidiApi']]],
   ['_7emidiinapi',['~MidiInApi',['../class_midi_in_api.html#aa99f4d57038444dfe024cdc100d2b20c',1,'MidiInApi']]],

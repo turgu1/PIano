@@ -8,5 +8,6 @@ var searchData=
   ['connected_5f',['connected_',['../class_midi_api.html#a2caa246b04594b5ae84bacccb2a648aa',1,'MidiApi']]],
   ['continuesysex',['continueSysex',['../struct_midi_in_api_1_1_rt_midi_in_data.html#a60c8fc25d8838784d0d1904f31e80ab5',1,'MidiInApi::RtMidiInData']]],
   ['count',['count',['../class_fifo.html#ae7f8bdcf9bb0b321f5fde6f69a8d1c50',1,'Fifo']]],
-  ['currenthandler',['currentHandler',['../class_new_handler_support.html#ae1f68e827643e32eccee8b31e80c37b7',1,'NewHandlerSupport']]]
+  ['currenthandler',['currentHandler',['../class_new_handler_support.html#ae1f68e827643e32eccee8b31e80c37b7',1,'NewHandlerSupport']]],
+  ['currentlib',['currentLib',['../class_samples_library.html#a155c57f94c12ba567b7f85819ac4799f',1,'SamplesLibrary']]]
 ];

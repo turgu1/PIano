@@ -12,8 +12,6 @@ var searchData=
   ['parse_5ffilename',['parse_filename',['../format_8cpp.html#aa6bb32bddb8a751e2efc07fc91fbc41b',1,'parse_filename(char *filename, char *note, char *volume):&#160;format.cpp'],['../format_8h.html#a75749b98994f28cce7519089d24bcc72',1,'parse_filename(char *filename, char *note, char *volume):&#160;format.cpp']]],
   ['pcm',['pcm',['../structconfig_struct.html#ac52cffa1a641c99539c34965111c4256',1,'configStruct']]],
   ['pcmstruct',['pcmStruct',['../structconfig_struct_1_1pcm_struct.html',1,'configStruct']]],
-  ['pedalison',['pedalIsOn',['../class_midi.html#a372799c06660a641a573e3fe9f01cae3',1,'Midi']]],
-  ['pedalon',['pedalOn',['../class_midi.html#a79d86e35fe6679106b85aa249849d6eb',1,'Midi']]],
   ['piano',['PIano',['../class_p_iano.html',1,'PIano'],['../class_p_iano.html#add1fe602aa74440f2b7f0dda46aa8d97',1,'PIano::PIano()'],['../main_8cpp.html#a592f30251877f4847f284d7854ddc79c',1,'PIANO():&#160;main.cpp'],['../_p_iano_8h.html#a8f28146d9a09b48023856a6e698f82a5',1,'piano():&#160;PIano.h']]],
   ['piano_2eh',['PIano.h',['../_p_iano_8h.html',1,'']]],
   ['poly',['Poly',['../class_poly.html',1,'Poly'],['../class_poly.html#aa3def076b74bed67904976ad4f9fe9b1',1,'Poly::Poly()'],['../_p_iano_8h.html#abe4e14ffd13a63839bd077dc847fa2a8',1,'poly():&#160;PIano.h']]],

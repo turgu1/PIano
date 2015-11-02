@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('midi_8cpp.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -112,11 +113,20 @@ $(document).ready(function(){initNavTree('midi_8cpp.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="copyright_8h_source.html">copyright.h</a>&quot;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;termios.h&gt;</code><br />
 <code>#include &lt;iomanip&gt;</code><br />
+<code>#include &lt;sstream&gt;</code><br />
 <code>#include &quot;<a class="el" href="_p_iano_8h_source.html">PIano.h</a>&quot;</code><br />
 </div>
 <p><a href="midi_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><b>midiNameStruct</b></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac4019962cfdcdfcc600e56bf51fafd55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="midi_8cpp.html#ac4019962cfdcdfcc600e56bf51fafd55">midiCallBack</a> (double timeStamp, std::vector&lt; unsigned char &gt; *message, void *userData)</td></tr>
@@ -205,9 +215,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This is the callback method called by <a class="el" href="class_rt_midi.html" title="An abstract base class for realtime MIDI input/output. ">RtMidi</a> to signify the receival of a new MIDI command by the application. This callback is responsible of parsing the command and modify the <a class="el" href="class_p_iano.html">PIano</a> voices state accordingly. </p>
+<p>This is the callback method called by <a class="el" href="class_rt_midi.html" title="An abstract base class for realtime MIDI input/output. ">RtMidi</a> to signify the reception of a new MIDI command by the application. This callback is responsible of parsing the command and dispatch to modify <a class="el" href="class_p_iano.html">PIano</a> voices state accordingly. </p>
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00037">37</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00085">85</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,7 +232,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00034">34</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00038">38</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +246,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00019">19</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00023">23</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -250,7 +260,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00011">11</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00015">15</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -264,7 +274,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00028">28</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00032">32</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,7 +288,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00012">12</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00016">16</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +302,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00031">31</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00035">35</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +316,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00017">17</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00021">21</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,7 +330,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00027">27</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00031">31</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -334,7 +344,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00007">7</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00011">11</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -348,7 +358,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00029">29</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00033">33</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,7 +372,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00033">33</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00037">37</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -376,7 +386,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00023">23</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00027">27</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +400,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00014">14</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00018">18</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +414,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00015">15</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00019">19</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +428,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00020">20</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00024">24</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -432,7 +442,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00016">16</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00020">20</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +456,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00018">18</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00022">22</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -460,7 +470,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00035">35</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00039">39</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -474,7 +484,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00024">24</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00028">28</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +498,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00025">25</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00029">29</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -502,7 +512,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00030">30</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00034">34</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -516,7 +526,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00009">9</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00013">13</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -530,7 +540,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00032">32</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00036">36</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -544,7 +554,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00022">22</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00026">26</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -558,7 +568,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00026">26</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
+<p>Definition at line <a class="el" href="midi_8cpp_source.html#l00030">30</a> of file <a class="el" href="midi_8cpp_source.html">midi.cpp</a>.</p>
 
 </div>
 </div>
@@ -568,7 +578,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="midi_8cpp.html">midi.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

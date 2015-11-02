@@ -8,7 +8,7 @@ var searchData=
   ['replay_5fbuffer_5fsize',['REPLAY_BUFFER_SIZE',['../sound_8h.html#a190cea13cb18c1b6c703bb69d160be96',1,'sound.h']]],
   ['replay_5fframe_5fcount',['REPLAY_FRAME_COUNT',['../sound_8h.html#ab9f07cc2ed3ee736371ae3deb9f9d72a',1,'sound.h']]],
   ['replayenabled',['replayEnabled',['../_p_iano_8h.html#aa6a4ea7777d37bf228298defb3282c97',1,'PIano.h']]],
-  ['reverb',['Reverb',['../class_reverb.html',1,'Reverb'],['../structconfig_struct.html#a7248f75c30011576a729e33712a04298',1,'configStruct::reverb()'],['../class_reverb.html#a765b925557df7e43bf5ed275fc6950d1',1,'Reverb::Reverb()'],['../_p_iano_8h.html#a7235404d9a6e3d3e8622d04055d6434c',1,'reverb():&#160;PIano.h']]],
+  ['reverb',['Reverb',['../class_reverb.html',1,'Reverb'],['../class_reverb.html#a765b925557df7e43bf5ed275fc6950d1',1,'Reverb::Reverb()'],['../structconfig_struct.html#a7248f75c30011576a729e33712a04298',1,'configStruct::reverb()'],['../_p_iano_8h.html#a7235404d9a6e3d3e8622d04055d6434c',1,'reverb():&#160;PIano.h']]],
   ['reverb_2ecpp',['reverb.cpp',['../reverb_8cpp.html',1,'']]],
   ['reverb_2eh',['reverb.h',['../reverb_8h.html',1,'']]],
   ['reverb_5fap_5fcount',['REVERB_AP_COUNT',['../reverb_8h.html#a4b3c03b7e3580bee89e7f0acbe66adbb',1,'reverb.h']]],

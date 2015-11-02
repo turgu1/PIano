@@ -1,7 +1,6 @@
 var searchData=
 [
   ['parse_5ffilename',['parse_filename',['../format_8cpp.html#aa6bb32bddb8a751e2efc07fc91fbc41b',1,'parse_filename(char *filename, char *note, char *volume):&#160;format.cpp'],['../format_8h.html#a75749b98994f28cce7519089d24bcc72',1,'parse_filename(char *filename, char *note, char *volume):&#160;format.cpp']]],
-  ['pedalison',['pedalIsOn',['../class_midi.html#a372799c06660a641a573e3fe9f01cae3',1,'Midi']]],
   ['piano',['PIano',['../class_p_iano.html#add1fe602aa74440f2b7f0dda46aa8d97',1,'PIano']]],
   ['poly',['Poly',['../class_poly.html#aa3def076b74bed67904976ad4f9fe9b1',1,'Poly']]],
   ['pop',['pop',['../class_fifo.html#a6517fe05d59f968e24ac664d0df8c484',1,'Fifo']]],

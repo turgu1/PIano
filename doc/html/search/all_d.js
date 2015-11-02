@@ -11,7 +11,7 @@ var searchData=
   ['newhandlersupport_3c_20sampleslibrary_20_3e',['NewHandlerSupport&lt; SamplesLibrary &gt;',['../class_new_handler_support.html',1,'']]],
   ['newhandlersupport_3c_20sound_20_3e',['NewHandlerSupport&lt; Sound &gt;',['../class_new_handler_support.html',1,'']]],
   ['newhandlersupport_3c_20voice_20_3e',['NewHandlerSupport&lt; Voice &gt;',['../class_new_handler_support.html',1,'']]],
-  ['next',['next',['../class_sample.html#aeef8cd9d1e809193a1d289439c5a344f',1,'Sample::next()'],['../class_voice.html#ad5a0f8be4293591206cb26a2b08e0da5',1,'Voice::next()']]],
+  ['next',['next',['../class_sample.html#aeef8cd9d1e809193a1d289439c5a344f',1,'Sample::next()'],['../struct_samples_library_1_1lib_struct.html#a412121c9eafde579494272ce8f826b4c',1,'SamplesLibrary::libStruct::next()'],['../class_voice.html#ad5a0f8be4293591206cb26a2b08e0da5',1,'Voice::next()']]],
   ['nextavailable',['nextAvailable',['../class_poly.html#ae2a6fce57b6e5f58227be80c5a1be48b',1,'Poly']]],
   ['nextvoice',['nextVoice',['../class_poly.html#ab3d1ddbc67023a315815277647999c1a',1,'Poly']]],
   ['no_5fdevices_5ffound',['NO_DEVICES_FOUND',['../class_rt_midi_error.html#a741314057cec5fb8c743c12f284905eea2edbf3e6f6b2383bc3e352b4417326d7',1,'RtMidiError']]],

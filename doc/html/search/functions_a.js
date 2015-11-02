@@ -1,6 +1,7 @@
 var searchData=
 [
   ['main',['main',['../main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main.cpp']]],
+  ['menu',['menu',['../class_interactive_mode.html#a7047db87b182eea0743db5740ff88fa3',1,'InteractiveMode']]],
   ['midi',['Midi',['../class_midi.html#ae2a4824a00e71b9ac956c887e08cd3d7',1,'Midi']]],
   ['midi_5fnote_5fcommand',['midi_note_command',['../format_8cpp.html#afcdf678ad44631a91bfaa5101e69f369',1,'format.cpp']]],
   ['midi_5fvolume_5fcommand',['midi_volume_command',['../format_8cpp.html#ab1521c5c08f299e539fba177e33d5d1e',1,'format.cpp']]],
@@ -12,5 +13,7 @@ var searchData=
   ['midioutapi',['MidiOutApi',['../class_midi_out_api.html#a3865a51d0b739139737d8a5b860fe009',1,'MidiOutApi']]],
   ['midioutdummy',['MidiOutDummy',['../class_midi_out_dummy.html#a809734c58e670d5905a18f0311d1ea81',1,'MidiOutDummy']]],
   ['midiqueue',['MidiQueue',['../struct_midi_in_api_1_1_midi_queue.html#a91c59d84c8fba3d3cf5acc92974f80e9',1,'MidiInApi::MidiQueue']]],
-  ['mixer',['mixer',['../class_poly.html#a7d0ef64b393628d3dbfc1447ff1da7f7',1,'Poly']]]
+  ['mixer',['mixer',['../class_poly.html#a7d0ef64b393628d3dbfc1447ff1da7f7',1,'Poly']]],
+  ['monitorcount',['monitorCount',['../class_poly.html#acd14f7e69a79128ae95c8e4559aaf9e4',1,'Poly']]],
+  ['monitormessages',['monitorMessages',['../class_midi.html#ab7eb858c252142296a16457a508dc799',1,'Midi']]]
 ];

@@ -5,6 +5,7 @@ var searchData=
   ['addtonotes',['addToNotes',['../class_samples_library.html#a2a5252e764f5c8e63c28447f2032cc4d',1,'SamplesLibrary']]],
   ['addvoice',['addVoice',['../class_poly.html#ae7ebd51cb8abe4d12ad60093fc61ca2d',1,'Poly']]],
   ['adjustgain',['adjustGain',['../class_equalizer.html#ae0158071cacf358e79e4c6bb6a8f25a6',1,'Equalizer']]],
+  ['adjustvalue',['adjustValue',['../class_reverb.html#a2301ccc92f6abea661542d8b831870ae',1,'Reverb']]],
   ['alive',['ALIVE',['../voice_8h.html#a12d7af35443dedfdd51e3bd03e0f75c7a4f34c5c191d6e0d028ca831b6c0b1571',1,'voice.h']]],
   ['ap_5fm',['ap_m',['../class_reverb.html#a7c7ab12c04477eb65bacd09267c43971',1,'Reverb']]],
   ['apgain',['apGain',['../structconfig_struct_1_1reverb_scruct.html#a044b70739b309ef3695a48ee9cf6b0c5',1,'configStruct::reverbScruct::apGain()'],['../class_reverb.html#af5de6606f3155739bafa37f5ff6e9f59',1,'Reverb::apGain()']]],

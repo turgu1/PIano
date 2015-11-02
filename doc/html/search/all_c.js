@@ -11,9 +11,10 @@ var searchData=
   ['maxvoicesmixed',['maxVoicesMixed',['../_p_iano_8h.html#ad3ebb328f15b9fe21cf79b5db255c6d7',1,'PIano.h']]],
   ['maxvolume',['maxVolume',['../_p_iano_8h.html#a7c29cc6a49d6ffa0f5687734d7964ea5',1,'PIano.h']]],
   ['memory_5ferror',['MEMORY_ERROR',['../class_rt_midi_error.html#a741314057cec5fb8c743c12f284905eea4a3fe6c709b50a4c85c470406ea4fddf',1,'RtMidiError']]],
+  ['menu',['menu',['../class_interactive_mode.html#a7047db87b182eea0743db5740ff88fa3',1,'InteractiveMode']]],
   ['message',['message',['../struct_midi_in_api_1_1_rt_midi_in_data.html#a7d9d8d783b2bca9d12571b132292d29b',1,'MidiInApi::RtMidiInData']]],
   ['message_5f',['message_',['../class_rt_midi_error.html#ad89ea4d95b72fe663836dd5b33e60857',1,'RtMidiError']]],
-  ['midi',['Midi',['../class_midi.html',1,'Midi'],['../structconfig_struct.html#a9cf8c885d3e66e50e47fc296274924cb',1,'configStruct::midi()'],['../class_midi.html#ae2a4824a00e71b9ac956c887e08cd3d7',1,'Midi::Midi()'],['../_p_iano_8h.html#ae5445e9256e7a71e1c03a6c79457b020',1,'midi():&#160;PIano.h']]],
+  ['midi',['Midi',['../class_midi.html',1,'Midi'],['../class_midi.html#ae2a4824a00e71b9ac956c887e08cd3d7',1,'Midi::Midi()'],['../structconfig_struct.html#a9cf8c885d3e66e50e47fc296274924cb',1,'configStruct::midi()'],['../_p_iano_8h.html#ae5445e9256e7a71e1c03a6c79457b020',1,'midi():&#160;PIano.h']]],
   ['midi_2ecpp',['midi.cpp',['../midi_8cpp.html',1,'']]],
   ['midi_2eh',['midi.h',['../midi_8h.html',1,'']]],
   ['midi_5factive',['MIDI_ACTIVE',['../midi_8cpp.html#a135d553eb5cba9f5d2687571a51ac7da',1,'midi.cpp']]],
@@ -47,8 +48,8 @@ var searchData=
   ['midicallback',['midiCallBack',['../class_midi.html#ac4019962cfdcdfcc600e56bf51fafd55',1,'Midi::midiCallBack()'],['../midi_8cpp.html#ac4019962cfdcdfcc600e56bf51fafd55',1,'midiCallBack():&#160;midi.cpp']]],
   ['midiinapi',['MidiInApi',['../class_midi_in_api.html',1,'MidiInApi'],['../class_midi_in_api.html#a13593cf0d8561969a1699246781d419f',1,'MidiInApi::MidiInApi()']]],
   ['midiindummy',['MidiInDummy',['../class_midi_in_dummy.html',1,'MidiInDummy'],['../class_midi_in_dummy.html#ad5c6d7b0f0c9805a184b33a6864380c1',1,'MidiInDummy::MidiInDummy()']]],
-  ['midimessage',['MidiMessage',['../struct_midi_in_api_1_1_midi_message.html',1,'MidiInApi']]],
   ['midimessage',['MidiMessage',['../struct_midi_in_api_1_1_midi_message.html#a5aa652e6397f7ac08d0d789b1f09f85d',1,'MidiInApi::MidiMessage']]],
+  ['midimessage',['MidiMessage',['../struct_midi_in_api_1_1_midi_message.html',1,'MidiInApi']]],
   ['midioutapi',['MidiOutApi',['../class_midi_out_api.html',1,'MidiOutApi'],['../class_midi_out_api.html#a3865a51d0b739139737d8a5b860fe009',1,'MidiOutApi::MidiOutApi()']]],
   ['midioutdummy',['MidiOutDummy',['../class_midi_out_dummy.html',1,'MidiOutDummy'],['../class_midi_out_dummy.html#a809734c58e670d5905a18f0311d1ea81',1,'MidiOutDummy::MidiOutDummy()']]],
   ['midiport',['midiPort',['../class_midi.html#a2f1e76352d3b4557ac0d1e8dc16a71f5',1,'Midi']]],
@@ -58,5 +59,8 @@ var searchData=
   ['min',['MIN',['../_p_iano_8h.html#a3acffbd305ee72dcd4593c0d8af64a4f',1,'PIano.h']]],
   ['mix',['MIX',['../poly_8cpp.html#a6b2f8342d2069755da8decf25df424a6',1,'poly.cpp']]],
   ['mixer',['mixer',['../class_poly.html#a7d0ef64b393628d3dbfc1447ff1da7f7',1,'Poly']]],
-  ['mixerduration',['mixerDuration',['../_p_iano_8h.html#a66f7dda9ed6c1276aa363a8891094eb9',1,'PIano.h']]]
+  ['mixerduration',['mixerDuration',['../_p_iano_8h.html#a66f7dda9ed6c1276aa363a8891094eb9',1,'PIano.h']]],
+  ['monitorcount',['monitorCount',['../class_poly.html#acd14f7e69a79128ae95c8e4559aaf9e4',1,'Poly']]],
+  ['monitoring',['monitoring',['../class_midi.html#a45a04e162913bdfedbd6cfad3850f5c9',1,'Midi']]],
+  ['monitormessages',['monitorMessages',['../class_midi.html#ab7eb858c252142296a16457a508dc799',1,'Midi']]]
 ];

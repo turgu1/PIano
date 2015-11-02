@@ -145,6 +145,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2265efb835072d0eed4003c19da9af6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4981382ecf5d5d9500b44eeadf36751a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reverb.html#a4981382ecf5d5d9500b44eeadf36751a">process</a> (<a class="el" href="_p_iano_8h.html#aa6cfc59f60b165e14c282b2e96db8a17">buffp</a> buff, int frame_count)</td></tr>
 <tr class="separator:a4981382ecf5d5d9500b44eeadf36751a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aa24ead832c51184357145de7d3e946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reverb.html#a5aa24ead832c51184357145de7d3e946">interactiveAdjust</a> ()</td></tr>
+<tr class="separator:a5aa24ead832c51184357145de7d3e946"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
 Private Types</h2></td></tr>
@@ -159,6 +161,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a0e861383ed8931e10838dfa04222c107"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af5844a2724fbffb7f86925c7baaffd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reverb.html#a5af5844a2724fbffb7f86925c7baaffd">GET</a> (<a class="el" href="class_reverb.html#a4f253373cef0492ac3ec56ed5c03f418">fifop</a> ptr, float &amp;v)</td></tr>
 <tr class="separator:a5af5844a2724fbffb7f86925c7baaffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2301ccc92f6abea661542d8b831870ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_reverb.html#a2301ccc92f6abea661542d8b831870ae">adjustValue</a> (char ch)</td></tr>
+<tr class="separator:a2301ccc92f6abea661542d8b831870ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -269,7 +273,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00018">18</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00022">22</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,11 +290,37 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00123">123</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00127">127</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2301ccc92f6abea661542d8b831870ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Reverb::adjustValue </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>ch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00349">349</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5af5844a2724fbffb7f86925c7baaffd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -327,6 +357,23 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a5aa24ead832c51184357145de7d3e946"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Reverb::interactiveAdjust </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00387">387</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a70222bd945af9813358d020cfafbd8d2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +395,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00076">76</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00080">80</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -376,7 +423,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00135">135</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8cpp_source.html#l00139">139</a> of file <a class="el" href="reverb_8cpp_source.html">reverb.cpp</a>.</p>
 
 </div>
 </div>
@@ -438,7 +485,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8h_source.html#l00139">139</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8h_source.html#l00140">140</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
 
 </div>
 </div>
@@ -464,7 +511,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8h_source.html#l00141">141</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8h_source.html#l00142">142</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
 
 </div>
 </div>
@@ -490,7 +537,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8h_source.html#l00138">138</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8h_source.html#l00139">139</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
 
 </div>
 </div>
@@ -516,7 +563,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="reverb_8h_source.html#l00140">140</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
+<p>Definition at line <a class="el" href="reverb_8h_source.html#l00141">141</a> of file <a class="el" href="reverb_8h_source.html">reverb.h</a>.</p>
 
 </div>
 </div>
@@ -823,7 +870,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_reverb.html">Reverb</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

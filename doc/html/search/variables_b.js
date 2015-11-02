@@ -33,5 +33,6 @@ var searchData=
   ['midi_5fsysex',['MIDI_SYSEX',['../midi_8cpp.html#a705cb59015c654578db027b96d89d17b',1,'midi.cpp']]],
   ['midi_5ftune',['MIDI_TUNE',['../midi_8cpp.html#a7f0ee694d3572605ae1effe692365c73',1,'midi.cpp']]],
   ['midiport',['midiPort',['../class_midi.html#a2f1e76352d3b4557ac0d1e8dc16a71f5',1,'Midi']]],
-  ['mixerduration',['mixerDuration',['../_p_iano_8h.html#a66f7dda9ed6c1276aa363a8891094eb9',1,'PIano.h']]]
+  ['mixerduration',['mixerDuration',['../_p_iano_8h.html#a66f7dda9ed6c1276aa363a8891094eb9',1,'PIano.h']]],
+  ['monitoring',['monitoring',['../class_midi.html#a45a04e162913bdfedbd6cfad3850f5c9',1,'Midi']]]
 ];

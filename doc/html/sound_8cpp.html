@@ -116,6 +116,7 @@ $(document).ready(function(){initNavTree('sound_8cpp.html','');});
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;sched.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;iomanip&gt;</code><br />
 <code>#include &quot;<a class="el" href="_p_iano_8h_source.html">PIano.h</a>&quot;</code><br />
 </div>
 <p><a href="sound_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -155,7 +156,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00040">40</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00046">46</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -208,9 +209,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>This is the callback function that will retrieve and process PCM data to be sent back to the PCM ALSA device. This function call the <a class="el" href="class_poly.html#a7d0ef64b393628d3dbfc1447ff1da7f7">Poly::mixer</a> method to get sampling data, then call the reverb and the equalizer filters in sequence to process the data before sending it to the PCM device. The data is also pushed in the FIFO replay buffer.</p>
-<p>This routine will be called by the PortAudio engine when audio is needed. It may called at interrupt level on some machines so don't do anything that could mess up the system like calling memory allocation functions that would disrupt the data structure involved. </p>
+<p>This routine will be called by the PortAudio engine when audio is needed. It may be called at interrupt level on some machines so don't do anything that could mess up the system like calling memory allocation functions that would disrupt the data structure involved. </p>
 
-<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00011">11</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
+<p>Definition at line <a class="el" href="sound_8cpp_source.html#l00014">14</a> of file <a class="el" href="sound_8cpp_source.html">sound.cpp</a>.</p>
 
 </div>
 </div>
@@ -220,7 +221,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="sound_8cpp.html">sound.cpp</a></li>
-    <li class="footer">Generated on Mon Aug 17 2015 16:35:00 for PIano by
+    <li class="footer">Generated on Mon Nov 2 2015 07:32:11 for PIano by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>
   </ul>

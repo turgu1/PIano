@@ -13,6 +13,10 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "fifo.h", "fifo_8h.html", "fifo_8h" ],
     [ "format.cpp", "format_8cpp.html", "format_8cpp" ],
     [ "format.h", "format_8h.html", "format_8h" ],
+    [ "interactive_mode.cpp", "interactive__mode_8cpp.html", null ],
+    [ "interactive_mode.h", "interactive__mode_8h.html", [
+      [ "InteractiveMode", "class_interactive_mode.html", "class_interactive_mode" ]
+    ] ],
     [ "log.cpp", "log_8cpp.html", null ],
     [ "log.h", "log_8h.html", [
       [ "Log", "class_log.html", "class_log" ]
@@ -36,7 +40,8 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "sample.h", "sample_8h.html", "sample_8h" ],
     [ "samples_library.cpp", "samples__library_8cpp.html", null ],
     [ "samples_library.h", "samples__library_8h.html", [
-      [ "SamplesLibrary", "class_samples_library.html", "class_samples_library" ]
+      [ "SamplesLibrary", "class_samples_library.html", "class_samples_library" ],
+      [ "libStruct", "struct_samples_library_1_1lib_struct.html", "struct_samples_library_1_1lib_struct" ]
     ] ],
     [ "sound.cpp", "sound_8cpp.html", "sound_8cpp" ],
     [ "sound.h", "sound_8h.html", "sound_8h" ],
