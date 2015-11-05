@@ -1,4 +1,4 @@
-# The PIano Sampling Based Synthesizer Program
+# PIano: Sampling Based Synthesizer
 
 Note: The documentation is still work in progress...
 
@@ -10,7 +10,7 @@ PIano has the following characteristics:
 * Very low latency (lower than 11.6ms)
 * Algebraic Reverb filter, based on the FreeVerb algorithm
 * 7 band digital output equalizer
-* High optimization using ARM NEON intrinsic operations
+* High optimization using ARM NEON DSP intrinsic instructions
 * Multithreaded application, to allow for very large sampling libraries that goes beyond RAM memory limitations.
 * Console based, no graphics, fire and forget application
 * Minimal interactive mode for initial setup and debugging purposes
@@ -24,7 +24,7 @@ I was used to play piano (for myself as an amateur) on a Roland A-88 MIDI contro
 
 I was ready to buy a dedicated sampling computer or better, build my own. When the Raspberry Pi was first introduced, I thought it would be a good start at building my own music computer, but it was lacking some important features: enough USB ports (at least 3: MIDI controller access, external DAC, WIFI dongle), memory and processing power to permit a reasonable amount of good quality samples and polyphonic voices to be played. The first music related projects that started to emerge shown the device limitation and simply pushed to the right my intent.
 
-With the arrival of the Raspberry Pi 2, the new capability (faster multi-core processor, more memory) of the device triggered again my interest in this project and I started to build something useful and here it is. It was fun to built and it is fun to play piano with my own stuff.
+With the arrival of the Raspberry Pi 2, the new capability of the device (faster multi-core processor, more memory) triggered again my interest in this project and I started to build something useful and here it is. It was fun to built and it is fun to play piano with my own stuff.
 
 This is certainly not the best sampling application available. My intent is to bridge the gap with other more sophisticated alternatives than will eventually be able to be run on a future more powerful Raspberry PI. Some decisions taken also reflect the "good enough selection" I made, considering some arbitrary level of satisfaction of my own or unavailability of time for me to address more closely some of the shortcomings encountered.
 
@@ -72,8 +72,11 @@ cd ./portaudio
 ./configure –prefix=/usr –enable-cxx –with-alsa
 make
 sudo make install
-Retrieving and compiling PIano
 ```
+
+## Retrieving and compiling PIano
+
+tbc
 
 ## Installation
 
