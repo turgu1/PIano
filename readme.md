@@ -96,7 +96,7 @@ At this point in time PIano doesn't read SoundFont, SFZ or any other music sampl
 
 PIano requires a minimum of information to make it happy to start listening to the MIDI controller and prepare the sounds to be output to the PCM device. This information is gathered in a configuration file names PIano.conf.
 
-## Copyright
+## Licensing
 
 [Simplified BSD License]
 
